@@ -1,0 +1,26 @@
+﻿@model DemoTwitter.Models.Tweet
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            {
+            @Html.EditorFor(model => model.Text)
+            @Html.ValidationMessage("Do not leave this space blank.")
+            }
+            <button type="submit">Save</button>
+        }
+    </div>
+</body>
+</html>

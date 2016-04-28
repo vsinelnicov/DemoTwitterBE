@@ -1,0 +1,33 @@
+﻿@model IList<DemoTwitter.Models.User>
+<html>
+<head>
+    <title>Display all Users</title>
+</head>
+<h3>All users</h3>
+<body>
+    <div>
+        <table border="1">
+            <tr>
+                <td>ID</td>
+                <td>Username</td>
+                <td>EMail</td>
+                <td>Password</td>
+                <td>FistName</td>
+                <td>LastName</td>
+            </tr>
+            @foreach (var element in Model)
+            {
+                <tr>
+                    <td>@element.ID</td>
+                    <td>@element.Username</td>
+                    <td>@element.Email</td>
+                    <td>@element.Password</td>
+                    <td>@element.FirstName</td>
+                    <td>@element.LastName</td>
+                    <br/>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>
