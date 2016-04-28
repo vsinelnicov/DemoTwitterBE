@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace DemoTwitter.DataAccessLayer.Users
@@ -12,13 +13,16 @@ namespace DemoTwitter.DataAccessLayer.Users
             dbContext.SaveChanges();
         }
 
-        public void Update(User oldUser, User newUser)
+        public void Update(User updatedUser)
         {
-            oldUser.username = newUser.username;
-            oldUser.email = newUser.email;
-            oldUser.password = newUser.password;
-            oldUser.firstname = newUser.firstname;
-            oldUser.lastname = newUser.lastname;
+            dbContext.Users.Attach(updatedUser);
+            DbEntityEntry<User> newUser = dbContext.Entry(updatedUser);
+            newUser.Property(u => u.username).IsModified = true;
+            newUser.Property(u => u.email).IsModified = true;
+            newUser.Property(u => u.password).IsModified = true;
+            newUser.Property(u => u.firstname).IsModified = true;
+            newUser.Property(u => u.lastname).IsModified = true;
+            dbContext.SaveChanges();
         }
 
         public void Remove(User user)

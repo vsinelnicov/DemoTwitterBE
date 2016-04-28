@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Net;
+using DemoTwitter.DataAccessLayer;
 using DemoTwitter.DataAccessLayer.Users;
 using DemoTwitter.Mapper.Users;
 using User = DemoTwitter.Models.User;
@@ -22,10 +24,10 @@ namespace DemoTwitter.BusinessLayer.Users
             usersRepository.Remove(userForDatabase);
         }
 
-        public void Update(User oldUser, User newUser)
+        public void Update(User updatedUser)
         {
-           
-
+            DataAccessLayer.User userForDatabase = userMapper.MapToDatabaseType(updatedUser);
+            usersRepository.Update(userForDatabase);
         }
 
         public IEnumerable<User> GetAllUsers()
@@ -37,7 +39,7 @@ namespace DemoTwitter.BusinessLayer.Users
             {
                 allUsers.Add(userMapper.MapToUserModel(user));
             }
-            return allUsers; 
+            return allUsers;
         }
     }
 }
