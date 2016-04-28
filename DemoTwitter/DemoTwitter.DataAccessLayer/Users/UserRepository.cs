@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace DemoTwitter.DataAccessLayer.Users
@@ -10,7 +9,7 @@ namespace DemoTwitter.DataAccessLayer.Users
         public void Add(User user)
         {
             dbContext.Users.Add(user);
-           dbContext.SaveChanges();
+            dbContext.SaveChanges();
         }
 
         public void Update(User oldUser, User newUser)
@@ -20,13 +19,11 @@ namespace DemoTwitter.DataAccessLayer.Users
             oldUser.password = newUser.password;
             oldUser.firstname = newUser.firstname;
             oldUser.lastname = newUser.lastname;
-            dbContext.SaveChanges();
         }
 
         public void Remove(User user)
         {
             dbContext.Users.Remove(user);
-            dbContext.SaveChanges();
         }
 
         public IList<User> GetAll()

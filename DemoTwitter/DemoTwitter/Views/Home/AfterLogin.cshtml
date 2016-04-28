@@ -1,0 +1,12 @@
+﻿@model DemoTwitter.Models.User
+
+@{
+    Layout = null;
+}
+
+@if (Session["LoggedUserFullName"] != null)
+{
+    <div>
+        Welcome @Session["LoggedUserFullName"].ToString();
+    </div>
+}
