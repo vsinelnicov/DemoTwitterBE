@@ -104,6 +104,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TweetController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -152,13 +153,13 @@
     <Content Include="Views\User\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\User\Remove.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\User\Update.cshtml" />
+    <Content Include="Views\Home\AfterLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\User\ShowAllUsers.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -10,7 +10,7 @@ namespace DemoTwitter.Mapper.Users
         {
             var user = new User
                {
-                   ID = userFromDatabase.id,
+                   Id = userFromDatabase.id,
                    Username = userFromDatabase.username,
                    Email = userFromDatabase.email,
                    Password = userFromDatabase.password,
@@ -25,7 +25,6 @@ namespace DemoTwitter.Mapper.Users
         {
             var user = new DataAccessLayer.User
             {
-                id = userModel.ID,
                 username = userModel.Username,
                 email = userModel.Email,
                 password = userModel.Password,

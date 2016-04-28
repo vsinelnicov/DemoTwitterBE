@@ -9,8 +9,7 @@ namespace DemoTwitter.BusinessLayer.Users
         void Add(User user);
         void Remove(User user);
         void Update(User oldUser, User newUser);
-        IList<User> GetAll();
-
+        IEnumerable<User> GetAllUsers();
     }
 }
 

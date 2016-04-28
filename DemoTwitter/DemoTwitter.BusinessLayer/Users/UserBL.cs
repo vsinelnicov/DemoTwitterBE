@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
-using System.Dynamic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using DemoTwitter.DataAccessLayer;
 using DemoTwitter.DataAccessLayer.Users;
 using DemoTwitter.Mapper.Users;
+using Tweet = DemoTwitter.Models.Tweet;
 using User = DemoTwitter.Models.User;
 
 namespace DemoTwitter.BusinessLayer.Users
@@ -26,18 +28,24 @@ namespace DemoTwitter.BusinessLayer.Users
 
         public void Update(User oldUser, User newUser)
         {
-         
+            oldUser.Username = newUser.Username;
+            oldUser.Email = newUser.Email;
+            oldUser.Password = newUser.Password;
+            oldUser.FirstName = newUser.FirstName;
+            oldUser.LastName = newUser.LastName;
 
         }
-        public IList<User> GetAll()
+
+        public IEnumerable<User> GetAllUsers()
         {
-            IList<DataAccessLayer.User> usersFromDatabase = usersRepository.GetAll();
+            IEnumerable<DataAccessLayer.User> usersFromDatabase = usersRepository.GetAll();
             List<User> allUsers = new List<User>();
+
             foreach (var user in usersFromDatabase)
             {
                 allUsers.Add(userMapper.MapToUserModel(user));
             }
-            return allUsers;
+            return allUsers; 
         }
     }
 }

@@ -1,0 +1,42 @@
+﻿@model DemoTwitter.Models.User
+
+@{
+    Layout = null;
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    if (ViewBag.Message != null)
+    {
+        <div style="border: 1px solid red; border-radius: 3px;">
+            @ViewBag.Message
+        </div>
+    }
+    <table>
+        <tr>
+            <td>@Html.LabelFor(m => m.Username)</td>
+            <td>@Html.TextBoxFor(m => m.Username)</td>
+            <td>@Html.ValidationMessageFor(m => m.Username)</td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(m => m.Password)
+            </td>
+            <td>
+                @Html.PasswordFor(m => m.Password)
+            </td>
+            <td>
+                @Html.ValidationMessageFor(m => m.Password)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Login" /></td>
+        </tr>
+    </table>
+}
