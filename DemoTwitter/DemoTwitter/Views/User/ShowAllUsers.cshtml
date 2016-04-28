@@ -1,4 +1,4 @@
-﻿@model IList<DemoTwitter.Models.User>
+﻿@model IEnumerable<DemoTwitter.Models.User>
 <html>
 <head>
     <title>Display all Users</title>
@@ -18,7 +18,7 @@
             @foreach (var element in Model)
             {
                 <tr>
-                    <td>@element.ID</td>
+                    <td>@element.Id</td>
                     <td>@element.Username</td>
                     <td>@element.Email</td>
                     <td>@element.Password</td>

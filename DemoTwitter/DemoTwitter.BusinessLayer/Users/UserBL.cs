@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DemoTwitter.DataAccessLayer;
+﻿using System.Collections.Generic;
 using DemoTwitter.DataAccessLayer.Users;
 using DemoTwitter.Mapper.Users;
-using Tweet = DemoTwitter.Models.Tweet;
 using User = DemoTwitter.Models.User;
 
 namespace DemoTwitter.BusinessLayer.Users
@@ -28,11 +24,7 @@ namespace DemoTwitter.BusinessLayer.Users
 
         public void Update(User oldUser, User newUser)
         {
-            oldUser.Username = newUser.Username;
-            oldUser.Email = newUser.Email;
-            oldUser.Password = newUser.Password;
-            oldUser.FirstName = newUser.FirstName;
-            oldUser.LastName = newUser.LastName;
+           
 
         }
 

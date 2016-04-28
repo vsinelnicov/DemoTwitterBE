@@ -79,7 +79,9 @@
     <Compile Include="Users\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <EntityDeploy Include="TwitterModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

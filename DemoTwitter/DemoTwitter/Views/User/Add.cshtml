@@ -3,23 +3,41 @@
 
 <html>
 <head>
-    <title>AddUser</title>
-</head>
+    <title>Register</title>
+    <H3>Register</H3>
+    </head>
 <body>
     <div>
         @using (Html.BeginForm())
         {
             @Html.ValidationSummary(true)
-            {
-            @Html.EditorFor(model => model.Username)
-            @Html.EditorFor(model => model.Email)
-            @Html.EditorFor(model => model.Password)
-            @Html.EditorFor(model => model.FirstName)
-            @Html.EditorFor(model => model.LastName)
-            @Html.ValidationMessage("Do not leave this space blank.")
-            }
-            <button type="submit">Save</button>
+            {     <table>
+                <tr>
+                    <tr>
+                        <td>@Html.TextBoxFor(model => model.Username, new { placeholder = "Username" })      </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.TextBoxFor(model => model.Email, new { placeholder = "Email" })            </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.TextBoxFor(model => model.Password, new { placeholder = "Password" })      </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.TextBoxFor(model => model.FirstName, new { placeholder = "First Name" })   </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.TextBoxFor(model => model.LastName, new { placeholder = "Last Name" })     </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.ValidationMessage("Do not leave this space blank.")                        </td>
+                    </tr>
+                </tr>
+            </table>
+            } 
+            <button type="submit">Register</button>
         }
+
     </div>
+
 </body>
 </html>

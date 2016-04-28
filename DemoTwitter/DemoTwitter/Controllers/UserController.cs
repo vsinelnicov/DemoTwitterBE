@@ -24,5 +24,11 @@ namespace DemoTwitter.Controllers
             userBl.Add(user);
             return View();
         }
+        [HttpPost]
+        public ActionResult ShowAllUsers()
+        {
+
+            return View(userBl.GetAllUsers());
+        }
     }
 }
