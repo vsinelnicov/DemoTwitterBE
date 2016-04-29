@@ -6,7 +6,7 @@ namespace DemoTwitter.BusinessLayer.Users
     public interface IUserBL
     {
 
-        void Add(User user);
+        void Register(User user);
         void Remove(User user);
         void Update(User updatedUser);
         User GetByUsername(string userName);

@@ -12,10 +12,10 @@ namespace DemoTwitter.BusinessLayer.Users
         private readonly IUserRepository usersRepository = new UserRepository();
         private readonly IUserMapper userMapper = new UserMapper();
 
-        public void Add(User user)
+        public void Register(User user)
         {
             DataAccessLayer.User userForDatabase = userMapper.MapToDatabaseType(user);
-            usersRepository.Add(userForDatabase);
+            usersRepository.Register(userForDatabase);
         }
 
         public void Remove(User user)
