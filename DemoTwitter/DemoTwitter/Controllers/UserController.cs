@@ -1,30 +1,32 @@
 ﻿using System.Web.Mvc;
 using DemoTwitter.BusinessLayer.Users;
 using DemoTwitter.Models;
+using DemoTwitter.Helpers;
 
 namespace DemoTwitter.Controllers
 {
     public class UserController : Controller
     {
+        HashHelper hashHelper = new HashHelper();
         IUserBL userBl = new UserBL();
 
         //
         // GET: /User/
 
-        public ActionResult Add()
+        public ActionResult Register()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Add(User user)
+        public ActionResult Register(User user)
         {
-            userBl.Add(user);
+            user.Password = hashHelper.CalculateMd5(user.Password);
+            userBl.Register(user);
             return View();
         }
-        [HttpPost]
+
         public ActionResult ShowAllUsers()
         {
-
             return View(userBl.GetAllUsers());
         }
 
