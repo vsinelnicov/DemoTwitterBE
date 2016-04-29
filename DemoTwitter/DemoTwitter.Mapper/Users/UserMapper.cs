@@ -14,7 +14,6 @@ namespace DemoTwitter.Mapper.Users
                    Password = userFromDatabase.password,
                    FirstName = userFromDatabase.firstname,
                    LastName = userFromDatabase.lastname
-
                };
             return user;
         }
@@ -28,7 +27,6 @@ namespace DemoTwitter.Mapper.Users
                 password = userModel.Password,
                 firstname = userModel.FirstName,
                 lastname = userModel.LastName
-
             };
             return user;
         }

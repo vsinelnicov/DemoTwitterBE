@@ -39,17 +39,5 @@ namespace DemoTwitter.Controllers
             int.TryParse(Session["UserID"].ToString(), out userId);
             return userId;
         }
-
-        public ActionResult AfterLogin()
-        {
-            if (Session["LoggedUserID"] != null)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
-        }
     }
 }
