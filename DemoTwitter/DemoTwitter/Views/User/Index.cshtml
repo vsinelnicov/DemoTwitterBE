@@ -1,8 +1,12 @@
-﻿@model DemoTwitter.Models.Tweet
+﻿@using System.Web.Optimization
+@model DemoTwitter.Models.Tweet
 
 @{
     Layout = null;
 }
+
+
+@Styles.Render("~/Content/css/bootstrap.css")
 
 <!DOCTYPE html>
 
@@ -12,27 +16,17 @@
 </head>
 <body>
     <div>
-        @if (Session["UserFullName"] != null)
-        {
-            <div>
-                Welcome @Session["UserFullName"].ToString()
 
             </div>
-        }
-
     </div>
     <div>
         <p>What's on your mind...</p>
-        @using (Html.BeginForm())
         {
             @Html.ValidationSummary(true)
             {
                 
-            @Html.EditorFor(model => model.Text)
            
             }
-            <button type="submit">Post</button>
-            
         }
     </div>
 </body>
