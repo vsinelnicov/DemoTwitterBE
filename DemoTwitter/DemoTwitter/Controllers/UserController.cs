@@ -17,14 +17,23 @@ namespace DemoTwitter.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Register(User user)
         {
-            user.Password = hashHelper.CalculateMd5(user.Password);
-            userBl.Register(user);
-            return View();
-        }
+            if (ModelState.IsValid)
+            {
+                user.Password = hashHelper.CalculateMd5(user.Password);
+                userBl.Register(user);
+                return View();
+            }
+            else
+            {
+                return View(user);
+            }
 
+        }
+        [HttpPost]
         public ActionResult ShowAllUsers()
         {
             return View(userBl.GetAllUsers());
