@@ -7,6 +7,7 @@ namespace DemoTwitter.DataAccessLayer.Users
     public class UserRepository : IUserRepository
     {
         private readonly Twitter_dbEntities dbContext = new Twitter_dbEntities();
+
         public void Add(User user)
         {
             dbContext.Users.Add(user);
@@ -28,6 +29,11 @@ namespace DemoTwitter.DataAccessLayer.Users
         public void Remove(User user)
         {
             dbContext.Users.Remove(user);
+        }
+
+        public User GetByUsername(string userName)
+        {
+            return dbContext.Users.FirstOrDefault(user => user.username == userName);
         }
 
         public IList<User> GetAll()

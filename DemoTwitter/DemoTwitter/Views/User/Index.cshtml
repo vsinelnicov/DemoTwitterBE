@@ -1,0 +1,39 @@
+﻿@model DemoTwitter.Models.Tweet
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Twitter</title>
+</head>
+<body>
+    <div>
+        @if (Session["UserFullName"] != null)
+        {
+            <div>
+                Welcome @Session["UserFullName"].ToString()
+
+            </div>
+        }
+
+    </div>
+    <div>
+        <p>What's on your mind...</p>
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            {
+                
+            @Html.EditorFor(model => model.Text)
+           
+            }
+            <button type="submit">Post</button>
+            
+        }
+    </div>
+</body>
+</html>

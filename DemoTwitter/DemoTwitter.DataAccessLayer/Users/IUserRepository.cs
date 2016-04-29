@@ -7,6 +7,7 @@ namespace DemoTwitter.DataAccessLayer.Users
         void Add(User user);
         void Update(User updatedUser);
         void Remove(User user);
+        User GetByUsername(string userName);
         IList<User> GetAll();
     }
 }

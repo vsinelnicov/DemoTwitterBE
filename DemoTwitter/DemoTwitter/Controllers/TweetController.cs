@@ -19,9 +19,9 @@ namespace DemoTwitter.Controllers
         public ActionResult Index(Tweet tweet)
         {
             tweet.PostDate = DateTime.Now;
-            tweet.UserId = 1;
+            //tweet.UserId = 1;
             tweetBl.Add(tweet);
-            return View();
+            return RedirectToAction("Index", "User");
         }
 
     }

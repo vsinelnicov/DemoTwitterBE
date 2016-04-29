@@ -1,6 +1,4 @@
-﻿using System;
-using System.Security.Cryptography;
-using DemoTwitter.Models;
+﻿using DemoTwitter.Models;
 
 namespace DemoTwitter.Mapper.Users
 {

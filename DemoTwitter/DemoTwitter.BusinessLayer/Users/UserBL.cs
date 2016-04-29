@@ -30,6 +30,11 @@ namespace DemoTwitter.BusinessLayer.Users
             usersRepository.Update(userForDatabase);
         }
 
+        public User GetByUsername(string userName)
+        {
+            return userMapper.MapToUserModel(usersRepository.GetByUsername(userName));
+        }
+
         public IEnumerable<User> GetAllUsers()
         {
             IEnumerable<DataAccessLayer.User> usersFromDatabase = usersRepository.GetAll();
