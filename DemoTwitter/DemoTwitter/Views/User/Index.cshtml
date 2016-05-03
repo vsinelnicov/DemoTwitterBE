@@ -16,17 +16,28 @@
 </head>
 <body>
     <div>
-
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                @if (Session["UserFullName"] != null)
+                {
+                    <div>
+                        Welcome @Session["UserFullName"].ToString()
+                    </div>
+                }
             </div>
+        </nav>
     </div>
     <div>
         <p>What's on your mind...</p>
+        @using (Html.BeginForm(FormMethod.Post))
         {
             @Html.ValidationSummary(true)
             {
                 
+            @Html.EditorFor(model => model.Text, new { @class = "" })
            
             }
+            <button type="submit" class="btn">Post</button>
         }
     </div>
 </body>
