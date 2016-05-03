@@ -68,3 +68,6 @@ body {
         min-width: 73%;
         max-width: 83%;
     }
+    .btn-register {
+        background-color: #1e90ff;
+    }
