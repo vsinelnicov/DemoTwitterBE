@@ -32,7 +32,7 @@ namespace DemoTwitter.Mapper.Users
             return user;
         }
 
-        public DataAccessLayer.User MapLoginUserToDatabaseType(LoginUserModel loginUser)
+        public DataAccessLayer.User MapLoginUserToDatabaseType(LoginUser loginUser)
         {
             var user = new DataAccessLayer.User
             {

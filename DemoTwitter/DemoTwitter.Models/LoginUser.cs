@@ -2,7 +2,7 @@
 
 namespace DemoTwitter.Models
 {
-    public class LoginUserModel
+    public class LoginUser
     {
         [Display(Name = "Username")]
         [Required(ErrorMessage = "Enter your username")]

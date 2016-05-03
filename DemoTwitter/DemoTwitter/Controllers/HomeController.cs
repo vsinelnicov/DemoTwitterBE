@@ -20,7 +20,7 @@ namespace DemoTwitter.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginUserModel user)
+        public ActionResult Login(LoginUser user)
         {
             if (ModelState.IsValid)
             {
