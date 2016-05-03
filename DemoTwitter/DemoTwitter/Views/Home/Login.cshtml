@@ -14,14 +14,6 @@
                     <div class="panel-heading">
 
                         <div class="panel-body">
-                            @*<div class="row">
-                                <div class="col-xs-3">
-                                    <a href="#" class="active" id="login-form-link">Login</a>
-                                </div>
-                                <div class="col-xs-3">
-                                    <a href="#" id="register-form-link">Register</a>
-                                </div>
-                            </div>*@
                             <hr>
                             <div class="row">
                                 @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @id = "login-form", @role = "form", @style = "display: block;" }))
