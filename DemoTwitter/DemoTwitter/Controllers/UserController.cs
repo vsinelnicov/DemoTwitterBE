@@ -10,9 +10,6 @@ namespace DemoTwitter.Controllers
         HashHelper hashHelper = new HashHelper();
         IUserBL userBl = new UserBL();
 
-        //
-        // GET: /User/
-
         public ActionResult Register()
         {
             return View();

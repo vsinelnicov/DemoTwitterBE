@@ -31,6 +31,7 @@ namespace DemoTwitter.Controllers
             }
             return View();
         }
+
         public int GetUserId(User user)
         {
             int userId;

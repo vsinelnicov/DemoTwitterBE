@@ -1,4 +1,5 @@
 ﻿@using System.Web.Optimization
+@using System.Web.UI.WebControls
 @model DemoTwitter.Models.Tweet
 
 @{
@@ -15,29 +16,31 @@
     <title>Twitter</title>
 </head>
 <body>
-    <div>
-        <nav class="navbar navbar-default" role="navigation">
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                @if (Session["UserFullName"] != null)
-                {
-                    <div>
-                        Welcome @Session["UserFullName"].ToString()
-                    </div>
-                }
-            </div>
-        </nav>
-    </div>
+<div>
+    <br/>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            @if (Session["UserFullName"] != null)
+            {
+                <div class="breadcrumb">
+                    Welcome @Session["UserFullName"].ToString()
+                </div>
+            }
+        </div>
+    </nav>
+</div>
     <div>
         <p>What's on your mind...</p>
-        @using (Html.BeginForm(FormMethod.Post))
+        @using (Html.BeginForm("Index", "Tweet", FormMethod.Post))
         {
             @Html.ValidationSummary(true)
             {
-                
-            @Html.EditorFor(model => model.Text, new { @class = "" })
-           
+            <div class="form-group">
+                @Html.TextAreaFor(model => model.Text, new {@placeholder = "Say sometring..."})
+                <div class="alert">@Html.ValidationMessageFor(m => m.Text)</div>
+            </div>
             }
-            <button type="submit" class="btn">Post</button>
+            <input type="submit" name="login-submit" id="login-submit" class="btn" value="Post" />
         }
     </div>
 </body>

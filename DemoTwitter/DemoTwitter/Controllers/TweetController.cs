@@ -17,6 +17,8 @@ namespace DemoTwitter.Controllers
         [HttpPost]
         public ActionResult Index(Tweet tweet)
         {
+            if (!ModelState.IsValid)
+                return RedirectToAction("Index", "Tweet");
             int userID;
             int.TryParse(Session["UserID"].ToString(), out userID);
             tweet.PostDate = DateTime.Now;
