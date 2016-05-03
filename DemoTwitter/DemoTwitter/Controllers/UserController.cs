@@ -19,13 +19,14 @@ namespace DemoTwitter.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Register(User user)
         {
             if (ModelState.IsValid)
             {
                 user.Password = hashHelper.CalculateMd5(user.Password);
                 userBl.Register(user);
-                return View();
+                return RedirectToAction("Login", "Home");
             }
             else
             {
@@ -33,7 +34,7 @@ namespace DemoTwitter.Controllers
             }
 
         }
-        [HttpPost]
+
         public ActionResult ShowAllUsers()
         {
             return View(userBl.GetAllUsers());

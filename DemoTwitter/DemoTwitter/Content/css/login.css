@@ -45,3 +45,21 @@ body {
 	-moz-transition: all 0.1s linear;
 	transition: all 0.1s linear;
 }
+.btn-login {
+    background-color: #029f5b;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+    .btn-login:hover {
+        background-color: darkgrey;
+        color: black;
+        opacity: 0.9;
+
+    }

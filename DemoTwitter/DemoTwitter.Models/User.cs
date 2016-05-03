@@ -23,7 +23,7 @@ namespace DemoTwitter.Models
 
         [StringLength(24, MinimumLength = 4, ErrorMessage = "Password must have from 4 to 24 characters")]
         [Display(Name = "Password")]
-        [Required]
+        [Required(ErrorMessage = "Enter your password")]
         public string Password { get; set; }
 
         [StringLength(24, MinimumLength = 4, ErrorMessage = "First name must have from 4 to 24 characters")]

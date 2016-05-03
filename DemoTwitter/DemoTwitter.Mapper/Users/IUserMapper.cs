@@ -6,5 +6,5 @@ namespace DemoTwitter.Mapper.Users
     {
         User MapToUserModel(DataAccessLayer.User userFromDatabase);
         DataAccessLayer.User MapToDatabaseType(User userModel);
-    }
+      }
 }
