@@ -173,9 +173,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Tweet\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\User\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +185,7 @@
     <Content Include="Views\User\ShowAllUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Tweet\Index.cshtml" />
     <None Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
