@@ -17,12 +17,22 @@ namespace DemoTwitter.Controllers
         {
             return View();
         }
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Register(User user)
         {
-            user.Password = hashHelper.CalculateMd5(user.Password);
-            userBl.Register(user);
-            return View();
+            if (ModelState.IsValid)
+            {
+                user.Password = hashHelper.CalculateMd5(user.Password);
+                userBl.Register(user);
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                return View(user);
+            }
+
         }
 
         public ActionResult ShowAllUsers()

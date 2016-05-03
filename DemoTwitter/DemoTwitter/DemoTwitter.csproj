@@ -122,6 +122,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TweetController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Attribute\CustomAtributtes.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -136,6 +137,7 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\business-casual.css" />
     <Content Include="Content\css\login.css" />
+    <Content Include="Content\css\register.css" />
     <Content Include="Content\img\bg.jpg" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />

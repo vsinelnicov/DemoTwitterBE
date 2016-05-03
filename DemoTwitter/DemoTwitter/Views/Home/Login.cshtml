@@ -1,5 +1,5 @@
 ﻿@using System.Web.Optimization
-@model DemoTwitter.Models.User
+@model DemoTwitter.Models.LoginUserModel
 
 @{
     Layout = null;
@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="form-group">
                                         @Html.PasswordFor(m => m.Password, new { @name = "password", @tabindex = "2", @id = "password", @class = "form-control", @placeholder = "Password" })
-                                        <div>@Html.ValidationMessageFor(m => m.Password)</div>
+                                         <div class="alert">@Html.ValidationMessageFor(m => m.Username)</div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">

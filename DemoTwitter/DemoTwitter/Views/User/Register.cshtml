@@ -1,43 +1,65 @@
-﻿@model DemoTwitter.Models.User
-<!DOCTYPE html>
+﻿@using System.Web.Optimization
+@model DemoTwitter.Models.User
 
-<html>
-<head>
-    <title>Register</title>
-    <H3>Register</H3>
-    </head>
-<body>
-    <div>
-        @using (Html.BeginForm())
-        {
-            @Html.ValidationSummary(true)
-            {     <table>
-                <tr>
-                    <tr>
-                        <td>@Html.TextBoxFor(model => model.Username, new { placeholder = "Username" })      </td>
-                    </tr>
-                    <tr>
-                        <td>@Html.TextBoxFor(model => model.Email, new { placeholder = "Email" })            </td>
-                    </tr>
-                    <tr>
-                        <td>@Html.TextBoxFor(model => model.Password, new { placeholder = "Password" })      </td>
-                    </tr>
-                    <tr>
-                        <td>@Html.TextBoxFor(model => model.FirstName, new { placeholder = "First Name" })   </td>
-                    </tr>
-                    <tr>
-                        <td>@Html.TextBoxFor(model => model.LastName, new { placeholder = "Last Name" })     </td>
-                    </tr>
-                    <tr>
-                        <td>@Html.ValidationMessage("Do not leave this space blank.")                        </td>
-                    </tr>
-                </tr>
-            </table>
-            } 
-            <button type="submit">Register</button>
-        }
+@{
+    Layout = null;
+}
+@Styles.Render("~/Content/css/bootstrap.css", "~/Content/css/register.css")
+<body class="panel-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-register">
+                    <div class="panel-heading">
 
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <a href="#" class="active" id="login-form-link">Login</a>
+                                </div>
+                                <div class="col-xs-3">
+                                    <a href="#" id="register-form-link">Register</a>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                @using (Html.BeginForm("Register", "User", FormMethod.Post, new { @id = "register-form", @role = "form", @style = "display: block;" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true)
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.Username, new { @name = "username", @tabindex = "1", @id = "username", @class = "form-control", @placeholder = "Username" })
+                                         <div class="alert">@Html.ValidationMessageFor(m => m.Username)</div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.Email, new { @name = "email", @tabindex = "2", @id = "email", @class = "form-control", @placeholder = "Email" })
+                                         <div class="alert">@Html.ValidationMessageFor(m => m.Username)</div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.PasswordFor(m => m.Password, new { @name = "password", @tabindex = "3", @id = "password", @class = "form-control", @placeholder = "Password" })
+                                         <div class="alert">@Html.ValidationMessageFor(m => m.Username)</div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.FirstName, new { @name = "lastname", @tabindex = "4", @id = "lastname", @class = "form-control", @placeholder = "First Name" })
+                                         <div class="alert">@Html.ValidationMessageFor(m => m.Username)</div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.LastName, new { @name = "firstname", @tabindex = "5", @id = "firstname", @class = "form-control", @placeholder = "First Name" })
+                                         <div class="alert">@Html.ValidationMessageFor(m => m.Username)</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <input type="submit" name="register-submit" id="register-submit" tabindex="6" class="form-control btn-register" value="Register">
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
 </body>
-</html>

@@ -11,7 +11,6 @@ namespace DemoTwitter.BusinessLayer.Users
     {
         private readonly IUserRepository usersRepository = new UserRepository();
         private readonly IUserMapper userMapper = new UserMapper();
-
         public void Register(User user)
         {
             DataAccessLayer.User userForDatabase = userMapper.MapToDatabaseType(user);
@@ -34,6 +33,7 @@ namespace DemoTwitter.BusinessLayer.Users
         {
             return userMapper.MapToUserModel(usersRepository.GetByUsername(userName));
         }
+       
 
         public IEnumerable<User> GetAllUsers()
         {

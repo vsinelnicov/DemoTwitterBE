@@ -1,4 +1,5 @@
-﻿using DemoTwitter.Models;
+﻿using System.Security.Cryptography.X509Certificates;
+using DemoTwitter.Models;
 
 namespace DemoTwitter.Mapper.Users
 {
@@ -7,21 +8,23 @@ namespace DemoTwitter.Mapper.Users
         public User MapToUserModel(DataAccessLayer.User userFromDatabase)
         {
             var user = new User
-               {
-                   Id = userFromDatabase.id,
-                   Username = userFromDatabase.username,
-                   Email = userFromDatabase.email,
-                   Password = userFromDatabase.password,
-                   FirstName = userFromDatabase.firstname,
-                   LastName = userFromDatabase.lastname
-               };
+            {
+                Id = userFromDatabase.id,
+                Username = userFromDatabase.username,
+                Email = userFromDatabase.email,
+                Password = userFromDatabase.password,
+                FirstName = userFromDatabase.firstname,
+                LastName = userFromDatabase.lastname
+            };
             return user;
         }
 
+         
         public DataAccessLayer.User MapToDatabaseType(User userModel)
         {
             var user = new DataAccessLayer.User
             {
+                id = userModel.Id,
                 username = userModel.Username,
                 email = userModel.Email,
                 password = userModel.Password,
