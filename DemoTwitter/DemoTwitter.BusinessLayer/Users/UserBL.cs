@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Net;
-using DemoTwitter.DataAccessLayer;
 using DemoTwitter.DataAccessLayer.Users;
 using DemoTwitter.Mapper.Users;
 using User = DemoTwitter.Models.User;
@@ -34,7 +32,7 @@ namespace DemoTwitter.BusinessLayer.Users
             return userMapper.MapToUserModel(usersRepository.GetByUsername(userName));
         }
 
-        public IList<User> GetAll()
+        public IEnumerable<User> GetAllUsers()
         {
             IEnumerable<DataAccessLayer.User> usersFromDatabase = usersRepository.GetAll();
             List<User> allUsers = new List<User>();

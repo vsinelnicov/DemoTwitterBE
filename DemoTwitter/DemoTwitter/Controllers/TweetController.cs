@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Mvc;
 using DemoTwitter.BusinessLayer.Tweets;
 using DemoTwitter.Models;
@@ -11,6 +10,11 @@ namespace DemoTwitter.WEB.Controllers
     {
         ITweetBL tweetBl = new TweetBL();
 
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Index(Tweet tweet)
         {
@@ -18,15 +22,10 @@ namespace DemoTwitter.WEB.Controllers
                 return RedirectToAction("Index", "Tweet");
             int userID;
             int.TryParse(Session["UserID"].ToString(), out userID);
-            tweet.PostDate = DateTime.Today;
+            tweet.PostDate = DateTime.Now;
             tweet.UserId = userID;
             tweetBl.Add(tweet);
             return RedirectToAction("Index", "User");
-        }
-
-        public ActionResult AllTweets()
-        {
-            return PartialView(tweetBl.GetAll());
         }
     }
 }

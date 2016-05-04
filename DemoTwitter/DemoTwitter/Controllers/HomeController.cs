@@ -1,12 +1,9 @@
 ﻿using System.Web.Mvc;
 using DemoTwitter.BusinessLayer.Users;
 using DemoTwitter.Models;
-<<<<<<< HEAD
-=======
 using DemoTwitter.WEB.Helpers;
 using System.IO;
 using System.Threading.Tasks;
->>>>>>> origin/master
 
 namespace DemoTwitter.WEB.Controllers
 {
@@ -14,6 +11,7 @@ namespace DemoTwitter.WEB.Controllers
     public class HomeController : Controller
     {
         private IUserBL userRepository = new UserBL();
+        private HashHelper hashHelper = new HashHelper();
 
         public ActionResult Login()
         {
@@ -28,11 +26,6 @@ namespace DemoTwitter.WEB.Controllers
             {
 
                 User userFromDatabase = userRepository.GetByUsername(user.Username);
-<<<<<<< HEAD
-                GetUserId(userFromDatabase);
-                Session["UserFullName"] = userFromDatabase.FirstName + " " + userFromDatabase.LastName;
-                return RedirectToAction("Index", "User");
-=======
                 var hashedInputPassword = hashHelper.CalculateMd5(user.Password);
                 if (userFromDatabase.Password == hashedInputPassword && userFromDatabase.Username == user.Username)
                 {
@@ -41,7 +34,6 @@ namespace DemoTwitter.WEB.Controllers
                     return RedirectToAction("Index", "User");
                 }
 
->>>>>>> origin/master
             }
             return View();
         }

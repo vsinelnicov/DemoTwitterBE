@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using System.IO;
+using System.Runtime.Remoting.Messaging;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace DemoTwitter.WEB.Helpers
 {
@@ -6,15 +9,16 @@ namespace DemoTwitter.WEB.Helpers
     {
         public string CalculateMd5(string input)
         {
-            using (System.Security.Cryptography.MD5 md5Sum = System.Security.Cryptography.MD5.Create())
+            using (MD5 md5Sum = MD5.Create())
             {
+                //calculate md5 hash
                 byte[] inputBytes = Encoding.ASCII.GetBytes(input);
-                byte[] hashBytes = md5Sum.ComputeHash(inputBytes);
-
+                byte[] hash = md5Sum.ComputeHash(inputBytes);
+                // convert into array
                 StringBuilder stringBuilder = new StringBuilder();
-                for (int i = 0; i < hashBytes.Length; i++)
+                for (int i = 0; i < hash.Length; i++)
                 {
-                    stringBuilder.Append(i.ToString("X2"));
+                    stringBuilder.Append(hash[i].ToString("x2"));
                 }
                 return stringBuilder.ToString();
             }

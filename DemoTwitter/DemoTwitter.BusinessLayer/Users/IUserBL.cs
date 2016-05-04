@@ -10,7 +10,7 @@ namespace DemoTwitter.BusinessLayer.Users
         void Remove(User user);
         void Update(User updatedUser);
         User GetByUsername(string userName);
-        IList<User> GetAll();
+        IEnumerable<User> GetAllUsers();
     }
 }
 

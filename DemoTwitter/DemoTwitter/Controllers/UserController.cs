@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-﻿using System.Linq;
-=======
-﻿using System.Net;
->>>>>>> origin/master
+ ﻿using System.Linq;
+ ﻿using System.Net;
 using System.Web.Mvc;
 using DemoTwitter.BusinessLayer.Users;
 using DemoTwitter.Models;
@@ -14,15 +11,15 @@ namespace DemoTwitter.WEB.Controllers
     public class UserController : Controller
     {
         IUserBL userBl = new UserBL();
+        HashHelper hashHelper = new HashHelper();
 
-<<<<<<< HEAD
+
         public ActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Register(User user)
         {
             if (ModelState.IsValid)
@@ -37,8 +34,8 @@ namespace DemoTwitter.WEB.Controllers
             }
         }
 
-=======
->>>>>>> origin/master
+
+
         public ActionResult ShowAllUsers()
         {
             return View(userBl.GetAll());
