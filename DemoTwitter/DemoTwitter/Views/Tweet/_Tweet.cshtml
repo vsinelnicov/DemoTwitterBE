@@ -1,0 +1,10 @@
+﻿@model  IList<DemoTwitter.Models.Tweet>
+<div>
+    @foreach (var tweet in Model)
+    {
+        <div class="bg-success col-md-3" style="margin: 10px; border-radius: 3px; border: 1px solid #00008b">
+            <p>@tweet.PostDate</p>
+            <p>@tweet.Text</p>
+        </div>
+    }
+</div>

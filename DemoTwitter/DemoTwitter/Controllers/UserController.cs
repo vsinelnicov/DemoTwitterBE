@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using DemoTwitter.BusinessLayer.Users;
 using DemoTwitter.Models;
 using DemoTwitter.WEB.Helpers;
@@ -29,12 +30,11 @@ namespace DemoTwitter.WEB.Controllers
             {
                 return View(user);
             }
-
         }
 
         public ActionResult ShowAllUsers()
         {
-            return View(userBl.GetAllUsers());
+            return View(userBl.GetAll());
         }
 
         public ActionResult Index()
