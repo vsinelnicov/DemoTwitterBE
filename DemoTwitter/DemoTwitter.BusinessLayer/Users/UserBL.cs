@@ -33,7 +33,6 @@ namespace DemoTwitter.BusinessLayer.Users
         {
             return userMapper.MapToUserModel(usersRepository.GetByUsername(userName));
         }
-       
 
         public IList<User> GetAll()
         {

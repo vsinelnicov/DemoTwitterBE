@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿using System.Linq;
+=======
+﻿using System.Net;
+>>>>>>> origin/master
 using System.Web.Mvc;
 using DemoTwitter.BusinessLayer.Users;
 using DemoTwitter.Models;
@@ -6,11 +10,12 @@ using DemoTwitter.WEB.Helpers;
 
 namespace DemoTwitter.WEB.Controllers
 {
+
     public class UserController : Controller
     {
-        HashHelper hashHelper = new HashHelper();
         IUserBL userBl = new UserBL();
 
+<<<<<<< HEAD
         public ActionResult Register()
         {
             return View();
@@ -32,6 +37,8 @@ namespace DemoTwitter.WEB.Controllers
             }
         }
 
+=======
+>>>>>>> origin/master
         public ActionResult ShowAllUsers()
         {
             return View(userBl.GetAll());

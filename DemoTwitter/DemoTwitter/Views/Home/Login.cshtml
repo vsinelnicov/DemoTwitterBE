@@ -19,7 +19,7 @@
                                     <a href=@Url.Action("Login", "Home") class="active" id="login-form-link">Login</a>
                                 </div>
                                 <div class="col-xs-3">
-                                    <a href=@Url.Action("Register", "User") id="register-form-link">Register</a>
+                                    <a href=@Url.Action("Register", "Home") id="register-form-link">Register</a>
                                 </div>
                             </div>
                             <hr>
@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="form-group">
                                         @Html.PasswordFor(m => m.Password, new { @name = "password", @tabindex = "2", @id = "password", @class = "form-control", @placeholder = "Password" })
-                                        <div class="alert" style="color: red;">@Html.ValidationMessageFor(m => m.Username)</div>
+                                        <div class="alert" style="color: red;">@Html.ValidationMessageFor(m => m.Password)</div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">

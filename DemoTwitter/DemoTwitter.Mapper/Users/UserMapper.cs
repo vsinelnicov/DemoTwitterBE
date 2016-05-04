@@ -22,7 +22,7 @@ namespace DemoTwitter.Mapper.Users
         {
             var user = new DataAccessLayer.User
             {
-                id = userModel.Id??0,
+                id = userModel.Id ?? 0,
                 username = userModel.Username,
                 email = userModel.Email,
                 password = userModel.Password,
@@ -31,5 +31,6 @@ namespace DemoTwitter.Mapper.Users
             };
             return user;
         }
+       
     }
 }
