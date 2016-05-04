@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace DemoTwitter
+namespace DemoTwitter.WEB
 {
     public class BundleConfig
     {

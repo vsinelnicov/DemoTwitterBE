@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using DemoTwitter.BusinessLayer.Tweets;
 using DemoTwitter.Models;
 
-namespace DemoTwitter.Controllers
+namespace DemoTwitter.WEB.Controllers
 {
     public class TweetController : Controller
     {

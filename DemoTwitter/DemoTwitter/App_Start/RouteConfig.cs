@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace DemoTwitter
+namespace DemoTwitter.WEB
 {
     public class RouteConfig
     {

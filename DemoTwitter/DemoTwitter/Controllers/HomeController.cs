@@ -2,7 +2,7 @@
 using DemoTwitter.BusinessLayer.Users;
 using DemoTwitter.Models;
 
-namespace DemoTwitter.Controllers
+namespace DemoTwitter.WEB.Controllers
 {
     public class HomeController : Controller
     {

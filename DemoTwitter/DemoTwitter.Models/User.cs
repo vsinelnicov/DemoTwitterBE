@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using DemoTwitter.Models;
+﻿using System.ComponentModel.DataAnnotations;
 
 
 namespace DemoTwitter.Models
@@ -9,7 +7,7 @@ namespace DemoTwitter.Models
     public class User
     {
         
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [Display(Name = "Username")]
         [Required(ErrorMessage = "Enter your username")]

@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Net;
-using DemoTwitter.DataAccessLayer;
 using DemoTwitter.DataAccessLayer.Users;
 using DemoTwitter.Mapper.Users;
 using User = DemoTwitter.Models.User;

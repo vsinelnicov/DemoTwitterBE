@@ -1,4 +1,5 @@
-﻿using DemoTwitter.Models;
+﻿
+using DemoTwitter.Models;
 
 namespace DemoTwitter.Mapper.Tweets
 {

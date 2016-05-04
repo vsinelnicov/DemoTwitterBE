@@ -1,9 +1,9 @@
 ﻿using System.Web.Mvc;
 using DemoTwitter.BusinessLayer.Users;
 using DemoTwitter.Models;
-using DemoTwitter.Helpers;
+using DemoTwitter.WEB.Helpers;
 
-namespace DemoTwitter.Controllers
+namespace DemoTwitter.WEB.Controllers
 {
     public class UserController : Controller
     {

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using DemoTwitter.Models;
 
 namespace DemoTwitter.DataAccessLayer
 {
@@ -23,17 +22,6 @@ namespace DemoTwitter.DataAccessLayer
             list = dbQuery.AsNoTracking().ToList();
 
             return list;
-        }
-
-        public IList<Tweet> GetAllTweetsFromDatabase()
-        {
-            List<Tweet> tweets = new List<Tweet>();
-
-            foreach (var tweetFromDatabase in dbContext.Tweets)
-            {
-                tweets.Add(tweetFromDatabase);
-            }
-            return tweets;
         }
     }
 }

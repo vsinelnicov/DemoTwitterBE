@@ -22,22 +22,12 @@ namespace DemoTwitter.Mapper.Users
         {
             var user = new DataAccessLayer.User
             {
-                id = userModel.Id,
+                id = userModel.Id??0,
                 username = userModel.Username,
                 email = userModel.Email,
                 password = userModel.Password,
                 firstname = userModel.FirstName,
                 lastname = userModel.LastName
-            };
-            return user;
-        }
-
-        public DataAccessLayer.User MapLoginUserToDatabaseType(LoginUser loginUser)
-        {
-            var user = new DataAccessLayer.User
-            {
-                username = loginUser.Username,
-                password = loginUser.Password
             };
             return user;
         }

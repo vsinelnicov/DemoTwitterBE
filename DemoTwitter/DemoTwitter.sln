@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoTwitter", "DemoTwitter\DemoTwitter.csproj", "{1845E680-1249-4756-BD64-BAD1D425B513}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoTwitter.WEB", "DemoTwitter\DemoTwitter.WEB.csproj", "{1845E680-1249-4756-BD64-BAD1D425B513}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoTwitter.Tests", "DemoTwitter.Tests\DemoTwitter.Tests.csproj", "{5BB76C55-9DD8-4D48-B538-35504AA41363}"
 EndProject

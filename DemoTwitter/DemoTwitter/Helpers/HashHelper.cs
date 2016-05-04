@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace DemoTwitter.Helpers
+namespace DemoTwitter.WEB.Helpers
 {
     public class HashHelper
     {
