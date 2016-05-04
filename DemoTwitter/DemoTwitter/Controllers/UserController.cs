@@ -5,32 +5,10 @@ using DemoTwitter.WEB.Helpers;
 
 namespace DemoTwitter.WEB.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
-        HashHelper hashHelper = new HashHelper();
-        IUserBL userBl = new UserBL();
-
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Register(User user)
-        {
-            if (ModelState.IsValid)
-            {
-                user.Password = hashHelper.CalculateMd5(user.Password);
-                userBl.Register(user);
-                return RedirectToAction("Login", "Home");
-            }
-            else
-            {
-                return View(user);
-            }
-
-        }
+        IUserBL userBl = new UserBL();    
 
         public ActionResult ShowAllUsers()
         {
