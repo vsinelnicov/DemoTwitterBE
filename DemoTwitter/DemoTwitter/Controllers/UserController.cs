@@ -41,5 +41,10 @@ namespace DemoTwitter.WEB.Controllers
         {
             return View();
         }
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Login", "Home");
+        }
     }
 }
