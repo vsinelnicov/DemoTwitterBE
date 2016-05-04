@@ -44,13 +44,13 @@ namespace DemoTwitter.WEB.Controllers
         }
 
         [HttpPost]
-
+        
         [ValidateAntiForgeryToken]
         public ActionResult Register(User user)
         {
             if (ModelState.IsValid)
             {
-                user.Password = hashHelper.CalculateMd5(user.Password);
+               user.Password = hashHelper.CalculateMd5(user.Password);
                 userRepository.Register(user);
                 return RedirectToAction("Login", "Home");
             }

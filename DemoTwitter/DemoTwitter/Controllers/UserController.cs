@@ -1,14 +1,15 @@
-﻿using System.Web.Mvc;
+﻿using System.Net;
+using System.Web.Mvc;
 using DemoTwitter.BusinessLayer.Users;
 using DemoTwitter.Models;
 using DemoTwitter.WEB.Helpers;
 
 namespace DemoTwitter.WEB.Controllers
 {
-    [Authorize]
+
     public class UserController : Controller
     {
-        IUserBL userBl = new UserBL();    
+        IUserBL userBl = new UserBL();
 
         public ActionResult ShowAllUsers()
         {

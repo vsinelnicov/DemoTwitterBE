@@ -5,7 +5,7 @@ using DemoTwitter.Models;
 
 namespace DemoTwitter.WEB.Controllers
 {
-    [Authorize]
+    
     public class TweetController : Controller
     {
         ITweetBL tweetBl = new TweetBL();

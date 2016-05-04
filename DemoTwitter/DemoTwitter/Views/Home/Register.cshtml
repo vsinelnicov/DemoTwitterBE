@@ -18,12 +18,12 @@
                                     <a href=@Url.Action("Login", "Home")  id="login-form-link">Login</a>
                                 </div>
                                 <div class="col-xs-3">
-                                    <a href=@Url.Action("Register", "User") class="active" id="register-form-link">Register</a>
+                                    <a href=@Url.Action("Register", "Home") class="active" id="register-form-link">Register</a>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
-                                @using (Html.BeginForm("Register", "User", FormMethod.Post, new { @id = "register-form", @role = "form", @style = "display: block;" }))
+                                @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { @id = "register-form", @role = "form", @style = "display: block;" }))
                                 {
                                     @Html.AntiForgeryToken()
                                     @Html.ValidationSummary(true)
