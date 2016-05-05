@@ -17,7 +17,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body style="background: #f4f7f9">
     <div>
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -56,19 +56,22 @@
             </div>
         </nav>
     </div>
-    <div>
+    <div class="col-md-8 tweetform">
 
         @using (Html.BeginForm("Index", "Tweet", FormMethod.Post))
         {
             @Html.ValidationSummary(true)
             {
-            <div class="col-md-6">
-                @Html.TextAreaFor(model => model.Text, new { @placeholder = "What's on your mind...", @class = "form-control", @required = true })
-                <div class="alert">@Html.ValidationMessageFor(m => m.Text)</div>
+            <div >
+                @Html.TextAreaFor(model => model.Text, new { @placeholder = "What's on your mind...", @class = "form-control", @style = "max-width: 1090px", @required = true })
             </div>
             }
-            <input type="submit" name="login-submit" id="login-submit" class="btn" value="Post" />
+            <input type="submit" name="login-submit" id="login-submit" class="btn post-btn" value="Post" />
         }
     </div>
+
+
+    @{Html.RenderAction("AllTweets", "Tweet");}
+
 </body>
 </html>

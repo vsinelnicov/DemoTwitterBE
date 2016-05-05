@@ -1,5 +1,50 @@
-﻿#tweet {
-    border: 1px solid orange;
-    border-radius: 3px;
-    background-color: rgba(200, 225, 225, 0.59);
+﻿.tweet {
+    border: 1px solid #aeaeea;
+    border-top: none;
+    background-color: white;
+}
+
+.tweet-text {
+    padding: 15px;
+}
+
+    .tweet-text:hover {
+        opacity: 0.8;
+        background-color: #f3f9f2;
+        cursor: pointer;
+    }
+
+.tweetsbox {
+    margin: 0;
+    padding: 0;
+}
+
+    .tweetsbox > ol > li {
+    }
+
+.tweetform {
+    background-color: #dfeac4;
+    border: 1px solid #aeaeae;
+    border-radius: 3px 3px 0 0;
+    margin: 0;
+    padding: 0;
+}
+
+.tweetform-header {
+    padding-top: 5px;
+    margin-left: 15px;
+    color: #9ca89c;
+    font-weight: 500;
+}
+.tweetform-header:hover {
+    color: #50c050;
+    cursor: pointer;
+}
+
+.tweetform > textarea {
+    margin: 15px;
+}
+
+.post-btn {
+    right: 5%;
 }

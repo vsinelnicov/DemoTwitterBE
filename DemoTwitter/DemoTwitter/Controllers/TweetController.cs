@@ -1,21 +1,23 @@
 ﻿using System;
+using System.Net;
+using System.Web.Http;
 using System.Web.Mvc;
 using DemoTwitter.BusinessLayer.Tweets;
 using DemoTwitter.Models;
 
+
 namespace DemoTwitter.WEB.Controllers
 {
-    
+    [System.Web.Mvc.Authorize]
     public class TweetController : Controller
-    {    
+    {
         ITweetBL tweetBl = new TweetBL();
 
         public ActionResult Index()
         {
             return RedirectToAction("Index", "User");
         }
-        [Authorize]
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         public ActionResult Index(Tweet tweet)
         {
             if (!ModelState.IsValid)
@@ -26,6 +28,11 @@ namespace DemoTwitter.WEB.Controllers
             tweet.UserId = userID;
             tweetBl.Add(tweet);
             return RedirectToAction("Index", "User");
+        }
+
+        public ActionResult AllTweets()
+        {
+            return PartialView(tweetBl.GetAll());
         }
     }
 }

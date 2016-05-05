@@ -1,13 +1,21 @@
-﻿@model IList<DemoTwitter.Models.Tweet>
+﻿@using System.Web.Optimization
+@model IList<DemoTwitter.Models.Tweet>
 @{
     Layout = null;
 }
-<div>
-    @foreach (var tweet in Model)
-    {
-        <div class="bg-success col-md-3" style="margin: 10px; border-radius: 3px; border: 1px solid #00008b">
-            <p>@tweet.PostDate</p>
-            <p>@tweet.Text</p>
-        </div>
-    }
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+@Styles.Render("~/Content/css/index.css")
+
+<div class="tweetsbox col-md-8">
+    <ol style="list-style: none">
+        @foreach (var tweet in Model)
+        {
+            <li class="tweet">
+                <div class="tweetform-header">@tweet.PostDate</div>
+                <div class="tweet-text">@tweet.Text</div>
+            </li>
+        }
+    </ol>
 </div>

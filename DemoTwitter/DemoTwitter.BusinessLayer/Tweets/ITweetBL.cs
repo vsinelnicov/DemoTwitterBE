@@ -9,6 +9,7 @@ namespace DemoTwitter.BusinessLayer.Tweets
         void Add(Tweet tweet);
         void Remove(Tweet tweet);
         void Update(Tweet oldTweet, Tweet newTweet);
+        IList<Tweet> GetAll();
         IEnumerable<Tweet> GetByPostDate(DateTime postDate);
     }
 }

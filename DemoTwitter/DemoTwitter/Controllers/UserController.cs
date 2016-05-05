@@ -1,9 +1,12 @@
+ ﻿using System;
+ ﻿using System.Collections;
  ﻿using System.Linq;
  ﻿using System.Net;
-using System.Web.Mvc;
-using DemoTwitter.BusinessLayer.Users;
-using DemoTwitter.Models;
-using DemoTwitter.WEB.Helpers;
+ ﻿using System.Web;
+ ﻿using System.Web.Caching;
+ ﻿using System.Web.Mvc;
+ ﻿using System.Web.Security;
+ ﻿using DemoTwitter.BusinessLayer.Users;
 
 namespace DemoTwitter.WEB.Controllers
 {
@@ -25,6 +28,10 @@ namespace DemoTwitter.WEB.Controllers
         public ActionResult Logout()
         {
             Session.Clear();
+            FormsAuthentication.SignOut();
+            var urlToRemove = Url.Action("Index", "User");
+            if (urlToRemove != null) HttpResponse.RemoveOutputCacheItem(urlToRemove);
+
             return RedirectToAction("Login", "Home");
         }
     }

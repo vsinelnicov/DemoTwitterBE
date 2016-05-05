@@ -1,20 +1,20 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using DemoTwitter.BusinessLayer.Users;
 using DemoTwitter.Models;
 using DemoTwitter.WEB.Helpers;
-using System.IO;
-using System.Runtime.Hosting;
-using System.Threading.Tasks;
 using System.Web.Security;
 
 namespace DemoTwitter.WEB.Controllers
 {
-
+    [Authorize]
+    [OutputCache(Duration = 1)]
     public class HomeController : Controller
     {
         private IUserBL userRepository = new UserBL();
         private HashHelper hashHelper = new HashHelper();
 
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
@@ -27,20 +27,30 @@ namespace DemoTwitter.WEB.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                User userFromDatabase = userRepository.GetByUsername(user.Username);
-                var hashedInputPassword = hashHelper.CalculateMd5(user.Password);
-                if (userFromDatabase.Password == hashedInputPassword && userFromDatabase.Username == user.Username)
+                try
                 {
-                    GetUserId(userFromDatabase);
-                    Session["UserFullName"] = userFromDatabase.FirstName + " " + userFromDatabase.LastName;
-                    return RedirectToAction("Index", "User");
+                    User userFromDatabase = userRepository.GetByUsername(user.Username);
+                    if (userFromDatabase != null)
+                    {
+                        FormsAuthentication.SetAuthCookie(userFromDatabase.Username, false);
+                        var hashedInputPassword = hashHelper.CalculateMd5(user.Password);
+                        if (userFromDatabase.Password == hashedInputPassword &&
+                            userFromDatabase.Username == user.Username)
+                        {
+                            GetUserId(userFromDatabase);
+                            this.Session["UserFullName"] = userFromDatabase.FirstName + " " + userFromDatabase.LastName;
+                            return RedirectToAction("Index", "User");
+                        }
+                    }
                 }
-
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
             return View();
         }
-
+        [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
@@ -53,7 +63,6 @@ namespace DemoTwitter.WEB.Controllers
         {
             if (ModelState.IsValid)
             {
-               ;
                 user.Password = hashHelper.CalculateMd5(user.Password);
                 userRepository.Register(user);
                 return RedirectToAction("Login", "Home");
