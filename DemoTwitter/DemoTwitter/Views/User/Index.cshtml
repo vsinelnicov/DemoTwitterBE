@@ -37,7 +37,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
+                        <li class="active"><a href="@Url.Action("Index", "User")">Home</a></li>
 
                         <li><a href="#">Page 2</a></li>
                     </ul>
@@ -46,6 +46,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span>Options</a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Update profile information</a></li>
+                                <li><a href=@Url.Action("ShowAllUsers", "User")>Show all users</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -62,7 +63,7 @@
         {
             @Html.ValidationSummary(true)
             {
-            <div >
+            <div>
                 @Html.TextAreaFor(model => model.Text, new { @placeholder = "What's on your mind...", @class = "form-control", @style = "max-width: 1090px", @required = true })
             </div>
             }
