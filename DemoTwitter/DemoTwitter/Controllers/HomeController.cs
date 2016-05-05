@@ -3,7 +3,9 @@ using DemoTwitter.BusinessLayer.Users;
 using DemoTwitter.Models;
 using DemoTwitter.WEB.Helpers;
 using System.IO;
+using System.Runtime.Hosting;
 using System.Threading.Tasks;
+using System.Web.Security;
 
 namespace DemoTwitter.WEB.Controllers
 {
@@ -19,6 +21,7 @@ namespace DemoTwitter.WEB.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginUser user)
         {
@@ -44,12 +47,13 @@ namespace DemoTwitter.WEB.Controllers
         }
 
         [HttpPost]
-
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Register(User user)
         {
             if (ModelState.IsValid)
             {
+               ;
                 user.Password = hashHelper.CalculateMd5(user.Password);
                 userRepository.Register(user);
                 return RedirectToAction("Login", "Home");

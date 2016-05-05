@@ -7,7 +7,7 @@ using DemoTwitter.WEB.Helpers;
 
 namespace DemoTwitter.WEB.Controllers
 {
-
+    [Authorize]
     public class UserController : Controller
     {
         IUserBL userBl = new UserBL();

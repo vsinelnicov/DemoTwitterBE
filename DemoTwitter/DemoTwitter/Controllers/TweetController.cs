@@ -7,14 +7,14 @@ namespace DemoTwitter.WEB.Controllers
 {
     
     public class TweetController : Controller
-    {
+    {    
         ITweetBL tweetBl = new TweetBL();
 
         public ActionResult Index()
         {
             return RedirectToAction("Index", "User");
         }
-
+        [Authorize]
         [HttpPost]
         public ActionResult Index(Tweet tweet)
         {
