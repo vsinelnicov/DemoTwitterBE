@@ -12,7 +12,7 @@ namespace DemoTwitter.WEB.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "User");
         }
 
         [HttpPost]

@@ -174,20 +174,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Login.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User\ShowAllUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Tweet\ShowAll.cshtml" />
-    <Content Include="Views\Tweet\_Tweet.cshtml" />
     <Content Include="Views\Tweet\AllTweets.cshtml" />
     <None Include="Views\User\Index.cshtml" />
   </ItemGroup>

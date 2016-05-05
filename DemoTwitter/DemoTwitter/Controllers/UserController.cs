@@ -11,39 +11,21 @@ namespace DemoTwitter.WEB.Controllers
     public class UserController : Controller
     {
         IUserBL userBl = new UserBL();
-        HashHelper hashHelper = new HashHelper();
-
-
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Register(User user)
-        {
-            if (ModelState.IsValid)
-            {
-                user.Password = hashHelper.CalculateMd5(user.Password);
-                userBl.Register(user);
-                return RedirectToAction("Login", "Home");
-            }
-            else
-            {
-                return View(user);
-            }
-        }
-
-
 
         public ActionResult ShowAllUsers()
         {
-            return View(userBl.GetAll());
+            return View(userBl.GetAllUsers());
         }
 
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Login", "Home");
         }
     }
 }
