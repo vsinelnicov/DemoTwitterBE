@@ -4,6 +4,8 @@
 @{
     Layout = null;
 }
+@Styles.Render("~/Content/css/bootstrap.min.css")
+@Styles.Render("~/Content/css/index.css")
 
 
 @Styles.Render("~/Content/css/index.css")
@@ -13,20 +15,20 @@
 <html>
 <head>
     <title>Twitter</title>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 </head>
 <body style="background: #f4f7f9">
     <div>
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
+
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+
                     <a class="navbar-brand" href="#">
                         @if (Session["UserFullName"] != null)
                         {<span>
@@ -57,7 +59,21 @@
             </div>
         </nav>
     </div>
-    <div class="col-md-8 tweetform">
+    <div class="tweetsbox col-md-8">
+        <ol style="list-style: none">
+            <li>
+                @using (Html.BeginForm("Index", "Tweet", FormMethod.Post))
+                {
+                    @Html.ValidationSummary(true)
+                    {
+                    @Html.TextAreaFor(model => model.Text, new { @placeholder = "What's on your mind...", @class = "form-control tweet-textarea", @style = "max-width: 1090px", @maxlength = 140, @required = true })
+                    }
+                }
+            </li>
+            <li>
+                <input type="submit" name="login-submit" id="login-submit" class="btn post-btn" value="Post" />
+            </li>
+        </ol>
 
         @using (Html.BeginForm("Index", "Tweet", FormMethod.Post))
         {
@@ -70,7 +86,6 @@
             <input type="submit" name="login-submit" id="login-submit" class="btn post-btn" value="Post" />
         }
     </div>
-
 
     @{Html.RenderAction("AllTweets", "Tweet");}
 
