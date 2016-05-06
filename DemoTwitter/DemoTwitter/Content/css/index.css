@@ -6,12 +6,14 @@
     border: 1px solid #c7c7cd;
     border-top: none;
     background-color: white;
+    color: rgb(97, 97, 97);
 }
 
     .tweet:hover {
-        opacity: 0.8;
+        
         background-color: #fafafa;
         cursor: pointer;
+        color: black;
     }
 
 .tweet-text {
@@ -70,7 +72,6 @@ ol {
 }
 
     .tweetform-header:hover {
-        color: #50c050;
         cursor: pointer;
     }
 

@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Net;
-using System.Web.Http;
 using System.Web.Mvc;
 using DemoTwitter.BusinessLayer.Tweets;
 using DemoTwitter.Models;
+using PagedList;
 
 
 namespace DemoTwitter.WEB.Controllers
 {
-    [System.Web.Mvc.Authorize]
+    [Authorize]
     public class TweetController : Controller
     {
         ITweetBL tweetBl = new TweetBL();
@@ -17,7 +16,7 @@ namespace DemoTwitter.WEB.Controllers
         {
             return RedirectToAction("Index", "User");
         }
-        [System.Web.Mvc.HttpPost]
+        [HttpPost]
         public ActionResult Index(Tweet tweet)
         {
             if (!ModelState.IsValid)
@@ -30,9 +29,10 @@ namespace DemoTwitter.WEB.Controllers
             return RedirectToAction("Index", "User");
         }
 
-        public ActionResult AllTweets()
+        public ActionResult All(int? page)
         {
-            return PartialView(tweetBl.GetAll());
+            int pageNumber = page ?? 1;
+            return PartialView(tweetBl.GetAll().ToPagedList(pageNumber, 25));
         }
     }
 }
