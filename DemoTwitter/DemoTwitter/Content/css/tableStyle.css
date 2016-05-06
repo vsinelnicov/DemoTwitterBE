@@ -55,7 +55,6 @@ th {
     font-size: 21px;
     font-weight: 100;
     padding: 7px;
-    
     text-align: left;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     vertical-align: middle;
@@ -121,7 +120,6 @@ td {
     border-right: 1px solid lightslategrey;
     border-top: 1px solid lightslategrey;
     border-bottom: 1px solid lightslategrey;
-   
 }
 
     td:last-child {
@@ -150,4 +148,14 @@ td.text-center {
 
 td.text-right {
     text-align: right;
+}
+
+.form-control {
+    width: 300px;
+    left: 50%;
+    margin: auto;
+}
+
+.alert {
+    left: 50%;
 }

@@ -67,11 +67,7 @@ namespace DemoTwitter.WEB.Controllers
                 userRepository.Register(user);
                 return RedirectToAction("Login", "Home");
             }
-            else
-            {
-                return View(user);
-            }
-
+            return View(user);
         }
 
         public int GetUserId(User user)

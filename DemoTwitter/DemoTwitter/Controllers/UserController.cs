@@ -7,13 +7,17 @@
  ﻿using System.Web.Mvc;
  ﻿using System.Web.Security;
  ﻿using DemoTwitter.BusinessLayer.Users;
+ ﻿using DemoTwitter.Models;
+ ﻿using DemoTwitter.WEB.Helpers;
 
 namespace DemoTwitter.WEB.Controllers
 {
     [Authorize]
     public class UserController : Controller
     {
-        IUserBL userBl = new UserBL();
+
+        private HashHelper hashHelper = new HashHelper();
+        private IUserBL userBl = new UserBL();
 
         public ActionResult ShowAllUsers()
         {
@@ -33,6 +37,16 @@ namespace DemoTwitter.WEB.Controllers
             if (urlToRemove != null) HttpResponse.RemoveOutputCacheItem(urlToRemove);
 
             return RedirectToAction("Login", "Home");
+        }
+
+        public ActionResult Edit(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                userBl.Update(user);
+                return RedirectToAction("Index", "User");
+            }
+            return View(user);
         }
     }
 }
