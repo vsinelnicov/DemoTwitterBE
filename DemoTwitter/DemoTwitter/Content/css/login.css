@@ -78,10 +78,3 @@ body {
 .btn-register {
     background-color: #1e90ff;
 }
-
-.validation-summary-errors > ul {
-    list-style: none;
-}
-.validation-summary-errors > ul > li {
-    color: red;
-}

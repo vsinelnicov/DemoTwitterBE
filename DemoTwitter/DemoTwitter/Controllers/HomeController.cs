@@ -30,19 +30,19 @@ namespace DemoTwitter.WEB.Controllers
                 User userFromDatabase = userRepository.GetByEmail(user.Email);
                 if (userFromDatabase != null)
                 {
-                    FormsAuthentication.SetAuthCookie(userFromDatabase.Email, false);
-                    var hashedInputPassword = hashHelper.CalculateMd5(user.Password);
-
+                    var hashedInputPassword = hashHelper.CalculateMd5(user.Password);      
                     if (userFromDatabase.Password == hashedInputPassword &&
                         userFromDatabase.Email == user.Email)
                     {
+                        FormsAuthentication.SetAuthCookie(userFromDatabase.Email, false);
                         GetUserId(userFromDatabase);
                         this.Session["UserFullName"] = userFromDatabase.FirstName + " " + userFromDatabase.LastName;
                         return RedirectToAction("Index", "User");
                     }
-                    ModelState.AddModelError("", "Wrong username and/or email address");
-                }
+                }  
+                ModelState.AddModelError("", "Wrong email and/or password address");     
             }
+   
             return View();
         }
 

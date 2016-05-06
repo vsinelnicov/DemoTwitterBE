@@ -152,6 +152,7 @@
     <Content Include="Content\css\index.css" />
     <Content Include="Content\css\login.css" />
     <Content Include="Content\css\register.css" />
+    <Content Include="Content\css\validation.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\css\tableStyle.css" />
     <Content Include="Content\img\bg.jpg" />

@@ -6,6 +6,11 @@ namespace DemoTwitter.Mapper.Users
     {
         public User MapToUserModel(DataAccessLayer.User userFromDatabase)
         {
+            if (userFromDatabase == null)
+            {
+                return null;
+            }
+
             var user = new User
             {
                 Id = userFromDatabase.id,
@@ -20,6 +25,10 @@ namespace DemoTwitter.Mapper.Users
 
         public DataAccessLayer.User MapToDatabaseType(User userModel)
         {
+            if (userModel == null)
+            {
+                return null;
+            }
             var user = new DataAccessLayer.User
             {
                 id = userModel.Id ?? 0,
@@ -31,6 +40,6 @@ namespace DemoTwitter.Mapper.Users
             };
             return user;
         }
-       
+
     }
 }

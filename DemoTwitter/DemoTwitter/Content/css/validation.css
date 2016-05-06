@@ -1,0 +1,8 @@
+﻿.validation-summary-errors > ul {
+    list-style: none;
+    color: red;
+}
+
+.validation-summary-errors > ul > li {
+        color: red;
+    }

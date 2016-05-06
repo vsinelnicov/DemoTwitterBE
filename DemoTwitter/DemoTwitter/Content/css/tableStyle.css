@@ -30,7 +30,6 @@ div.table-title {
     background: white;
     border-radius: 3px;
     border-collapse: collapse;
-    height: 170px;
     margin: auto;
     max-width: 600px;
     padding: 5px;
@@ -95,6 +94,7 @@ tr {
 
     tr:nth-child(odd) td {
         background: #EBEBEB;
+        padding: 7px;
     }
 
     tr:nth-child(odd):hover td {
@@ -111,7 +111,7 @@ tr {
 
 td {
     background: #FFFFFF;
-    padding: 20px;
+    padding: 7px;
     text-align: left;
     vertical-align: middle;
     font-weight: 300;
@@ -128,26 +128,32 @@ td {
 
 th.text-left {
     text-align: left;
+    padding: 7px;
 }
 
 th.text-center {
     text-align: center;
+    padding: 7px;
 }
 
 th.text-right {
     text-align: right;
+    padding: 7px;
 }
 
 td.text-left {
     text-align: left;
+    padding: 7px;
 }
 
 td.text-center {
     text-align: center;
+    padding: 7px;
 }
 
 td.text-right {
     text-align: right;
+    padding: 7px;
 }
 
 .form-control {
@@ -159,3 +165,8 @@ td.text-right {
 .alert {
     left: 50%;
 }
+
+.pagination-my {
+    position: fixed;
+    left: 50%;
+ }
