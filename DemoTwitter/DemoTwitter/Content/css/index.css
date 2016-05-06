@@ -1,8 +1,18 @@
-﻿.tweet {
+﻿html, body {
+    height: 100%;
+}
+
+.tweet {
     border: 1px solid #c7c7cd;
     border-top: none;
     background-color: white;
 }
+
+    .tweet:hover {
+        opacity: 0.8;
+        background-color: #fafafa;
+        cursor: pointer;
+    }
 
 .tweet-text {
     padding: 15px;
@@ -12,14 +22,21 @@
     word-wrap: break-word;
 }
 
-    .tweet-text:hover {
-        opacity: 0.8;
-        background-color: #f3f9f2;
-        cursor: pointer;
+.tweet-header > div {
+    display: inline-block;
+}
+
+.tweet-edit {
+    margin-right: 10px;
+    float: right;
+    cursor: pointer;
+}
+
+    .tweet-edit:hover {
+        color: #ef9368;
     }
 
 .tweetsbox {
-    margin: 0;
     margin-left: 10%;
 }
 
@@ -28,12 +45,13 @@ ol {
     list-style-type: none;
 }
 
-.tweetform {
-    background-color: #dfeac4;
+.tweetform-container {
+    background: rgb(243, 249, 242);
     border: 1px solid #aeaeae;
     border-radius: 3px 3px 0 0;
+    padding: 10px;
     margin-left: 10%;
-    padding: 0;
+    min-height: 132px;
 }
 
 .tweet-textarea {
@@ -72,7 +90,6 @@ ol {
         color: white;
     }
 
-.collapse .navbar-collapse .container-fluid{
-    -ms-border-radius: 0;
+.navbar-inverse {
     border-radius: 0;
 }

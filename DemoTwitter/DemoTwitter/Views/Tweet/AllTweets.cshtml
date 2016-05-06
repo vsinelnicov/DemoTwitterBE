@@ -5,11 +5,24 @@
 }
 
 <div class="tweetsbox col-md-8">
-    <ol style="list-style: none" class="center-block">
+    <ol style="list-style: none">
         @foreach (var tweet in Model)
         {
             <li class="tweet">
-                <div class="tweetform-header">@tweet.PostDate</div>
+                <div class="tweet-header">
+                    <div class="tweetform-header">@tweet.PostDate</div>
+                    <div class="tweet-edit dropdown">
+                        <ul style="list-style: none;">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-option-horizontal"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown disabled"><a href="#">Edit</a></li>
+                                    <li><a href="#">Delete</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="tweet-text">@tweet.Text</div>
             </li>
         }
