@@ -37,6 +37,11 @@ namespace DemoTwitter.DataAccessLayer.Users
             return dbContext.Users.FirstOrDefault(user => user.username == userName);
         }
 
+        public User GetByEmail(string emailAddress)
+        {
+            return dbContext.Users.FirstOrDefault(user => user.email == emailAddress);
+        }
+
         public IList<User> GetAll()
         {
             return dbContext.Users.ToList();

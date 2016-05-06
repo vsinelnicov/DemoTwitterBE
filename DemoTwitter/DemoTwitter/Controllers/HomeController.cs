@@ -27,29 +27,25 @@ namespace DemoTwitter.WEB.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
+                User userFromDatabase = userRepository.GetByEmail(user.Email);
+                if (userFromDatabase != null)
                 {
-                    User userFromDatabase = userRepository.GetByUsername(user.Username);
-                    if (userFromDatabase != null)
+                    FormsAuthentication.SetAuthCookie(userFromDatabase.Email, false);
+                    var hashedInputPassword = hashHelper.CalculateMd5(user.Password);
+
+                    if (userFromDatabase.Password == hashedInputPassword &&
+                        userFromDatabase.Email == user.Email)
                     {
-                        FormsAuthentication.SetAuthCookie(userFromDatabase.Username, false);
-                        var hashedInputPassword = hashHelper.CalculateMd5(user.Password);
-                        if (userFromDatabase.Password == hashedInputPassword &&
-                            userFromDatabase.Username == user.Username)
-                        {
-                            GetUserId(userFromDatabase);
-                            this.Session["UserFullName"] = userFromDatabase.FirstName + " " + userFromDatabase.LastName;
-                            return RedirectToAction("Index", "User");
-                        }
+                        GetUserId(userFromDatabase);
+                        this.Session["UserFullName"] = userFromDatabase.FirstName + " " + userFromDatabase.LastName;
+                        return RedirectToAction("Index", "User");
                     }
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
+                    ModelState.AddModelError("", "Wrong username and/or email address");
                 }
             }
             return View();
         }
+
         [AllowAnonymous]
         public ActionResult Register()
         {

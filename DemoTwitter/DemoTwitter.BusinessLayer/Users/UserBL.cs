@@ -32,6 +32,11 @@ namespace DemoTwitter.BusinessLayer.Users
             return userMapper.MapToUserModel(usersRepository.GetByUsername(userName));
         }
 
+        public User GetByEmail(string emailAddress)
+        {
+            return userMapper.MapToUserModel(usersRepository.GetByEmail(emailAddress));
+        }
+
         public IEnumerable<User> GetAllUsers()
         {
             IEnumerable<DataAccessLayer.User> usersFromDatabase = usersRepository.GetAll();
