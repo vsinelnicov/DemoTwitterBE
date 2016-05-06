@@ -26,12 +26,12 @@ namespace DemoTwitter.Models
 
         [StringLength(24, MinimumLength = 4, ErrorMessage = "First name must have from 4 to 24 characters")]
         [Display(Name = "First name")]
-        [Required(ErrorMessage = "Enter your firstname")]
+        [Required(ErrorMessage = "Enter your First Name")]
         public string FirstName { get; set; }
 
         [StringLength(24, MinimumLength = 4, ErrorMessage = "Last name must have from 4 to 24 characters")]
         [Display(Name = "Last name")]
-        [Required(ErrorMessage = "Enter your lastname")]
+        [Required(ErrorMessage = "Enter your Last Name")]
         public string LastName { get; set; }
     }
 }
