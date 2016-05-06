@@ -1,0 +1,77 @@
+﻿@using System.Web.Optimization
+@model DemoTwitter.Models.Tweet
+
+@{
+    Layout = null;
+}
+@Styles.Render("~/Content/css/bootstrap.min.css")
+@Styles.Render("~/Content/css/index.css")
+
+@Scripts.Render("~/Content/js/jquery.js")
+@Scripts.Render("~/Content/js/bootstrap.min.js")
+@Scripts.Render("~/Content/js/npm.js")
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Twitter</title>
+</head>
+<body style="background: #f4f7f9">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="#">
+                    @if (Session["UserFullName"] != null)
+                    {<span>
+                 Welcome, @Session["UserFullName"].ToString()
+                    </span>
+                    }
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="@Url.Action("Index", "User")">Home</a></li>
+                    <li class="active"><a href="@Url.Action("Index", "User")">Home</a></li>
+                    <li class="active"><a href="@Url.Action("Index", "User")">Home</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span>Options</a>
+                        <ul class="dropdown-menu">
+                            <li><a href=@Url.Action("All", "User")>Show all users</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href=@Url.Action("Logout", "User")><span class="glyphicon glyphicon-log-out"></span>Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="tweetform-container col-md-8">
+        <ol style="list-style: none">
+            <li>
+                @using (Html.BeginForm("Index", "Tweet", FormMethod.Post))
+                {
+                    @Html.ValidationSummary(true)
+                    {
+                    @Html.TextAreaFor(model => model.Text, new { @placeholder = "What's on your mind...", @class = "form-control tweet-textarea", @style = "max-width: 1090px", @maxlength = 140, @required = true })
+                    }
+                    
+                    <input type="submit" name="login-submit" id="login-submit" class="btn post-btn" value="Post" />
+                }
+            </li>
+        </ol>
+    </div>
+    @{Html.RenderAction("All", "Tweet");}
+</body>
+</html>
