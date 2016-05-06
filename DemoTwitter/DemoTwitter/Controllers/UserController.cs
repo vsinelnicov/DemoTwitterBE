@@ -1,5 +1,6 @@
  ﻿using System;
  ﻿using System.Collections;
+ ﻿using System.Configuration;
  ﻿using System.Linq;
  ﻿using System.Net;
  ﻿using System.Web;
@@ -19,7 +20,9 @@ namespace DemoTwitter.WEB.Controllers
         public ActionResult All(int? page)
         {
             int pageNumber = page ?? 1;
-            return View(userBl.GetAllUsers().ToPagedList(pageNumber, 10));
+            int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["pageSize"]);
+            return View(userBl.GetAllUsers().ToPagedList(pageNumber, pageSize));
+
         }
 
         public ActionResult Index()

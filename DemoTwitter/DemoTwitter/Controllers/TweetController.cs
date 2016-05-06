@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Web.Mvc;
 using DemoTwitter.BusinessLayer.Tweets;
 using DemoTwitter.Models;
@@ -32,7 +33,8 @@ namespace DemoTwitter.WEB.Controllers
         public ActionResult All(int? page)
         {
             int pageNumber = page ?? 1;
-            return PartialView(tweetBl.GetAll().ToPagedList(pageNumber, 25));
+            int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["tweetPageSize"]);
+            return PartialView(tweetBl.GetAll().ToPagedList(pageNumber, pageSize));
         }
     }
 }
