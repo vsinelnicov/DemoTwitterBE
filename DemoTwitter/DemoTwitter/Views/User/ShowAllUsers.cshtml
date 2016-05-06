@@ -9,17 +9,20 @@
         Layout = null;
     }
 
-    @Styles.Render("~/Content/css/index.css")
+
     @Styles.Render("~/Content/css/tableStyle.css")
+
+    @Scripts.Render("~/Content/js/jquery.js")
+    @Scripts.Render("~/Content/js/bootstrap.min.js")
+
+    @Styles.Render("~/Content/css/bootstrap.min.css")
+    @Styles.Render("~/Content/css/index.css")
 
     <!DOCTYPE html>
 
     <html>
     <head>
         <title>Twitter</title>
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     </head>
     <body style="background: #f4f7f9">
         <div>
@@ -46,10 +49,10 @@
                             <li><a href="#">Page 2</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span>Options</a>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span>Options</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Update profile information</a></li>
+                                    <li><a href="@Url.Action("Edit", "User")">Update profile information</a></li>
                                     <li><a href=@Url.Action("ShowAllUsers", "User")>Show all users</a></li>
                                 </ul>
                             </li>
