@@ -4,11 +4,8 @@
 @{
     Layout = null;
 }
-@Scripts.Render("~/Content/js/jquery.js")
-@Scripts.Render("~/Content/js/bootstrap.min.js")
-
 @Styles.Render("~/Content/css/bootstrap.min.css")
-@Styles.Render("~/Content/css/index.css")
+@Styles.Render("~/Content/css/tableStyle.css")
 
 
 
@@ -47,10 +44,10 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span>Options</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span>Options</a>
                             <ul class="dropdown-menu">
                                 <li><a href="@Url.Action("Edit", "User")">Update profile information</a></li>
-                                <li><a href=@Url.Action("ShowAllUsers", "User")>Show all users</a></li>
+                                <li><a href=@Url.Action("All", "User")>Show all users</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -90,7 +87,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3">
-                        <a href="@Url.Action("Edit", "User")" type="submit" name="login-submit" id="login-submit" tabindex="6" class="form-control btn-login btn-register" value="Save"></a>
+                        <a href="@Url.Action("Edit", "User")" type="submit" name="login-submit" id="login-submit" tabindex="6" class="form-control btn-login btn-register" value="Save">Save</a>
                     </div>
                 </div>
             </div>

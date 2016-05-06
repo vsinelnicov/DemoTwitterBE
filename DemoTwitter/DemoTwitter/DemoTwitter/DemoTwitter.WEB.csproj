@@ -194,7 +194,7 @@
     <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\User\ShowAllUsers.cshtml" />
+    <Content Include="Views\User\All.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Tweet\ShowAll.cshtml" />
@@ -207,6 +207,9 @@
     <Content Include="Content\css\bootstrap-theme.min.css.map" />
     <Content Include="Content\css\bootstrap.css.map" />
     <Content Include="Content\css\bootstrap.min.css.map" />
+    <Content Include="Views\User\Edit.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <None Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>

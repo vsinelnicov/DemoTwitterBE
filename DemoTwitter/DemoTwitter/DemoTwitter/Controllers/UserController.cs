@@ -3,25 +3,23 @@
  ﻿using System.Linq;
  ﻿using System.Net;
  ﻿using System.Web;
- ﻿using System.Web.Caching;
  ﻿using System.Web.Mvc;
  ﻿using System.Web.Security;
  ﻿using DemoTwitter.BusinessLayer.Users;
  ﻿using DemoTwitter.Models;
- ﻿using DemoTwitter.WEB.Helpers;
+ ﻿using PagedList;
 
 namespace DemoTwitter.WEB.Controllers
 {
     [Authorize]
     public class UserController : Controller
     {
-
-        private HashHelper hashHelper = new HashHelper();
         private IUserBL userBl = new UserBL();
 
-        public ActionResult ShowAllUsers()
+        public ActionResult All(int? page)
         {
-            return View(userBl.GetAllUsers());
+            int pageNumber = page ?? 1;
+            return View(userBl.GetAllUsers().ToPagedList(pageNumber, 1));
         }
 
         public ActionResult Index()
