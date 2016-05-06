@@ -19,7 +19,7 @@ namespace DemoTwitter.WEB.Controllers
         public ActionResult All(int? page)
         {
             int pageNumber = page ?? 1;
-            return View(userBl.GetAllUsers().ToPagedList(pageNumber, 1));
+            return View(userBl.GetAllUsers().ToPagedList(pageNumber, 10));
         }
 
         public ActionResult Index()
