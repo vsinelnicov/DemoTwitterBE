@@ -10,7 +10,7 @@ namespace DemoTwitter.Models
 
         public int UserId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please fill the input")]
         [StringLength(140)]
         [DataType(DataType.MultilineText)]
         public string Text { get; set; }
