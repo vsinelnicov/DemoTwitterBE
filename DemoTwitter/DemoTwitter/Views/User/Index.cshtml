@@ -7,6 +7,9 @@
 @Styles.Render("~/Content/css/bootstrap.min.css")
 @Styles.Render("~/Content/css/index.css")
 
+
+@Styles.Render("~/Content/css/index.css")
+
 <!DOCTYPE html>
 
 <html>
@@ -20,23 +23,32 @@
             <div class="container-fluid">
                 <div class="navbar-header">
 
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
                     <a class="navbar-brand" href="#">
                         @if (Session["UserFullName"] != null)
-                        {
-                            <span>Welcome, @Session["UserFullName"].ToString()
-                            </span>
+                        {<span>
+                                Welcome, @Session["UserFullName"].ToString()
+                        </span>
                         }
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
+                        <li class="active"><a href="@Url.Action("Index", "User")">Home</a></li>
+
+                        <li><a href="#">Page 2</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span>Options</a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Update profile information</a></li>
+                                <li><a href=@Url.Action("ShowAllUsers", "User")>Show all users</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -47,14 +59,13 @@
             </div>
         </nav>
     </div>
-    <div class=" tweetsbox col-md-8">
+    <div class="tweetsbox col-md-8">
         <ol style="list-style: none">
             <li>
                 @using (Html.BeginForm("Index", "Tweet", FormMethod.Post))
                 {
                     @Html.ValidationSummary(true)
                     {
-
                     @Html.TextAreaFor(model => model.Text, new { @placeholder = "What's on your mind...", @class = "form-control tweet-textarea", @style = "max-width: 1090px", @maxlength = 140, @required = true })
                     }
                 }
@@ -63,8 +74,18 @@
                 <input type="submit" name="login-submit" id="login-submit" class="btn post-btn" value="Post" />
             </li>
         </ol>
-    </div>
 
+        @using (Html.BeginForm("Index", "Tweet", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+            {
+            <div>
+                @Html.TextAreaFor(model => model.Text, new { @placeholder = "What's on your mind...", @class = "form-control", @style = "max-width: 1090px", @required = true })
+            </div>
+            }
+            <input type="submit" name="login-submit" id="login-submit" class="btn post-btn" value="Post" />
+        }
+    </div>
 
     @{Html.RenderAction("AllTweets", "Tweet");}
 
