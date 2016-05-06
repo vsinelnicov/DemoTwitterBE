@@ -10,9 +10,10 @@ namespace DemoTwitter.Models
 
         public int UserId { get; set; }
 
-        [Required(ErrorMessage = "Please fill the input")]
+        [Required]
         [StringLength(140)]
         [DataType(DataType.MultilineText)]
+        [RegularExpression(@"^[\S]*$", ErrorMessage = "White space found")]
         public string Text { get; set; }
 
         [DisplayName("Post date")]
