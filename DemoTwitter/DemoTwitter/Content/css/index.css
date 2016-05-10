@@ -40,6 +40,7 @@
 
 .tweetsbox {
     margin-left: 10%;
+    padding: 0;
 }
 
 ol {
@@ -51,7 +52,7 @@ ol {
     background: rgb(243, 249, 242);
     border: 1px solid #aeaeae;
     border-radius: 3px 3px 0 0;
-    padding: 10px;
+    padding: 10px 10px 0 10px;
     margin-left: 10%;
     min-height: 132px;
 }
