@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using DemoTwitter.DataAccessLayer.Tweets;
+using DemoTwitter.DataAccessLayer.Users;
 using DemoTwitter.Mapper.Tweets;
+using DemoTwitter.Mapper.Users;
 using Tweet = DemoTwitter.Models.Tweet;
 
 namespace DemoTwitter.BusinessLayer.Tweets
@@ -11,6 +13,8 @@ namespace DemoTwitter.BusinessLayer.Tweets
     {
         private readonly ITweetsRepository tweetsRepository = new TweetsRepository();
         private readonly ITweetMapper tweetMapper = new TweetMapper();
+        private readonly IUserRepository userRepository = new UserRepository();
+        private readonly IUserMapper userMapper = new UserMapper();
 
 
         public void Add(Tweet tweet)
@@ -33,7 +37,9 @@ namespace DemoTwitter.BusinessLayer.Tweets
 
         public IList<Tweet> GetAll()
         {
+          
             return tweetsRepository.GetAll().Select(tweet => tweetMapper.MapToUserModel(tweet)).OrderByDescending(x => x.PostDate).ToList();
+          
         }
 
         public IEnumerable<Tweet> GetByPostDate(DateTime postDate)
