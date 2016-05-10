@@ -49,7 +49,7 @@ ol {
 }
 
 .tweetform-container {
-    background: rgb(243, 249, 242);
+    background: rgb(235, 243, 251);
     border: 1px solid #aeaeae;
     border-radius: 3px 3px 0 0;
     padding: 10px 10px 0 10px;
@@ -63,17 +63,19 @@ ol {
     -o-resize: none;
     resize: none;
     border-radius: 1px;
+    margin: auto;
+    display: inline-block;
 }
 
 .tweetform-header {
     padding-top: 5px;
     margin-left: 15px;
-    color: #9ca89c;
+    color: #8c8da9;
     font-weight: 500;
 }
 
     .tweetform-header:hover {
-        color: #439acd;
+        color: #5543cd;
         cursor: pointer;
     }
 
@@ -82,7 +84,7 @@ ol {
 }
 
 .post-btn {
-    background-color: #8BBD5E;
+    background-color: #5eaebd;
     margin: 5px;
     float: right;
     width: 70px;
