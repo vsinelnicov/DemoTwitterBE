@@ -14,6 +14,7 @@ namespace DemoTwitter.WEB.Controllers
     public class TweetController : Controller
     {
         ITweetBL tweetBl = new TweetBL();
+        IUserBL userBl = new UserBL();
 
         public ActionResult Index()
         {
@@ -32,11 +33,14 @@ namespace DemoTwitter.WEB.Controllers
             return RedirectToAction("Index", "User");
         }
 
-        public ActionResult All(int? page)
+        public ActionResult All(int? page, User user)
         {
+            int userID;
+            int.TryParse(Session["UserID"].ToString(), out userID);
+
             int pageNumber = page ?? 1;
             int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["tweetPageSize"]);
-            return PartialView(tweetBl.GetAll().ToPagedList(pageNumber, pageSize));
+            return PartialView(tweetBl.GetAll().Where(tweet => tweet.UserId == userID).ToPagedList(pageNumber, pageSize));
         }
     }
 }
