@@ -13,9 +13,6 @@ namespace DemoTwitter.BusinessLayer.Tweets
     {
         private readonly ITweetsRepository tweetsRepository = new TweetsRepository();
         private readonly ITweetMapper tweetMapper = new TweetMapper();
-        private readonly IUserRepository userRepository = new UserRepository();
-        private readonly IUserMapper userMapper = new UserMapper();
-
 
         public void Add(Tweet tweet)
         {
@@ -37,9 +34,9 @@ namespace DemoTwitter.BusinessLayer.Tweets
 
         public IList<Tweet> GetAll()
         {
-          
+
             return tweetsRepository.GetAll().Select(tweet => tweetMapper.MapToUserModel(tweet)).OrderByDescending(x => x.PostDate).ToList();
-          
+
         }
 
         public IEnumerable<Tweet> GetByPostDate(DateTime postDate)

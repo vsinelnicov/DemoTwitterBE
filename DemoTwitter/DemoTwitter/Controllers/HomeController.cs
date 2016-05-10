@@ -40,7 +40,7 @@ namespace DemoTwitter.WEB.Controllers
                         return RedirectToAction("Index", "User");
                     }
                 }  
-                ModelState.AddModelError("", "Wrong email and/or password address");     
+                ModelState.AddModelError("", "Wrong email and/or password");     
             }
    
             return View();
