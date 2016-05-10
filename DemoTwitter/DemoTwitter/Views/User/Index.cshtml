@@ -64,10 +64,8 @@
                     {
                     @Html.TextAreaFor(model => model.Text, new { @placeholder = "What's on your mind...", @class = "form-control tweet-textarea", @style = "max-width: 1090px", @maxlength = 140, @required = true })
                     <div class="alert" style="color: red;">@Html.ValidationMessageFor(m => m.Text)</div> 
-                       
                     }
                     <input type="submit" name="login-submit" id="login-submit" class="btn post-btn" value="Post" /> 
-
                 }
             </li>
         </ol>
