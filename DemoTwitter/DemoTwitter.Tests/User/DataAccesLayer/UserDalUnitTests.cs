@@ -22,3 +22,22 @@ namespace DemoTwitter.Tests.User.DataAccesLayer
                 password = "123456"
             };
             bool expected = true;
+            //act
+            bool actual = userRepository.Register(user);
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Register_NullUserAdded_ReturnsFalse()
+        {
+            var user = new DataAccessLayer.User();
+            user = null;
+            bool expected = false;
+
+            bool actual = userRepository.Register(user);
+
+            Assert.AreEqual(expected, actual);
+        }
+    }
+}
