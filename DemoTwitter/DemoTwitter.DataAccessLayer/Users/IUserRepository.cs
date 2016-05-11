@@ -4,9 +4,9 @@ namespace DemoTwitter.DataAccessLayer.Users
 {
     public interface IUserRepository
     {
-        void Register(User user);
-        void Update(User updatedUser);
-        void Remove(User user);
+        bool Register(User user);
+        bool Update(User updatedUser);
+        bool Remove(User user);
         User GetByUsername(string userName);
         User GetByEmail(string emailAddress);
         IList<User> GetAll();
