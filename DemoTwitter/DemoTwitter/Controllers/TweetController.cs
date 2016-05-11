@@ -37,7 +37,6 @@ namespace DemoTwitter.WEB.Controllers
         {
             int userID;
             int.TryParse(Session["UserID"].ToString(), out userID);
-
             int pageNumber = page ?? 1;
             int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["tweetPageSize"]);
             return PartialView(tweetBl.GetAll().Where(tweet => tweet.UserId == userID).ToPagedList(pageNumber, pageSize));

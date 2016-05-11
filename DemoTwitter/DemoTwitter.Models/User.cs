@@ -11,7 +11,7 @@ namespace DemoTwitter.Models
 
         [Display(Name = "Username")]
         [Required(ErrorMessage = "Enter your username")]
-        [StringLength(24, MinimumLength = 4, ErrorMessage = "Username must have from 1 to 24 characters")]
+        [StringLength(24, MinimumLength = 4, ErrorMessage = "Username must have from 4 to 24 characters")]
         public string Username { get; set; }
 
         [Display(Name = "Email address")]
@@ -19,7 +19,7 @@ namespace DemoTwitter.Models
         [RegularExpression(@"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" + @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))", ErrorMessage = "Invalid Email Form")]
         public string Email { get; set; }
 
-        [StringLength(24, MinimumLength = 4, ErrorMessage = "Password must have from 1 to 24 characters")]
+        [StringLength(24, MinimumLength = 4, ErrorMessage = "Password must have from 4 to 24 characters")]
         [Display(Name = "Password")]
         [Required(ErrorMessage = "Enter your password")]
         public string Password { get; set; }
