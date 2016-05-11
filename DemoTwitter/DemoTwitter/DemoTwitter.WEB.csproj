@@ -213,6 +213,7 @@
     <Content Include="Views\User\Edit.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Content\js\tweetValidation.js" />
     <None Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>

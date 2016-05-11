@@ -3,7 +3,6 @@ using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
 using DemoTwitter.BusinessLayer.Tweets;
-using DemoTwitter.BusinessLayer.Users;
 using DemoTwitter.Models;
 using PagedList;
 
@@ -14,7 +13,6 @@ namespace DemoTwitter.WEB.Controllers
     public class TweetController : Controller
     {
         ITweetBL tweetBl = new TweetBL();
-        IUserBL userBl = new UserBL();
 
         public ActionResult Index()
         {

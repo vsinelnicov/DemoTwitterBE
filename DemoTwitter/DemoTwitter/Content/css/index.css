@@ -53,7 +53,7 @@ ol {
 .tweetform-outer-container {
     background: rgb(235, 243, 251);
     border: 1px solid #aeaeae;
-    border-radius: 3px 3px 0 0;
+    border-radius: 4px 4px 0 0;
     padding: 10px 10px 0 10px;
     margin-left: 27%;
     min-height: 132px;
@@ -107,4 +107,14 @@ ol {
 
 .navbar-inverse {
     border-radius: 0;
+}
+
+@media screen and (max-width: 990px) {
+    .tweetsbox {
+        margin-left: 5%;
+    }
+
+    .tweetform-outer-container {
+        margin-left: 5%;
+    }
 }

@@ -9,7 +9,7 @@
 
 @Scripts.Render("~/Content/js/jquery.js")
 @Scripts.Render("~/Content/js/bootstrap.min.js")
-@Scripts.Render("~/Content/js/npm.js")
+@Scripts.Render("~/Content/js/tweetValidation.js")
 
 
 
@@ -56,13 +56,13 @@
         </div>
     </nav>
     <div class="tweetform-outer-container col-md-5">
-        @using (Html.BeginForm("Index", "Tweet", FormMethod.Post))
+        @using (Html.BeginForm("Index", "Tweet", FormMethod.Post, new{@id="post-tweet-form"}))
         {
             <ul class="tweetform-inner-container">
                 @Html.ValidationSummary(true)
-                <li>@Html.TextAreaFor(model => model.Text, new { @placeholder = "What's on your mind...", @class = "form-control tweet-textarea", @style = "max-width: 1090px", @maxlength = 140, @required = true })</li>
-                <li>
-                    <input type="submit" name="login-submit" id="login-submit" class="btn post-btn" value="Post" /></li>
+                <li>@Html.TextAreaFor(model => model.Text, new {@id = "post-tweet-input", @placeholder = "What's on your mind...", @class = "form-control tweet-textarea", @style = "max-width: 1090px", @maxlength = 140, @required = true})</li>
+                <li style="color: red" id="tweet-post-validation" >@Html.ValidationMessageFor(model => model.Text)</li>
+                <li><input type="submit" name="login-submit" id="login-submit" class="btn post-btn" value="Post" /></li>
             </ul>
         }
     </div>
