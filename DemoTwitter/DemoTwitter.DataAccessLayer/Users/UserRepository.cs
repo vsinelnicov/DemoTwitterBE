@@ -8,14 +8,19 @@ namespace DemoTwitter.DataAccessLayer.Users
     {
         private readonly Twitter_dbEntities dbContext = new Twitter_dbEntities();
 
-        public void Register(User user)
+        public bool Register(User user)
         {
+            if (user == null)
+                return false;
             dbContext.Users.Add(user);
             dbContext.SaveChanges();
+            return true;
         }
 
-        public void Update(User updatedUser)
+        public bool Update(User updatedUser)
         {
+            if (updatedUser == null)
+                return false;
             dbContext.Users.Attach(updatedUser);
             DbEntityEntry<User> newUser = dbContext.Entry(updatedUser);
             newUser.Property(u => u.username).IsModified = true;
@@ -24,12 +29,16 @@ namespace DemoTwitter.DataAccessLayer.Users
             newUser.Property(u => u.firstname).IsModified = true;
             newUser.Property(u => u.lastname).IsModified = true;
             dbContext.SaveChanges();
+            return true;
         }
 
-        public void Remove(User user)
+        public bool Remove(User user)
         {
+            if (user == null)
+                return false;
             dbContext.Users.Remove(user);
             dbContext.SaveChanges();
+            return true;
         }
 
         public User GetByUsername(string userName)
