@@ -4,9 +4,9 @@ namespace DemoTwitter.DataAccessLayer.Tweets
 {
     public interface ITweetsRepository
     {
-        void Add(Tweet tweet);
-        void Update(Tweet oldTweet, Tweet newTweet);
-        void Remove(Tweet tweet);
+        bool Add(Tweet tweet);
+        bool Update(Tweet oldTweet, Tweet newTweet);
+        bool Remove(Tweet tweet);
         IList<Tweet> GetAll();
     }
 }

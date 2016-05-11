@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DemoTwitter.DataAccessLayer.Tweets;
-using DemoTwitter.DataAccessLayer.Users;
 using DemoTwitter.Mapper.Tweets;
-using DemoTwitter.Mapper.Users;
 using Tweet = DemoTwitter.Models.Tweet;
 
 namespace DemoTwitter.BusinessLayer.Tweets
@@ -14,22 +12,37 @@ namespace DemoTwitter.BusinessLayer.Tweets
         private readonly ITweetsRepository tweetsRepository = new TweetsRepository();
         private readonly ITweetMapper tweetMapper = new TweetMapper();
 
-        public void Add(Tweet tweet)
+        public bool Add(Tweet tweet)
         {
+            if (tweet == null)
+            {
+                return false;
+            }
             DataAccessLayer.Tweet tweetForDatabase = tweetMapper.MapToDatabaseType(tweet);
             tweetsRepository.Add(tweetForDatabase);
+            return true;
         }
 
-        public void Remove(Tweet tweet)
+        public bool Remove(Tweet tweet)
         {
+            if (tweet == null)
+            {
+                return false;
+            }
             DataAccessLayer.Tweet tweetForDatabase = tweetMapper.MapToDatabaseType(tweet);
             tweetsRepository.Remove(tweetForDatabase);
+            return true;
         }
 
-        public void Update(Tweet oldTweet, Models.Tweet newTweet)
+        public bool Update(Tweet oldTweet, Models.Tweet newTweet)
         {
+            if (newTweet == null)
+            {
+                return false;
+            }
             oldTweet.Text = newTweet.Text;
             oldTweet.PostDate = newTweet.PostDate;
+            return true;
         }
 
         public IList<Tweet> GetAll()

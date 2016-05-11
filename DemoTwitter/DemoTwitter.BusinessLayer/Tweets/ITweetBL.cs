@@ -6,9 +6,9 @@ namespace DemoTwitter.BusinessLayer.Tweets
 {
     public interface ITweetBL
     {
-        void Add(Tweet tweet);
-        void Remove(Tweet tweet);
-        void Update(Tweet oldTweet, Tweet newTweet);
+        bool Add(Tweet tweet);
+        bool Remove(Tweet tweet);
+        bool Update(Tweet oldTweet, Tweet newTweet);
         IList<Tweet> GetAll();
         IEnumerable<Tweet> GetByPostDate(DateTime postDate);
     }

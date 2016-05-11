@@ -30,6 +30,16 @@ namespace DemoTwitter.WEB.Controllers
             tweetBl.Add(tweet);
             return RedirectToAction("Index", "User");
         }
+        [HttpPost]
+        public ActionResult Remove(Tweet tweet)
+        {
+            tweetBl.Remove(tweet);
+            return RedirectToAction("Index", "User");
+        }
+        public ActionResult Remove()
+        {
+            return RedirectToAction("Index", "User");
+        }
 
         public ActionResult All(int? page, User user)
         {
