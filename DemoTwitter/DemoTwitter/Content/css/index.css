@@ -7,10 +7,12 @@
     border-top: none;
     background-color: white;
     color: rgb(97, 97, 97);
+    -webkit-box-shadow: 2px 2px 2px #b8b5b5;
+    -ms-box-shadow: 2px 2px 2px #b8b5b5;
+    box-shadow: 2px 2px 2px #b8b5b5;
 }
 
     .tweet:hover {
-        
         background-color: #fafafa;
         cursor: pointer;
         color: black;
@@ -39,7 +41,7 @@
     }
 
 .tweetsbox {
-    margin-left: 10%;
+    margin-left: 27%;
     padding: 0;
 }
 
@@ -48,23 +50,32 @@ ol {
     list-style-type: none;
 }
 
-.tweetform-container {
+.tweetform-outer-container {
     background: rgb(235, 243, 251);
     border: 1px solid #aeaeae;
     border-radius: 3px 3px 0 0;
     padding: 10px 10px 0 10px;
-    margin-left: 10%;
+    margin-left: 27%;
     min-height: 132px;
+    -webkit-box-shadow: 2px 2px 2px #b8b5b5;
+    -ms-box-shadow: 2px 2px 2px #b8b5b5;
+    box-shadow: 2px 2px 2px #b8b5b5;
+}
+
+.tweetform-inner-container > * {
+    display: block;
 }
 
 .tweet-textarea {
+    width: 86%;
+    display: inline-block;
+    margin-top: 10px;
     -moz-resize: none;
     -ms-resize: none;
     -o-resize: none;
     resize: none;
     border-radius: 1px;
     margin: auto;
-    display: inline-block;
 }
 
 .tweetform-header {
@@ -84,15 +95,14 @@ ol {
 }
 
 .post-btn {
-    background-color: #5eaebd;
-    margin: 5px;
-    float: right;
+    background-color: #7ABDF7;
+    margin: 5px 0 5px 0;
     width: 70px;
 }
 
     .post-btn:hover {
         opacity: 0.85;
-        color: white;
+        color: rgb(38, 36, 34);
     }
 
 .navbar-inverse {

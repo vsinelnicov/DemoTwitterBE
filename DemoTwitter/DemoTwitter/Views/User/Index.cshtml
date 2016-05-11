@@ -55,17 +55,15 @@
             </div>
         </div>
     </nav>
-    <div class="tweetform-container col-md-8">
+    <div class="tweetform-outer-container col-md-5">
         @using (Html.BeginForm("Index", "Tweet", FormMethod.Post))
         {
-            @Html.ValidationSummary(true)
-            {
-                        
-            <div class="alert alert-error collapse" role="alert" style="color: red;">@Html.ValidationMessageFor(m => m.Text)</div> 
-            @Html.TextAreaFor(model => model.Text, new { @placeholder = "What's on your mind...", @class = "form-control tweet-textarea", @style = "max-width: 1090px", @maxlength = 140, @required = true })
-            }
-                    
-            <input type="submit" name="login-submit" id="login-submit" class="btn post-btn" value="Post" /> 
+            <ul class="tweetform-inner-container">
+                @Html.ValidationSummary(true)
+                <li>@Html.TextAreaFor(model => model.Text, new { @placeholder = "What's on your mind...", @class = "form-control tweet-textarea", @style = "max-width: 1090px", @maxlength = 140, @required = true })</li>
+                <li>
+                    <input type="submit" name="login-submit" id="login-submit" class="btn post-btn" value="Post" /></li>
+            </ul>
         }
     </div>
     @{Html.RenderAction("All", "Tweet");}
