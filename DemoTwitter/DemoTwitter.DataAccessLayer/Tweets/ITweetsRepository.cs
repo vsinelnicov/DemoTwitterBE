@@ -5,7 +5,7 @@ namespace DemoTwitter.DataAccessLayer.Tweets
     public interface ITweetsRepository
     {
         bool Add(Tweet tweet);
-        bool Update(Tweet oldTweet, Tweet newTweet);
+        bool Update(Tweet tweet);
         bool Remove(Tweet tweet);
         IList<Tweet> GetAll();
     }

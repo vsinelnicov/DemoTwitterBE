@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace DemoTwitter.DataAccessLayer.Tweets
@@ -18,14 +19,18 @@ namespace DemoTwitter.DataAccessLayer.Tweets
             return true;
         }
 
-        public bool Update(Tweet oldTweet, Tweet newTweet)
+        public bool Update(Tweet tweet)
         {
-            if (newTweet == null)
-            {
+            if (tweet == null)
                 return false;
-            }
-            oldTweet.text = newTweet.text;
-            oldTweet.post_date = newTweet.post_date;
+            dbContext.Tweets.Attach(tweet);
+            DbEntityEntry<Tweet> newTweet = dbContext.Entry(tweet);
+            newTweet.Property(u => u.id).IsModified = true;
+            newTweet.Property(u => u.post_date).IsModified = true;
+            newTweet.Property(u => u.text).IsModified = true;
+            newTweet.Property(u => u.user_id).IsModified = true;
+   
+            dbContext.SaveChanges();
             return true;
         }
 
