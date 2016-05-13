@@ -198,6 +198,10 @@
       <Project>{2f790082-7deb-419d-9ef9-c0751978c705}</Project>
       <Name>DemoTwitter.BusinessLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DemoTwitter.DataAccessLayer\DemoTwitter.DataAccessLayer.csproj">
+      <Project>{4bfadbaa-5656-4d6a-bfb4-2f165dc0e5bc}</Project>
+      <Name>DemoTwitter.DataAccessLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DemoTwitter.Models\DemoTwitter.Models.csproj">
       <Project>{0bba45de-9622-4c35-9892-63ada2422b5c}</Project>
       <Name>DemoTwitter.Models</Name>

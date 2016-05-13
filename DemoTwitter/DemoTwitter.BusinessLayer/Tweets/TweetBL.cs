@@ -9,8 +9,13 @@ namespace DemoTwitter.BusinessLayer.Tweets
 {
     public class TweetBL : ITweetBL
     {
-        private readonly ITweetsRepository tweetsRepository = new TweetsRepository();
+        private readonly ITweetsRepository tweetsRepository;
         private readonly ITweetMapper tweetMapper = new TweetMapper();
+
+        public TweetBL(ITweetsRepository tweetsRepository)
+        {
+            this.tweetsRepository = tweetsRepository;
+        }
 
         public bool Add(Tweet tweet)
         {

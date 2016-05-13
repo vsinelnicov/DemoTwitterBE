@@ -9,7 +9,6 @@ namespace DemoTwitter.BusinessLayer.Users
     {
         private readonly IUserRepository usersRepository = new UserRepository();
 
-
         private readonly IUserMapper userMapper = new UserMapper();
         public void Register(User user)
         {

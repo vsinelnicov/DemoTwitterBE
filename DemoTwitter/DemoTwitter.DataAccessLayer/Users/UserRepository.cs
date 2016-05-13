@@ -7,7 +7,7 @@ namespace DemoTwitter.DataAccessLayer.Users
     public class UserRepository : IUserRepository
     {
         private readonly Twitter_dbEntities dbContext = new Twitter_dbEntities();
-
+    
         public bool Register(User user)
         {
             if (user == null)
