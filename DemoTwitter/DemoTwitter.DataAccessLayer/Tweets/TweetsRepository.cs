@@ -6,7 +6,12 @@ namespace DemoTwitter.DataAccessLayer.Tweets
 {
     public class TweetsRepository : ITweetsRepository
     {
-        private readonly Twitter_dbEntities dbContext = new Twitter_dbEntities();
+        private readonly Twitter_dbEntities dbContext;
+
+        public TweetsRepository(Twitter_dbEntities dbContext)
+        {
+            this.dbContext = dbContext;
+        }
        
         public bool Add(Tweet tweet)
         {

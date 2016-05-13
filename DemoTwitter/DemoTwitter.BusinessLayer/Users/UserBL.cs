@@ -15,9 +15,7 @@ namespace DemoTwitter.BusinessLayer.Users
             this.usersRepository = usersRepository;
             this.userMapper = userMapper;
         }
-
-        public UserBL(){}
-
+          
         public void Register(User user)
         {
             DataAccessLayer.User userForDatabase = userMapper.MapToDatabaseType(user);

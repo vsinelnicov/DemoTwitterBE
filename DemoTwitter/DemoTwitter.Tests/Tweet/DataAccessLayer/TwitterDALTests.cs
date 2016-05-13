@@ -9,7 +9,13 @@ namespace DemoTwitter.Tests.Tweet.DataAccessLayer
     [TestClass]
     public class TwitterDALTests
     {
-        ITweetsRepository tweetsRepository = new TweetsRepository();
+        public readonly ITweetsRepository tweetsRepository;
+
+        public TwitterDALTests(TweetsRepository tweetsRepository)
+        {
+            this.tweetsRepository = tweetsRepository;
+        }
+
         public TwitterDALTests()
         {
 
