@@ -1,14 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace DemoTwitter.DataAccessLayer.Users
 {
     public class UserRepository : IUserRepository
     {
-        private readonly Twitter_dbEntities dbContext = new Twitter_dbEntities();
-    
+        private readonly Twitter_dbEntities dbContext;
+
+        public UserRepository(Twitter_dbEntities dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
         public bool Register(User user)
         {
             if (user == null)
@@ -17,7 +21,6 @@ namespace DemoTwitter.DataAccessLayer.Users
             dbContext.Users.Add(user);
             dbContext.SaveChanges();
             return true;
-
         }
 
         public bool Update(User updatedUser)

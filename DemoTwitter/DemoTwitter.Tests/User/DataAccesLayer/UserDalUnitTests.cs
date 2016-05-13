@@ -1,5 +1,10 @@
-﻿using DemoTwitter.DataAccessLayer.Users;
+﻿using System.Data.Entity;
+using System.Linq;
+using DemoTwitter.App_Start;
+using DemoTwitter.DataAccessLayer;
+using DemoTwitter.DataAccessLayer.Users;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace DemoTwitter.Tests.User.DataAccesLayer
 {
@@ -7,9 +12,18 @@ namespace DemoTwitter.Tests.User.DataAccesLayer
     [TestClass]
     public class UserDalUnitTests
     {
-        IUserRepository userRepository = new UserRepository();
+        private readonly IUserRepository userRepository;
         private DataAccessLayer.User validUser;
         private DataAccessLayer.User nullUser;
+
+        public UserDalUnitTests(IUserRepository userRepository)
+        {
+            this.userRepository = userRepository;
+        }
+
+        public UserDalUnitTests()
+        {
+        }
 
         [TestInitialize]
         public void Initialization()
@@ -29,12 +43,30 @@ namespace DemoTwitter.Tests.User.DataAccesLayer
         [TestMethod]
         public void Register_ValidUserAdded_ReturnsTrue()
         {
-            //arrange
-            bool expected = true;
-            //act
-            bool actual = userRepository.Register(validUser);
-            //assert
+            var mockSet = new Mock<DbSet<DataAccessLayer.User>>();
+            var mockContext = new Mock<Twitter_dbEntities>();
+
+            mockContext.Setup(u => u.Users).Returns(mockSet.Object);
+
+            var repository = new UserRepository(mockContext.Object);
+
+            const bool expected = true;
+            bool actual = repository.Register(validUser);
+
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Register_ValidUser_ReturnsTrue()
+        {
+            var mockSet = new Mock<DbSet<DataAccessLayer.User>>();
+            var mockContext = new Mock<Twitter_dbEntities>();
+
+            var repository = new UserRepository(mockContext.Object);
+            repository.Register(validUser);
+
+            mockSet.Verify(m => m.Add(It.IsAny<DataAccessLayer.User>()), Times.Once());
+            mockContext.Verify(m => m.SaveChanges(), Times.Once);
         }
 
         [TestMethod]

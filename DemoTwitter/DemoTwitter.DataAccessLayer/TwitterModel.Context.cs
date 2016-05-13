@@ -25,8 +25,8 @@ namespace DemoTwitter.DataAccessLayer
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Follower> Followers { get; set; }
-        public DbSet<Tweet> Tweets { get; set; }
-        public DbSet<User> Users { get; set; }
+        public virtual DbSet<Follower> Followers { get; set; }
+        public virtual DbSet<Tweet> Tweets { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

@@ -8,12 +8,15 @@ namespace DemoTwitter.BusinessLayer.Users
     public class UserBL : IUserBL
     {
         private readonly IUserRepository usersRepository;
-        private readonly IUserMapper userMapper = new UserMapper();
+        private readonly IUserMapper userMapper;
 
-        public UserBL(IUserRepository usersRepository)
+        public UserBL(IUserRepository usersRepository, IUserMapper userMapper)
         {
             this.usersRepository = usersRepository;
+            this.userMapper = userMapper;
         }
+
+        public UserBL(){}
 
         public void Register(User user)
         {
