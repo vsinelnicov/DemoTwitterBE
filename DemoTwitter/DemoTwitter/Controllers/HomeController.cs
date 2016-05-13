@@ -11,8 +11,13 @@ namespace DemoTwitter.WEB.Controllers
     [OutputCache(Duration = 1)]
     public class HomeController : Controller
     {
-        private IUserBL userRepository = new UserBL();
+        private IUserBL userRepository;
         private HashHelper hashHelper = new HashHelper();
+
+        public HomeController(IUserBL userBl)
+        {
+            userRepository = userBl;
+        }
 
         [AllowAnonymous]
         public ActionResult Login()

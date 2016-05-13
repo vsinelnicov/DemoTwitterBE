@@ -1,6 +1,8 @@
 ﻿using System;
 using DemoTwitter.DataAccessLayer.Tweets;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+
 
 namespace DemoTwitter.Tests.Tweet.DataAccessLayer
 {
@@ -28,11 +30,9 @@ namespace DemoTwitter.Tests.Tweet.DataAccessLayer
             bool actual = tweetsRepository.Add(tweet);
             //assert
             Assert.AreEqual(expected, actual);
-
-
         }
         [TestMethod]
-        public void Add_ValidTweetAdded_ReturnsFalse()
+        public void Add_InvalidTweetAdded_ReturnsFalse()
         {
             //arrange
             var tweet = new DemoTwitter.DataAccessLayer.Tweet();
@@ -46,7 +46,7 @@ namespace DemoTwitter.Tests.Tweet.DataAccessLayer
         }
 
         [TestMethod]
-        public void Remove_ValidTweetRemoved_ReturnsFalse()
+        public void Remove_InvalidTweetRemoved_ReturnsFalse()
         {
             //arrange
             var tweet = new DemoTwitter.DataAccessLayer.Tweet();
@@ -65,7 +65,7 @@ namespace DemoTwitter.Tests.Tweet.DataAccessLayer
             var tweet = new DemoTwitter.DataAccessLayer.Tweet
             {
                 id = 107,
-                text = "Add Unit TestUPDATED!",
+                text = "Add Unit Test!UPDATED!",
                 post_date = DateTime.Now,
                 user_id = 58
             };
@@ -76,7 +76,7 @@ namespace DemoTwitter.Tests.Tweet.DataAccessLayer
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void Update_ValidTweetUpdated_ReturnsFalse()
+        public void Update_InvalidTweetUpdated_ReturnsFalse()
         {
             //arrange
             var tweet = new DemoTwitter.DataAccessLayer.Tweet();

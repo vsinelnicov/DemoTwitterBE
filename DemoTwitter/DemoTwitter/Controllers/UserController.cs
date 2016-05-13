@@ -15,7 +15,12 @@ namespace DemoTwitter.WEB.Controllers
     [Authorize]
     public class UserController : Controller
     {
-        private IUserBL userBl = new UserBL();
+        private IUserBL userBl;
+
+        public UserController(IUserBL userBl)
+        {
+            this.userBl = userBl;
+        }
 
         public ActionResult All(int? page)
         {

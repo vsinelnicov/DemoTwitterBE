@@ -12,7 +12,12 @@ namespace DemoTwitter.WEB.Controllers
     [Authorize]
     public class TweetController : Controller
     {
-        ITweetBL tweetBl = new TweetBL();
+        private ITweetBL tweetBl;
+
+        public TweetController(ITweetBL tweetBl)
+        {
+            this.tweetBl = tweetBl;
+        }
 
         public ActionResult Index()
         {

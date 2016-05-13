@@ -12,9 +12,11 @@ namespace DemoTwitter.DataAccessLayer.Users
         {
             if (user == null)
                 return false;
+
             dbContext.Users.Add(user);
             dbContext.SaveChanges();
             return true;
+
         }
 
         public bool Update(User updatedUser)

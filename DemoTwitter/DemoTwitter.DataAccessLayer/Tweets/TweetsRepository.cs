@@ -29,7 +29,7 @@ namespace DemoTwitter.DataAccessLayer.Tweets
             newTweet.Property(u => u.post_date).IsModified = true;
             newTweet.Property(u => u.text).IsModified = true;
             newTweet.Property(u => u.user_id).IsModified = true;
-   
+
             dbContext.SaveChanges();
             return true;
         }
