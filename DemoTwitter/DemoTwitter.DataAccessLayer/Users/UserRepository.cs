@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 
@@ -21,17 +22,27 @@ namespace DemoTwitter.DataAccessLayer.Users
 
         public bool Update(User updatedUser)
         {
-            if (updatedUser == null)
-                return false;
-            dbContext.Users.Attach(updatedUser);
-            DbEntityEntry<User> newUser = dbContext.Entry(updatedUser);
-            newUser.Property(u => u.username).IsModified = true;
-            newUser.Property(u => u.email).IsModified = true;
-            newUser.Property(u => u.password).IsModified = true;
-            newUser.Property(u => u.firstname).IsModified = true;
-            newUser.Property(u => u.lastname).IsModified = true;
-            dbContext.SaveChanges();
-            return true;
+            if (updatedUser != null)
+            {
+                var update = dbContext.Users.FirstOrDefault(u => u.id == updatedUser.id);
+
+                if (update != null &&
+                    updatedUser.firstname == update.firstname &&
+                    updatedUser.lastname == update.lastname &&
+                    updatedUser.password == update.password)
+                    return true;
+
+                if (update != null)
+                {
+                    update.firstname = updatedUser.firstname;
+                    update.lastname = updatedUser.lastname;
+                    update.password = updatedUser.password;
+                    dbContext.Entry(update).State = EntityState.Modified;
+                }
+                dbContext.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         public bool Remove(User user)
