@@ -5,11 +5,11 @@ namespace DemoTwitter.DataAccessLayer
 {
     public class UserRepository : IUserRepository
     {
-        private readonly Twitter_dbEntities dbContext;
+        private readonly ITwitter_dbEntities _dbContext;
 
-        public UserRepository(Twitter_dbEntities dbContext)
+        public UserRepository(ITwitter_dbEntities dbContext)
         {
-            this.dbContext = dbContext;
+            _dbContext = dbContext;
         }
 
         public bool Register(User user)
@@ -17,8 +17,8 @@ namespace DemoTwitter.DataAccessLayer
             if (user == null)
                 return false;
 
-            dbContext.Users.Add(user);
-            dbContext.SaveChanges();
+            _dbContext.Users.Add(user);
+            _dbContext.SaveChanges();
             return true;
         }
 
@@ -26,7 +26,7 @@ namespace DemoTwitter.DataAccessLayer
         {
             if (updatedUser != null)
             {
-                var update = dbContext.Users.FirstOrDefault(u => u.id == updatedUser.id);
+                var update = _dbContext.Users.FirstOrDefault(u => u.id == updatedUser.id);
 
                 if (update != null &&
                     updatedUser.firstname == update.firstname &&
@@ -41,7 +41,7 @@ namespace DemoTwitter.DataAccessLayer
                     update.password = updatedUser.password;
                  //   dbContext.Entry(update).State = EntityState.Modified;
                 }
-                dbContext.SaveChanges();
+                _dbContext.SaveChanges();
                 return true;
             }
             return false;
@@ -51,24 +51,24 @@ namespace DemoTwitter.DataAccessLayer
         {
             if (user == null)
                 return false;
-            dbContext.Users.Remove(user);
-            dbContext.SaveChanges();
+            _dbContext.Users.Remove(user);
+            _dbContext.SaveChanges();
             return true;
         }
 
         public User GetByUsername(string userName)
         {
-            return dbContext.Users.FirstOrDefault(user => user.username == userName);
+            return _dbContext.Users.FirstOrDefault(user => user.username == userName);
         }
 
         public User GetByEmail(string emailAddress)
         {
-            return dbContext.Users.FirstOrDefault(user => user.email == emailAddress);
+            return _dbContext.Users.FirstOrDefault(user => user.email == emailAddress);
         }
 
         public IList<User> GetAll()
         {
-            return dbContext.Users.ToList();
+            return _dbContext.Users.ToList();
         }
     }
 }

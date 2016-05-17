@@ -1,95 +1,192 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
-using DemoTwitter.DataAccessLayer;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace DemoTwitter.Tests.User.DataAccesLayer
+namespace DemoTwitter.DataAccessLayer
 {
-
     [TestClass]
     public class UserDalUnitTests
     {
-        private readonly IUserRepository userRepository;
-        private DataAccessLayer.User validUser;
-        private DataAccessLayer.User nullUser;
-
-
-
-        public UserDalUnitTests(IUserRepository userRepository)
-        {
-            this.userRepository = userRepository;
-        }
-
-        public UserDalUnitTests()
-        {
-        }
+        private User validUser;
+        private User nullUser;
+        private IQueryable<User> usersListForTest;
 
         [TestInitialize]
         public void Initialization()
         {
-            validUser = new DataAccessLayer.User
+            nullUser = null;
+            validUser = new User
             {
-                username = "ion",
+                id = 1,
                 email = "ion@ion.com",
+                username = "ion",
                 firstname = "Ion",
                 lastname = "Popescu",
                 password = "123456"
             };
 
-            nullUser = null;
+            usersListForTest = new List<User>(){ 
+                validUser,
+                new User
+            {
+                id = 2,
+                email = "vasile@vasile.ro",
+                username = "vasile",
+                firstname = "vasile",
+                lastname = "moraru",
+                password = "123456"
+                
+            },
+                new User
+            {
+                id = 2,
+                email = "maria@maria.ro",
+                username = "marymary",
+                firstname = "maria",
+                lastname = "ionesco",
+                password = "123456"
+                
+            } 
+            }.AsQueryable();
         }
 
         [TestMethod]
-        public void Register_ValidUserAdded_ReturnsTrue()
+        public void Register_Saves_a_User_via_Context()
         {
-            var mockSet = new Mock<DbSet<DataAccessLayer.User>>();
+            var mockSet = new Mock<DbSet<User>>();
             var mockContext = new Mock<Twitter_dbEntities>();
 
-            mockContext.Setup(u => u.Users).Returns(mockSet.Object);
-
-            var repository = new UserRepository(mockContext.Object);
-
-            const bool expected = true;
-            bool actual = repository.Register(validUser);
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void Register_ValidUser_ReturnsTrue()
-        {
-            var mockSet = new Mock<DbSet<DataAccessLayer.User>>();
-            var mockContext = new Mock<Twitter_dbEntities>();
+            mockContext.Setup(m => m.Users).Returns(mockSet.Object);
 
             var repository = new UserRepository(mockContext.Object);
             repository.Register(validUser);
 
-            mockSet.Verify(m => m.Add(It.IsAny<DataAccessLayer.User>()), Times.Once());
+            mockSet.Verify(m => m.Add(It.IsAny<User>()), Times.Once());
             mockContext.Verify(m => m.SaveChanges(), Times.Once);
         }
 
         [TestMethod]
-        public void Register_NullUserAdded_ReturnsFalse()
+        public void Register_NullUserAdded_Returns_False()
         {
-            bool expected = false;
+            var mockSet = new Mock<DbSet<User>>();
+            var mockContext = new Mock<Twitter_dbEntities>();
 
-            bool actual = userRepository.Register(nullUser);
+            mockContext.Setup(m => m.Users).Returns(mockSet.Object);
+
+            var repository = new UserRepository(mockContext.Object);
+
+            bool actual = repository.Register(nullUser);
+            bool expected = false;
 
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void Update_NullUser_ReturnsFalse()
+        public void GetByEmail_GetsTheUserWithTheSpecifiedEmail()
         {
+            string expectedEmail = "ion@ion.com";
+            User expected = new User { email = expectedEmail };
 
+            var mockSet = new Mock<DbSet<User>>();
+
+            mockSet.As<IQueryable<User>>().Setup(m => m.Provider).Returns(usersListForTest.Provider);
+            mockSet.As<IQueryable<User>>().Setup(m => m.Expression).Returns(usersListForTest.Expression);
+            mockSet.As<IQueryable<User>>().Setup(m => m.ElementType).Returns(usersListForTest.ElementType);
+            mockSet.As<IQueryable<User>>().Setup(m => m.GetEnumerator()).Returns(usersListForTest.GetEnumerator());
+
+            var mockContext = new Mock<Twitter_dbEntities>();
+
+            mockContext.Setup(m => m.Users).Returns(mockSet.Object);
+
+            var repository = new UserRepository(mockContext.Object);
+
+            var actual = repository.GetByEmail(expectedEmail);
+
+            Assert.IsNotNull(actual);
+            Assert.AreEqual(expected.email, actual.email);
         }
 
-        [TestCleanup]
-        public void Clear()
+        [TestMethod]
+        public void GetByUsername_GetsTheUserWithTheSpecifiedUsername()
         {
+            string expectedUsername = "ion";
+            User expected = new User { username = expectedUsername };
 
+            var mockSet = new Mock<DbSet<User>>();
+
+            mockSet.As<IQueryable<User>>().Setup(m => m.Provider).Returns(usersListForTest.Provider);
+            mockSet.As<IQueryable<User>>().Setup(m => m.Expression).Returns(usersListForTest.Expression);
+            mockSet.As<IQueryable<User>>().Setup(m => m.ElementType).Returns(usersListForTest.ElementType);
+            mockSet.As<IQueryable<User>>().Setup(m => m.GetEnumerator()).Returns(usersListForTest.GetEnumerator());
+
+            var mockContext = new Mock<Twitter_dbEntities>();
+
+            mockContext.Setup(m => m.Users).Returns(mockSet.Object);
+
+            var repository = new UserRepository(mockContext.Object);
+
+            var actual = repository.GetByUsername(expectedUsername);
+
+            Assert.IsNotNull(actual);
+            Assert.AreEqual(expected.username, actual.username);
+        }
+
+        [TestMethod]
+        public void GetAll_GetsAllUserFromDatabase()
+        {
+            var mockSet = new Mock<DbSet<User>>();
+            mockSet.As<IQueryable<User>>().Setup(m => m.Provider).Returns(usersListForTest.Provider);
+            mockSet.As<IQueryable<User>>().Setup(m => m.Expression).Returns(usersListForTest.Expression);
+            mockSet.As<IQueryable<User>>().Setup(m => m.ElementType).Returns(usersListForTest.ElementType);
+            mockSet.As<IQueryable<User>>().Setup(m => m.GetEnumerator()).Returns(usersListForTest.GetEnumerator());
+
+            var mockContext = new Mock<Twitter_dbEntities>();
+            mockSet.Setup(u => u.Add(validUser));
+
+            mockContext.Setup(m => m.Users).Returns(mockSet.Object);
+
+            var repository = new UserRepository(mockContext.Object);
+            var actual = repository.GetAll();
+
+            Assert.AreEqual(3, actual.Count);
+        }
+
+        [TestMethod]
+        public void Remove_RemoveValidUserFromDatabase_Returns_True()
+        {
+            var mockSet = new Mock<DbSet<User>>();
+            mockSet.As<IQueryable<User>>().Setup(m => m.Provider).Returns(usersListForTest.Provider);
+            mockSet.As<IQueryable<User>>().Setup(m => m.Expression).Returns(usersListForTest.Expression);
+            mockSet.As<IQueryable<User>>().Setup(m => m.ElementType).Returns(usersListForTest.ElementType);
+            mockSet.As<IQueryable<User>>().Setup(m => m.GetEnumerator()).Returns(usersListForTest.GetEnumerator());
+
+            var mockContext = new Mock<Twitter_dbEntities>();
+            mockContext.Setup(m => m.Users).Returns(mockSet.Object);
+
+            var repository = new UserRepository(mockContext.Object);
+            bool actual = repository.Remove(validUser);
+
+            Assert.AreEqual(true, actual);
+        }
+
+        [TestMethod]
+        public void Remove_RemoveInvalidUserFromDatabase_Returns_False()
+        {
+            var mockSet = new Mock<DbSet<User>>();
+            mockSet.As<IQueryable<User>>().Setup(m => m.Provider).Returns(usersListForTest.Provider);
+            mockSet.As<IQueryable<User>>().Setup(m => m.Expression).Returns(usersListForTest.Expression);
+            mockSet.As<IQueryable<User>>().Setup(m => m.ElementType).Returns(usersListForTest.ElementType);
+            mockSet.As<IQueryable<User>>().Setup(m => m.GetEnumerator()).Returns(usersListForTest.GetEnumerator());
+
+            var mockContext = new Mock<Twitter_dbEntities>();
+            mockContext.Setup(m => m.Users).Returns(mockSet.Object);
+
+            var repository = new UserRepository(mockContext.Object);
+            bool actual = repository.Remove(nullUser);
+
+            Assert.AreEqual(false, actual);
         }
     }
 }
