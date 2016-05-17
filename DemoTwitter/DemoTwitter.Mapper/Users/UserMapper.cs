@@ -1,6 +1,6 @@
 ﻿using DemoTwitter.Models;
 
-namespace DemoTwitter.Mapper.Users
+namespace DemoTwitter.Mapper
 {
     public class UserMapper : IUserMapper
     {

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 
-namespace DemoTwitter.DataAccessLayer.Users
+namespace DemoTwitter.DataAccessLayer
 {
     public class UserRepository : IUserRepository
     {
@@ -40,7 +39,7 @@ namespace DemoTwitter.DataAccessLayer.Users
                     update.firstname = updatedUser.firstname;
                     update.lastname = updatedUser.lastname;
                     update.password = updatedUser.password;
-                    dbContext.Entry(update).State = EntityState.Modified;
+                 //   dbContext.Entry(update).State = EntityState.Modified;
                 }
                 dbContext.SaveChanges();
                 return true;

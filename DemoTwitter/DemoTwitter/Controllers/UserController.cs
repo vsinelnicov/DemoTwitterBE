@@ -3,7 +3,7 @@
  ﻿using System.Web;
  ﻿using System.Web.Mvc;
  ﻿using System.Web.Security;
- ﻿using DemoTwitter.BusinessLayer.Users;
+ ﻿using DemoTwitter.BusinessLayer;
  ﻿using DemoTwitter.Models;
  ﻿using PagedList;
 

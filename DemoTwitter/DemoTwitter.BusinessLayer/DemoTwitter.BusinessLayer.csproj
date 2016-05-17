@@ -33,10 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -53,7 +53,7 @@
       <Name>DemoTwitter.DataAccessLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\DemoTwitter.Mapper\DemoTwitter.Mapper.csproj">
-      <Project>{2AE010CB-B0A7-4CD6-9653-5FA2C8F08E41}</Project>
+      <Project>{2ae010cb-b0a7-4cd6-9653-5fa2c8f08e41}</Project>
       <Name>DemoTwitter.Mapper</Name>
     </ProjectReference>
     <ProjectReference Include="..\DemoTwitter.Models\DemoTwitter.Models.csproj">

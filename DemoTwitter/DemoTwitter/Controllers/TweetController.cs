@@ -2,7 +2,7 @@
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
-using DemoTwitter.BusinessLayer.Tweets;
+using DemoTwitter.BusinessLayer;
 using DemoTwitter.Models;
 using PagedList;
 

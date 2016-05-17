@@ -1,9 +1,6 @@
-using DemoTwitter.BusinessLayer.Tweets;
-using DemoTwitter.BusinessLayer.Users;
-using DemoTwitter.DataAccessLayer.Tweets;
-using DemoTwitter.DataAccessLayer.Users;
-using DemoTwitter.Mapper.Tweets;
-using DemoTwitter.Mapper.Users;
+using DemoTwitter.BusinessLayer;
+using DemoTwitter.DataAccessLayer;
+using DemoTwitter.Mapper;
 
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(DemoTwitter.App_Start.NinjectWebCommon), "Start")]
@@ -75,6 +72,8 @@ namespace DemoTwitter.App_Start
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IUserMapper>().To<UserMapper>();
             kernel.Bind<ITweetMapper>().To<TweetMapper>();
+            kernel.Bind<ITwitter_dbEntities>().To<Twitter_dbEntities>();
+            
         }        
     }
 }

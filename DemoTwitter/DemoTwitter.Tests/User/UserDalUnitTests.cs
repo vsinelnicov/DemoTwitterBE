@@ -1,8 +1,7 @@
-﻿using System.Data.Entity;
-using System.Linq;
-using DemoTwitter.App_Start;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using DemoTwitter.DataAccessLayer;
-using DemoTwitter.DataAccessLayer.Users;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -15,6 +14,8 @@ namespace DemoTwitter.Tests.User.DataAccesLayer
         private readonly IUserRepository userRepository;
         private DataAccessLayer.User validUser;
         private DataAccessLayer.User nullUser;
+
+
 
         public UserDalUnitTests(IUserRepository userRepository)
         {

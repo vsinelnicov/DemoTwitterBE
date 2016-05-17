@@ -12,8 +12,8 @@ namespace DemoTwitter.DataAccessLayer
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
-    public partial class Twitter_dbEntities : DbContext
+
+    public partial class Twitter_dbEntities : DbContext, ITwitter_dbEntities
     {
         public Twitter_dbEntities()
             : base("name=Twitter_dbEntities")

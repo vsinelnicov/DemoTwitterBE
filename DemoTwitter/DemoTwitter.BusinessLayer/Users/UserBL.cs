@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using DemoTwitter.DataAccessLayer.Users;
-using DemoTwitter.Mapper.Users;
-using User = DemoTwitter.Models.User;
+using DemoTwitter.DataAccessLayer;
+using DemoTwitter.Mapper;
+using User = DemoTwitter.Models;
 
-namespace DemoTwitter.BusinessLayer.Users
+namespace DemoTwitter.BusinessLayer
 {
     public class UserBL : IUserBL
     {
@@ -16,38 +16,38 @@ namespace DemoTwitter.BusinessLayer.Users
             this.userMapper = userMapper;
         }
           
-        public void Register(User user)
+        public void Register(User.User user)
         {
             DataAccessLayer.User userForDatabase = userMapper.MapToDatabaseType(user);
             usersRepository.Register(userForDatabase);
         }
 
-        public void Remove(User user)
+        public void Remove(User.User user)
         {
             DataAccessLayer.User userForDatabase = userMapper.MapToDatabaseType(user);
             usersRepository.Remove(userForDatabase);
         }
 
-        public void Update(User updatedUser)
+        public void Update(User.User updatedUser)
         {
             DataAccessLayer.User userForDatabase = userMapper.MapToDatabaseType(updatedUser);
             usersRepository.Update(userForDatabase);
         }
 
-        public User GetByUsername(string userName)
+        public User.User GetByUsername(string userName)
         {
             return userMapper.MapToUserModel(usersRepository.GetByUsername(userName));
         }
 
-        public User GetByEmail(string emailAddress)
+        public User.User GetByEmail(string emailAddress)
         {
             return userMapper.MapToUserModel(usersRepository.GetByEmail(emailAddress));
         }
 
-        public IEnumerable<User> GetAllUsers()
+        public IEnumerable<User.User> GetAllUsers()
         {
             IEnumerable<DataAccessLayer.User> usersFromDatabase = usersRepository.GetAll();
-            List<User> allUsers = new List<User>();
+            List<User.User> allUsers = new List<User.User>();
 
             foreach (var user in usersFromDatabase)
             {

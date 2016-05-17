@@ -3,10 +3,9 @@
 
 namespace DemoTwitter.Models
 {
-         
+
     public class User
     {
-        
         public int? Id { get; set; }
 
         [Display(Name = "Username")]

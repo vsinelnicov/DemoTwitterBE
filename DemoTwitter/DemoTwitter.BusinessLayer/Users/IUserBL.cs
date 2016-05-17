@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using DemoTwitter.Models;
 
-namespace DemoTwitter.BusinessLayer.Users
+namespace DemoTwitter.BusinessLayer
 {
     public interface IUserBL
     {

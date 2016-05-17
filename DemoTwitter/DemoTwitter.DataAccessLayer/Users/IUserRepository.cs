@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DemoTwitter.DataAccessLayer.Users
+namespace DemoTwitter.DataAccessLayer
 {
     public interface IUserRepository
     {

@@ -293,15 +293,15 @@ public class CodeStringGenerator
             callParams);
     }
     
-    public string DbSet(EntitySet entitySet)
-    {
-        return string.Format(
-            CultureInfo.InvariantCulture,
-            "{0} DbSet<{1}> {2} {{ get; set; }}",
-            Accessibility.ForReadOnlyProperty(entitySet),
-            _typeMapper.GetTypeName(entitySet.ElementType),
-            _code.Escape(entitySet));
-    }
+public string DbSet(EntitySet entitySet)
+{
+    return string.Format(
+        CultureInfo.InvariantCulture,
+        "{0} virtual DbSet<{1}> {2} {{ get; set; }}",
+        Accessibility.ForReadOnlyProperty(entitySet),
+        _typeMapper.GetTypeName(entitySet.ElementType),
+        _code.Escape(entitySet));
+}
 
     public string UsingDirectives(bool inHeader, bool includeCollections = true)
     {

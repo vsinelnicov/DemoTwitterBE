@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
-using DemoTwitter.BusinessLayer.Users;
+using DemoTwitter.BusinessLayer;
 using DemoTwitter.Models;
 using DemoTwitter.WEB.Helpers;
 using System.Web.Security;

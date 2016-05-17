@@ -1,6 +1,6 @@
 ﻿using DemoTwitter.Models;
 
-namespace DemoTwitter.Mapper.Tweets
+namespace DemoTwitter.Mapper
 {
     public interface ITweetMapper
     {

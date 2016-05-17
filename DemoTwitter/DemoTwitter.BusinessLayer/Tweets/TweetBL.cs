@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DemoTwitter.DataAccessLayer.Tweets;
-using DemoTwitter.Mapper.Tweets;
-using Tweet = DemoTwitter.Models.Tweet;
+using DemoTwitter.DataAccessLayer;
+using DemoTwitter.Mapper;
+using Tweet = DemoTwitter.Models;
 
-namespace DemoTwitter.BusinessLayer.Tweets
+namespace DemoTwitter.BusinessLayer
 {
     public class TweetBL : ITweetBL
     {
@@ -18,7 +18,7 @@ namespace DemoTwitter.BusinessLayer.Tweets
             this.tweetMapper = tweetMapper;
         }
 
-        public bool Add(Tweet tweet)
+        public bool Add(Tweet.Tweet tweet)
         {
             if (tweet == null)
             {
@@ -29,7 +29,7 @@ namespace DemoTwitter.BusinessLayer.Tweets
             return true;
         }
 
-        public bool Remove(Tweet tweet)
+        public bool Remove(Tweet.Tweet tweet)
         {
             if (tweet == null)
             {
@@ -40,25 +40,24 @@ namespace DemoTwitter.BusinessLayer.Tweets
             return true;
         }
 
-        public bool Update(Tweet oldTweet, Models.Tweet newTweet)
+        public bool Update(Tweet.Tweet tweet)
         {
-            if (newTweet == null)
+            if (tweet == null)
             {
                 return false;
             }
-            oldTweet.Text = newTweet.Text;
-            oldTweet.PostDate = newTweet.PostDate;
+            tweet.Text = tweet.Text;
+            tweet.PostDate = tweet.PostDate;
             return true;
         }
 
-        public IList<Tweet> GetAll()
+        public IList<Tweet.Tweet> GetAll()
         {
 
             return tweetsRepository.GetAll().Select(tweet => tweetMapper.MapToUserModel(tweet)).OrderByDescending(x => x.PostDate).ToList();
 
         }
-
-        public IEnumerable<Tweet> GetByPostDate(DateTime postDate)
+        public IEnumerable<Tweet.Tweet> GetByPostDate(DateTime postDate)
         {
             IEnumerable<DataAccessLayer.Tweet> tweetsFromDatabase = tweetsRepository.GetAll().Where(t => t.post_date == postDate);
             List<Models.Tweet> allTweets = new List<Models.Tweet>();
