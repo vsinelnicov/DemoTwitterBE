@@ -46,8 +46,8 @@ namespace DemoTwitter.BusinessLayer
             {
                 return false;
             }
-            tweet.Text = tweet.Text;
-            tweet.PostDate = tweet.PostDate;
+            DataAccessLayer.Tweet tweetForDatabase = tweetMapper.MapToDatabaseType(tweet);
+            tweetsRepository.Update(tweetForDatabase);
             return true;
         }
 

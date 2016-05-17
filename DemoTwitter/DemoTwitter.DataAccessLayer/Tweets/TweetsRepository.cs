@@ -9,10 +9,10 @@ namespace DemoTwitter.DataAccessLayer
         private ITwitter_dbEntities _dbContext;
 
         public TweetsRepository(ITwitter_dbEntities dbContext)
-       {
-           this._dbContext = dbContext;
-       }
-       
+        {
+            this._dbContext = dbContext;
+        }
+
         public bool Add(Tweet tweet)
         {
             if (tweet == null)
@@ -28,8 +28,6 @@ namespace DemoTwitter.DataAccessLayer
         {
             if (tweet == null)
                 return false;
-          
-
             _dbContext.SaveChanges();
             return true;
         }
