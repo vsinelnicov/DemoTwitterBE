@@ -14,9 +14,6 @@ namespace DemoTwitter.DataAccessLayer
 
         public bool Register(User user)
         {
-            if (user == null)
-                return false;
-
             _dbContext.Users.Add(user);
             _dbContext.SaveChanges();
             return true;

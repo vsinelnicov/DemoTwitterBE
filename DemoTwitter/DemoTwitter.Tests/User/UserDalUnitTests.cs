@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -68,19 +69,27 @@ namespace DemoTwitter.DataAccessLayer
         }
 
         [TestMethod]
-        public void Register_NullUserAdded_Returns_False()
+        [ExpectedException(typeof(NullReferenceException), "Null user")]
+        public void Register_NullUserAdded_Catches_NullReferenceException()
         {
-            var mockSet = new Mock<DbSet<User>>();
-            var mockContext = new Mock<Twitter_dbEntities>();
+            try
+            {
+                var mockSet = new Mock<DbSet<User>>();
+                var mockContext = new Mock<Twitter_dbEntities>();
+                //var mock = new Mock<UserRepository>();
+                //mock.Setup(m => m.Register(It.IsAny<User>())).Throws(new NullReferenceException());
 
-            mockContext.Setup(m => m.Users).Returns(mockSet.Object);
+                mockContext.Setup(m => m.Users).Returns(mockSet.Object);
 
-            var repository = new UserRepository(mockContext.Object);
+                var repository = new UserRepository(mockContext.Object);
 
-            bool actual = repository.Register(nullUser);
-            bool expected = false;
+                repository.Register(nullUser);
+            }
+            catch (NullReferenceException ex)
+            {
 
-            Assert.AreEqual(expected, actual);
+            }
+
         }
 
         [TestMethod]

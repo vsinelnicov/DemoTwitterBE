@@ -15,23 +15,32 @@ namespace DemoTwitter.BusinessLayer
             this.usersRepository = usersRepository;
             this.userMapper = userMapper;
         }
-          
-        public void Register(User.User user)
+
+        public bool Register(User.User user)
         {
+            if (user == null)
+                return false;
             DataAccessLayer.User userForDatabase = userMapper.MapToDatabaseType(user);
             usersRepository.Register(userForDatabase);
+            return true;
         }
 
-        public void Remove(User.User user)
+        public bool Remove(User.User user)
         {
+            if (user == null)
+                return false;
             DataAccessLayer.User userForDatabase = userMapper.MapToDatabaseType(user);
             usersRepository.Remove(userForDatabase);
+            return true;
         }
 
-        public void Update(User.User updatedUser)
+        public bool Update(User.User updatedUser)
         {
+            if (updatedUser == null)
+                return false;
             DataAccessLayer.User userForDatabase = userMapper.MapToDatabaseType(updatedUser);
             usersRepository.Update(userForDatabase);
+            return true;
         }
 
         public User.User GetByUsername(string userName)
