@@ -35,16 +35,12 @@ namespace DemoTwitter.WEB.Controllers
             tweetBl.Add(tweet);
             return RedirectToAction("Index", "User");
         }
-        [HttpPost]
         public ActionResult Remove(Tweet tweet)
         {
             tweetBl.Remove(tweet);
             return RedirectToAction("Index", "User");
         }
-        public ActionResult Remove()
-        {
-            return RedirectToAction("Index", "User");
-        }
+
 
         public ActionResult All(int? page, User user)
         {
@@ -54,5 +50,23 @@ namespace DemoTwitter.WEB.Controllers
             int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["tweetPageSize"]);
             return PartialView(tweetBl.GetAll().Where(tweet => tweet.UserId == userID).ToPagedList(pageNumber, pageSize));
         }
+
+        public ActionResult Edit()
+        {
+            return RedirectToAction("Index", "User");
+        }
+        [HttpPost]
+        public ActionResult Edit(Tweet tweet)
+        {
+            if (!ModelState.IsValid)
+                return RedirectToAction("Index", "Tweet");
+            int userID;
+            int.TryParse(Session["UserID"].ToString(), out userID);
+            tweet.PostDate = DateTime.Now;
+            tweet.UserId = userID;
+            tweetBl.Update(tweet);
+            return RedirectToAction("Index", "User");
+        }
+
     }
 }

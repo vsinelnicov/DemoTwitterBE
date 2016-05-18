@@ -4,17 +4,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2F790082-7DEB-419D-9EF9-C0751978C705}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{97163CE4-B139-4206-B413-21B4F81E9FC9}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DemoTwitter.BusinessLayer</RootNamespace>
-    <AssemblyName>DemoTwitter.BusinessLayer</AssemblyName>
+    <RootNamespace>TwitterAutomationTets</RootNamespace>
+    <AssemblyName>TwitterAutomationTets</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,6 +25,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,37 +34,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WebDriver">
+      <HintPath>..\packages\Selenium.WebDriver.2.53.0\lib\net40\WebDriver.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tweets\ITweetBL.cs" />
-    <Compile Include="Tweets\TweetBL.cs" />
-    <Compile Include="Users\IUserBL.cs" />
-    <Compile Include="Users\UserBL.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DemoTwitter.DataAccessLayer\DemoTwitter.DataAccessLayer.csproj">
-      <Project>{4bfadbaa-5656-4d6a-bfb4-2f165dc0e5bc}</Project>
-      <Name>DemoTwitter.DataAccessLayer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DemoTwitter.Mapper\DemoTwitter.Mapper.csproj">
-      <Project>{2ae010cb-b0a7-4cd6-9653-5fa2c8f08e41}</Project>
-      <Name>DemoTwitter.Mapper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DemoTwitter.Models\DemoTwitter.Models.csproj">
-      <Project>{0bba45de-9622-4c35-9892-63ada2422b5c}</Project>
-      <Name>DemoTwitter.Models</Name>
-    </ProjectReference>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

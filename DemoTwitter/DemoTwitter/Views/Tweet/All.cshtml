@@ -16,14 +16,12 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-option-horizontal"></span></a>
                                 <ul class="dropdown-menu dropdown-menu-right">
-                                    <li class="dropdown disabled"><a href="#">Edit</a></li>
+                                    <li class="dropdown">
+                                        <a href=@Url.Action("Edit", "Tweet")>Edit</a>
+                                    </li>
                                     <li>
-                                        @*<a href=@Url.Action("Remove", "Tweet")>Delete</a>*@
+                                        <a href=@Url.Action("Remove", "Tweet")>Delete</a>
 
-                                        @using (Html.BeginForm("Index", "User", FormMethod.Post))
-                                        {
-                                            <input type="submit" href=@Url.Action("Remove", "Tweet") value="Delete"/>
-                                        }
                                     </li>
                                 </ul>
                             </li>
