@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
+﻿using System.Linq;
 using DemoTwitter.DataAccessLayer;
 using DemoTwitter.Mapper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -14,7 +12,6 @@ namespace DemoTwitter.BusinessLayer
     {
         private Mock<IUserRepository> userDalRepositoryMock;
         private Mock<IUserMapper> userMapper;
-        private ModelStateDictionary modelState;
         private IUserBL userBl;
         private User validUser;
         private IQueryable<User> usersList;
@@ -24,7 +21,6 @@ namespace DemoTwitter.BusinessLayer
         {
             userDalRepositoryMock = new Mock<IUserRepository>();
             userMapper = new Mock<IUserMapper>();
-            modelState = new ModelStateDictionary();
             userBl = new UserBL(userDalRepositoryMock.Object, userMapper.Object);
 
             validUser = new User
@@ -36,35 +32,6 @@ namespace DemoTwitter.BusinessLayer
                 FirstName = "Ion",
                 LastName = "Vasilescu"
             };
-
-            usersList = new List<User>()
-            {
-                validUser,
-                new User
-                {
-                    Id = 1,
-                    Email = "maria@maria.com",
-                    Username = "maria",
-                    Password = "123456",
-                    FirstName = "Maria",
-                    LastName = "Vasilescu"
-                },
-                new User
-                {
-                    Id = 1,
-                    Email = "mihai@mihai.com",
-                    Username = "mihai",
-                    Password = "123456",
-                    FirstName = "Mihai",
-                    LastName = "Lupu"
-                },
-            }.AsQueryable();
-
-            userDalRepositoryMock.As<IQueryable<User>>().Setup(m => m.Provider).Returns(usersList.Provider);
-            userDalRepositoryMock.As<IQueryable<User>>().Setup(m => m.Expression).Returns(usersList.Expression);
-            userDalRepositoryMock.As<IQueryable<User>>().Setup(m => m.ElementType).Returns(usersList.ElementType);
-            userDalRepositoryMock.As<IQueryable<User>>().Setup(m => m.GetEnumerator()).Returns(usersList.GetEnumerator());
-
         }
 
         [TestMethod]
@@ -83,20 +50,19 @@ namespace DemoTwitter.BusinessLayer
             Assert.AreEqual(expected, actual, "Invalid user data entered");
         }
 
-        //[TestMethod]
-        //public void GetByEmail_GetsTheUserWithTheSpecifiedEmail()
-        //{
-        //    string expectedEmail = "ion@ion.com";
-        //    User expected = new User { Email = expectedEmail };
-        //    //var mockSet = new Mock<User>();
-            
-        //    //userDalRepositoryMock.Setup(x => x.GetByEmail(expectedEmail)).Returns(userMapper.Object.MapToDatabaseType(mockSet.Object));
-        //    //userMapper.Setup(m=>m.MapToUserModel())
-        //    User actual = userMapper.Object.MapToUserModel(userDalRepositoryMock.Object.GetByEmail(expectedEmail));
-
-        //    Assert.IsNotNull(actual);
-        //    Assert.AreEqual(expected.Email, actual.Email);
-        //}
-
+        [TestMethod]
+        public void Remove_ValidUser_Returns_True()
+        {
+            bool expected = true;
+            bool actual = userBl.Remove(validUser);
+            Assert.AreEqual(expected, actual, "User successfully removed");
+        }
+        [TestMethod]
+        public void Remove_InvalidUser_Returns_False()
+        {
+            bool expected = false;
+            bool actual = userBl.Remove(null);
+            Assert.AreEqual(expected, actual, "Invalid user data to be deleted");
+        }
     }
 }

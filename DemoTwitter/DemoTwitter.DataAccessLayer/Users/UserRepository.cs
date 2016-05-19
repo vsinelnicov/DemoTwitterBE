@@ -14,6 +14,8 @@ namespace DemoTwitter.DataAccessLayer
 
         public bool Register(User user)
         {
+            if (user == null)
+                return false;
             _dbContext.Users.Add(user);
             _dbContext.SaveChanges();
             return true;
@@ -36,7 +38,7 @@ namespace DemoTwitter.DataAccessLayer
                     update.firstname = updatedUser.firstname;
                     update.lastname = updatedUser.lastname;
                     update.password = updatedUser.password;
-                 //   dbContext.Entry(update).State = EntityState.Modified;
+                    //   dbContext.Entry(update).State = EntityState.Modified;
                 }
                 _dbContext.SaveChanges();
                 return true;
