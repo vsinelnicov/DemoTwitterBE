@@ -1,24 +1,106 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
+using System.Web.Mvc;
+using DemoTwitter.DataAccessLayer;
+using DemoTwitter.Mapper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Tweet = DemoTwitter.Models.Tweet;
+
 
 namespace DemoTwitter.BusinessLayer
 {
     [TestClass]
     public class TwitterBLTests
     {
+        private Mock<ITweetsRepository> tweetDALRepositoryMock;
+        private Mock<ITweetMapper> tweetMapper;
+        private ITweetBL service;
+        private IQueryable<Tweet> tweetsList;
+        private Tweet newTweet;
+
         [TestInitialize]
         public void Initialization()
         {
-            
+            tweetDALRepositoryMock = new Mock<ITweetsRepository>();
+            tweetMapper = new Mock<ITweetMapper>();
+            service = new TweetBL(tweetDALRepositoryMock.Object, tweetMapper.Object);
+            newTweet = new Tweet
+            {
+                UserId = 3,
+                Text = "This is a unit test4444!",
+                PostDate = DateTime.Parse("2016-05-13 14:46:29.387")
+            };
+            tweetsList = new List<Tweet>
+            {
+              new Tweet
+              {
+                Id  = 48,
+                UserId = 58,
+                Text = "This is Didina's First Post!",
+                PostDate = DateTime.Parse("2016-05-10 13:50:32.820")
+              } ,
+               new Tweet
+              {
+                Id  = 49,
+                UserId = 61,
+                Text = "This is Eugen's First Post!",
+                PostDate = DateTime.Parse("2016-05-10 13:50:47.957")
+              } ,
+               new Tweet
+              {
+                Id  = 50,
+                UserId = 59,
+                Text = "This is Valeriu's First Post!",
+                PostDate = DateTime.Parse("2016-05-10 13:51:43.610")
+              }
+               }.AsQueryable();
         }
+
         [TestMethod]
-        public void Add_Add_a_tweet_to_database()
+        public void Add_Add_a_tweet_to_database_()
         {
-  
+            bool expected = true;
+            bool actual = service.Add(newTweet);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Remove_remove_a_tweet_from_database()
+        {
+            bool expected = true;
+            bool actual = service.Remove(tweetsList.FirstOrDefault(x => x.Id == 50));
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Update_update_a_tweet_from_database()
+        {
+            bool expected = true;
+            bool actual = service.Update(tweetsList.FirstOrDefault(x => x.Id == 50));
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException), "Null tweet can't be updated")]
+        public void Update_update_a_null_tweet_from_database_throw_null_reference_exception()
+        {
+            service.Update(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException), "Null tweet cant be added")]
+        public void Add_Add_a_null_tweet_from_database_throw_null_reference_exception()
+        {
+            service.Add(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException), "Null tweet cant be removed")]
+        public void Remove_remove_a_null_tweet_from_database_throw_null_reference_exception()
+        {
+            service.Remove(null);
         }
     }
 }

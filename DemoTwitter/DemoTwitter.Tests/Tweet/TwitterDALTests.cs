@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using DemoTwitter.BusinessLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -58,6 +59,7 @@ namespace DemoTwitter.DataAccessLayer
             mockSet.As<IQueryable<Tweet>>().Setup(m => m.ElementType).Returns(tweet.ElementType);
             mockSet.As<IQueryable<Tweet>>().Setup(m => m.GetEnumerator()).Returns(tweet.GetEnumerator());
         }
+
         [TestMethod]
         public void Add_Add_a_tweet_to_database()
         {
@@ -82,27 +84,9 @@ namespace DemoTwitter.DataAccessLayer
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "A user of null was inappropriately allowed.")]
-        public void Add_cant_add_an_null_tweet_to_database()
-        {
-            var tweet = new Tweet();
-            tweet = null;
-            var t=service.Add(tweet);
-            mockContext.Verify(m => m.SaveChanges(), Times.Once());
-        }
-
-        [TestMethod]
         public void Remove_cant_remove_an_unexisting_tweet_from_database()
         {
             bool actual = service.Remove(tweet.FirstOrDefault(h => h.id == 1));
-            bool expected = true;
-            Assert.AreNotEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void Update_cant_update_an_unexisting_tweet_from_database()
-        {
-            bool actual = service.Update(tweet.FirstOrDefault(h => h.id == 1));
             bool expected = true;
             Assert.AreNotEqual(expected, actual);
         }

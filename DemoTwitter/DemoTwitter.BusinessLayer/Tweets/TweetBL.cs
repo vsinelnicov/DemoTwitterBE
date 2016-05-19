@@ -20,54 +20,40 @@ namespace DemoTwitter.BusinessLayer
 
         public bool Add(Tweet.Tweet tweet)
         {
-            try
+            if (tweet == null)
             {
-                DataAccessLayer.Tweet tweetForDatabase = tweetMapper.MapToDatabaseType(tweet);
-                tweetsRepository.Add(tweetForDatabase);
-                return true;
+                throw new NullReferenceException();
             }
-            catch (Exception)
-            {
-                return false;
-            }
+            DataAccessLayer.Tweet tweetForDatabase = tweetMapper.MapToDatabaseType(tweet);
+            tweetsRepository.Add(tweetForDatabase);
+            return true;
+
         }
 
         public bool Remove(Tweet.Tweet tweet)
         {
-            try
+
+            if (tweet == null)
             {
-                DataAccessLayer.Tweet tweetForDatabase = tweetMapper.MapToDatabaseType(tweet);
-                tweetsRepository.Remove(tweetForDatabase);
-                return true;
+                throw new NullReferenceException();
             }
-            catch (Exception)
-            {
-                //Log(blablabla, e);
-                return false;
-            }
+            DataAccessLayer.Tweet tweetForDatabase = tweetMapper.MapToDatabaseType(tweet);
+            tweetsRepository.Remove(tweetForDatabase);
+            return true;
+
+
 
         }
 
         public bool Update(Tweet.Tweet tweet)
         {
-            try
+            if (tweet == null)
             {
-                //DataAccessLayer.Tweet tweetForDatabase = tweetMapper.MapToDatabaseType(tweet);
-                DataAccessLayer.Tweet tweetForDatabase = new DataAccessLayer.Tweet()
-                {
-                    id = 48,
-                    user_id = 58,
-                    text = "tralalala",
-                    post_date = DateTime.Now
-                };
-                tweetsRepository.Update(tweetForDatabase);
-                return true;
+                throw new NullReferenceException();
             }
-            catch (Exception)
-            {
-
-                return false;
-            }
+            DataAccessLayer.Tweet tweetForDatabase = tweetMapper.MapToDatabaseType(tweet);
+            tweetsRepository.Update(tweetForDatabase);
+            return true;
         }
 
         public IList<Tweet.Tweet> GetAll()

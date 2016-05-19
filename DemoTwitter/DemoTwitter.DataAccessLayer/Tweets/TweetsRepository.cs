@@ -11,11 +11,15 @@ namespace DemoTwitter.DataAccessLayer
 
         public TweetsRepository(ITwitter_dbEntities dbContext)
         {
-              this._dbContext = dbContext;
+            this._dbContext = dbContext;
         }
 
         public bool Add(Tweet tweet)
         {
+            if (tweet==null)
+            {
+                return false;
+            }
             _dbContext.Tweets.Add(tweet);
             _dbContext.SaveChanges();
             return true;
@@ -23,14 +27,21 @@ namespace DemoTwitter.DataAccessLayer
 
         public bool Update(Tweet tweet)
         {
-            var rezult = _dbContext.Tweets.SingleOrDefault(x => x.id == tweet.id);
-            rezult = tweet;
+            if (tweet == null)
+            {
+                return false;
+            }
+            //code here
             _dbContext.SaveChanges();
             return true;
         }
 
         public bool Remove(Tweet tweet)
         {
+            if (tweet == null)
+            {
+                return false;
+            }
             _dbContext.Tweets.Remove(tweet);
             _dbContext.SaveChanges();
             return true;
