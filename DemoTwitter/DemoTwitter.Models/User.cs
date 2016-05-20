@@ -32,5 +32,7 @@ namespace DemoTwitter.Models
         [Display(Name = "Last name")]
         [Required(ErrorMessage = "Enter your lastname")]
         public string LastName { get; set; }
+
+        public bool IsFollowed { get; set; }
     }
 }

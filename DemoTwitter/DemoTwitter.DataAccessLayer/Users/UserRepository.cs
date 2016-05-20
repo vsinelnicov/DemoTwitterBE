@@ -38,7 +38,6 @@ namespace DemoTwitter.DataAccessLayer
                     update.firstname = updatedUser.firstname;
                     update.lastname = updatedUser.lastname;
                     update.password = updatedUser.password;
-                    //   dbContext.Entry(update).State = EntityState.Modified;
                 }
                 _dbContext.SaveChanges();
                 return true;
@@ -55,6 +54,44 @@ namespace DemoTwitter.DataAccessLayer
             return true;
         }
 
+        public Follower GetFollower(int folowerId, int userId)
+        {
+            return _dbContext.Followers.FirstOrDefault(f => f.follower_id == folowerId && f.user_id == userId);
+        }
+
+        public void Follow(int followerId, int followedUserId)
+        {
+            Follower follower = new Follower
+            {
+                follower_id = followerId,
+                user_id = followedUserId
+            };
+
+            if (!IsFollowed(followerId, followedUserId))
+            {
+                _dbContext.Followers.Add(follower);
+                _dbContext.SaveChanges();
+            }
+        }
+
+        public void UnFollow(int followerId, int followedUserId)
+        {
+            Follower follower = GetFollower(followerId, followedUserId);
+
+            if (IsFollowed(followerId, followedUserId))
+            {
+                _dbContext.Followers.Remove(follower);
+                _dbContext.SaveChanges();
+            }
+        }
+
+        public bool IsFollowed(int followerId, int followedUserId)
+        {
+            var followedUser = _dbContext.Followers.FirstOrDefault(f => f.user_id == followedUserId && followerId == f.follower_id);
+            if (followedUser == null)
+                return false;
+            return true;
+        }
         public User GetByUsername(string userName)
         {
             return _dbContext.Users.FirstOrDefault(user => user.username == userName);
