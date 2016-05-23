@@ -32,13 +32,26 @@ namespace DemoTwitter.WEB.Controllers
             int.TryParse(Session["UserID"].ToString(), out userID);
             tweet.PostDate = DateTime.Now;
             tweet.UserId = userID;
-            tweetBl.Add(tweet);
-            return RedirectToAction("Index", "User");
+            if (tweetBl.Add(tweet))
+            {
+                return RedirectToAction("Index", "User");
+            }
+            else
+            {
+                return RedirectToAction("ErrorPage", "User");
+            }
+
         }
         public ActionResult Remove(Tweet tweet)
         {
-            tweetBl.Remove(tweet);
-            return RedirectToAction("Index", "User");
+            if (tweetBl.Remove(tweet))
+            {
+                return RedirectToAction("Index", "User");
+            }
+            else
+            {
+                return RedirectToAction("ErrorPage", "User");
+            }
         }
 
 
@@ -64,9 +77,14 @@ namespace DemoTwitter.WEB.Controllers
             int.TryParse(Session["UserID"].ToString(), out userID);
             tweet.PostDate = DateTime.Now;
             tweet.UserId = userID;
-            tweetBl.Update(tweet);
-            return RedirectToAction("Index", "User");
+            if (tweetBl.Update(tweet))
+            {
+                return RedirectToAction("Index", "User");
+            }
+            else
+            {
+                return RedirectToAction("ErrorPage", "User");
+            }
         }
-
     }
 }

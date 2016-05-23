@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Linq.Expressions;
+using log4net;
+
 
 namespace DemoTwitter.DataAccessLayer
 {
     public class TweetsRepository : ITweetsRepository
     {
         private ITwitter_dbEntities _dbContext;
+
+        private static ILog log = LogManager.GetLogger(typeof(TweetsRepository));
 
         public TweetsRepository(ITwitter_dbEntities dbContext)
         {
@@ -16,10 +18,6 @@ namespace DemoTwitter.DataAccessLayer
 
         public bool Add(Tweet tweet)
         {
-            if (tweet==null)
-            {
-                return false;
-            }
             _dbContext.Tweets.Add(tweet);
             _dbContext.SaveChanges();
             return true;
@@ -27,21 +25,12 @@ namespace DemoTwitter.DataAccessLayer
 
         public bool Update(Tweet tweet)
         {
-            if (tweet == null)
-            {
-                return false;
-            }
-            //code here
             _dbContext.SaveChanges();
             return true;
         }
 
         public bool Remove(Tweet tweet)
         {
-            if (tweet == null)
-            {
-                return false;
-            }
             _dbContext.Tweets.Remove(tweet);
             _dbContext.SaveChanges();
             return true;

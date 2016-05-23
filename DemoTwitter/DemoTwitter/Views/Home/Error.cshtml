@@ -1,0 +1,40 @@
+﻿@using System.Web.Optimization
+@model DemoTwitter.WEB.Models.LoginUser
+
+@{
+    Layout = null;
+}
+@Styles.Render("~/Content/css/bootstrap.css", "~/Content/css/login.css")
+@Styles.Render("~/Content/css/validation.css")
+
+
+<body class="panel-body" style="background-image: url('http://synthetick.com/poster-1280x720/plexus3-1280x720.jpg'); background-size: cover;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-login">
+                    <div class="panel-heading">
+
+                        <div class="panel-body">
+                            <div class="text-center">
+                                <h1>Oops!</h1>
+                                <br />
+                                <h3>We can't seem to find the page you are looking for.</h3>
+                                <br />
+
+                                <h3>Here are some helpful links instead:</h3>
+                                <div style="color: red">
+                                    <a style="color: #008b8b" href="@Url.Action("Login", "Home")">Login</a><br />
+                                    <a style="color: #008b8b" href="@Url.Action("Register", "Home")">Register</a><br />
+
+                                    <br />
+                                    <img src="~/Content/img/error.JPG" alt="Sample Photo" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

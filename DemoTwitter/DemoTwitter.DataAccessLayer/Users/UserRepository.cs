@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity.Core;
 using System.Linq;
+using log4net;
 
 namespace DemoTwitter.DataAccessLayer
 {
     public class UserRepository : IUserRepository
     {
         private readonly ITwitter_dbEntities _dbContext;
+        private static readonly ILog log = LogManager.GetLogger(typeof(TweetsRepository));
 
         public UserRepository(ITwitter_dbEntities dbContext)
         {
@@ -36,7 +40,7 @@ namespace DemoTwitter.DataAccessLayer
                     update.firstname = updatedUser.firstname;
                     update.lastname = updatedUser.lastname;
                     update.password = updatedUser.password;
-                 //   dbContext.Entry(update).State = EntityState.Modified;
+                    //   dbContext.Entry(update).State = EntityState.Modified;
                 }
                 _dbContext.SaveChanges();
                 return true;

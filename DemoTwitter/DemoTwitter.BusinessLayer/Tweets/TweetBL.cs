@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using DemoTwitter.DataAccessLayer;
 using DemoTwitter.Mapper;
+using log4net;
+using log4net.Config;
 using Tweet = DemoTwitter.Models;
 
 namespace DemoTwitter.BusinessLayer
@@ -11,67 +13,98 @@ namespace DemoTwitter.BusinessLayer
     {
         private readonly ITweetsRepository tweetsRepository;
         private readonly ITweetMapper tweetMapper;
+        private static readonly ILog log = LogManager.GetLogger(typeof(TweetBL));
 
         public TweetBL(ITweetsRepository tweetsRepository, ITweetMapper tweetMapper)
         {
+            BasicConfigurator.Configure();
             this.tweetsRepository = tweetsRepository;
             this.tweetMapper = tweetMapper;
         }
 
         public bool Add(Tweet.Tweet tweet)
         {
-            if (tweet == null)
+            try
             {
-                throw new NullReferenceException();
+                if (tweet == null)
+                {
+                    throw new NullReferenceException("Tweet is null");
+                }
+                DataAccessLayer.Tweet tweetForDatabase = tweetMapper.MapToDatabaseType(tweet);
+                tweetsRepository.Add(tweetForDatabase);
             }
-            DataAccessLayer.Tweet tweetForDatabase = tweetMapper.MapToDatabaseType(tweet);
-            tweetsRepository.Add(tweetForDatabase);
+            catch (Exception e)
+            {
+                log.Error(e);
+                return false;
+            }
             return true;
 
         }
 
         public bool Remove(Tweet.Tweet tweet)
         {
-
-            if (tweet == null)
+            try
             {
-                throw new NullReferenceException();
+                if (tweet == null)
+                {
+                    throw new NullReferenceException("Tweet is null");
+                }
+                DataAccessLayer.Tweet tweetForDatabase = tweetMapper.MapToDatabaseType(tweet);
+                tweetsRepository.Remove(tweetForDatabase);
             }
-            DataAccessLayer.Tweet tweetForDatabase = tweetMapper.MapToDatabaseType(tweet);
-            tweetsRepository.Remove(tweetForDatabase);
+            catch (Exception e)
+            {
+                log.Error(e);
+                return false;
+            }
             return true;
-
-
-
         }
 
         public bool Update(Tweet.Tweet tweet)
         {
-            if (tweet == null)
+            try
             {
-                throw new NullReferenceException();
+                if (tweet == null)
+                {
+                    throw new NullReferenceException("Tweet is null");
+                }
+                DataAccessLayer.Tweet tweetForDatabase = tweetMapper.MapToDatabaseType(tweet);
+                tweetsRepository.Update(tweetForDatabase);
             }
-            DataAccessLayer.Tweet tweetForDatabase = tweetMapper.MapToDatabaseType(tweet);
-            tweetsRepository.Update(tweetForDatabase);
+            catch (Exception e)
+            {
+                log.Error(e);
+                return false;
+            }
             return true;
         }
 
         public IList<Tweet.Tweet> GetAll()
         {
-
-            return tweetsRepository.GetAll().Select(tweet => tweetMapper.MapToUserModel(tweet)).OrderByDescending(x => x.PostDate).ToList();
-
+            try
+            {
+                return tweetsRepository.GetAll().Select(tweet => tweetMapper.MapToUserModel(tweet)).OrderByDescending(x => x.PostDate).ToList();
+            }
+            catch (Exception e)
+            {
+                log.Error(e);
+                return null;
+            }
         }
+
         public IEnumerable<Tweet.Tweet> GetByPostDate(DateTime postDate)
         {
-            IEnumerable<DataAccessLayer.Tweet> tweetsFromDatabase = tweetsRepository.GetAll().Where(t => t.post_date == postDate);
-            List<Models.Tweet> allTweets = new List<Models.Tweet>();
-
-            foreach (var tweet in tweetsFromDatabase)
+            try
             {
-                allTweets.Add(tweetMapper.MapToUserModel(tweet));
+                IEnumerable<DataAccessLayer.Tweet> tweetsFromDatabase = tweetsRepository.GetAll().Where(t => t.post_date == postDate);
+                return tweetsFromDatabase.Select(tweet => tweetMapper.MapToUserModel(tweet)).ToList();
             }
-            return allTweets;
+            catch (Exception e)
+            {
+                log.Error(e);
+                return null;
+            }
         }
     }
 }

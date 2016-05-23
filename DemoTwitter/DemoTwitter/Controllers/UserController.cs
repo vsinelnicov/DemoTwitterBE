@@ -1,4 +1,4 @@
-﻿  using System;
+﻿using System;
  ﻿using System.Configuration;
  ﻿using System.Web;
  ﻿using System.Web.Mvc;
@@ -50,6 +50,11 @@ namespace DemoTwitter.WEB.Controllers
                 return RedirectToAction("Index", "User");
             }
             return View(user);
+        }
+
+        public ActionResult ErrorPage()
+        {
+            return View();
         }
     }
 }
