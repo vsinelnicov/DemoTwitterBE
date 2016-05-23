@@ -7,6 +7,9 @@ namespace DemoTwitter.DataAccessLayer
         bool Register(User user);
         bool Update(User updatedUser);
         bool Remove(User user);
+        void Follow(int followerId, int followedUserId);
+        void UnFollow(int followerId, int followedUserId);
+        bool IsFollowed(int followerId, int followedUserId);
         User GetByUsername(string userName);
         User GetByEmail(string emailAddress);
         IList<User> GetAll();

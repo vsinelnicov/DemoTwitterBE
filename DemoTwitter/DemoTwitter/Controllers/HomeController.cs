@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using DemoTwitter.BusinessLayer;
 using DemoTwitter.Models;
 using DemoTwitter.WEB.Helpers;
@@ -66,6 +65,7 @@ namespace DemoTwitter.WEB.Controllers
         {
             if (ModelState.IsValid)
             {
+<<<<<<< HEAD
                 user.Password = hashHelper.CalculateMd5(user.Password);
                 if (userRepository.Register(user))
                 {
@@ -73,6 +73,19 @@ namespace DemoTwitter.WEB.Controllers
                 }
                 return RedirectToAction("Error", "Home");
 
+=======
+                string email = userRepository.GetByEmail(user.Email).Email;
+                if (email != null && email == user.Email)
+                {
+                    ModelState.AddModelError("", "A user with this email is already registered");
+                }
+                else
+                {
+                    user.Password = hashHelper.CalculateMd5(user.Password);
+                    userRepository.Register(user);
+                    return RedirectToAction("Login", "Home");
+                }
+>>>>>>> origin/master
             }
             return View(user);
         }

@@ -6,6 +6,8 @@
  ﻿using DemoTwitter.BusinessLayer;
  ﻿using DemoTwitter.Models;
  ﻿using PagedList;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DemoTwitter.WEB.Controllers
 {
@@ -23,8 +25,23 @@ namespace DemoTwitter.WEB.Controllers
         {
             int pageNumber = page ?? 1;
             int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["pageSize"]);
-            return View(userBl.GetAllUsers().ToPagedList(pageNumber, pageSize));
+            List<User> allUser = userBl.GetAllUsers().ToList();
+            List<User> final = new List<User>();
 
+            int Id = (int)Session["UserID"];
+            foreach (var currentUser in allUser)
+            {
+                if (userBl.IsFollowed(Id, currentUser.Id ?? 0))
+                {
+                    currentUser.IsFollowed = true;
+                    final.Add(currentUser);
+                }
+                else
+                {
+                    final.Add(currentUser);
+                }
+            }
+            return View(final.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult Index()
@@ -52,9 +69,46 @@ namespace DemoTwitter.WEB.Controllers
             return View(user);
         }
 
+<<<<<<< HEAD
         public ActionResult ErrorPage()
         {
             return View();
+=======
+        public ActionResult Follow(int? followedUserId)
+        {
+            User follower = new User
+            {
+                Id = (int?)Session["UserID"]
+            };
+
+            if (ModelState.IsValid)
+            {
+                userBl.Follow(follower.Id ?? 0, followedUserId ?? 0);
+                if (follower.Id == 0 || followedUserId == 0)
+                {
+                    return RedirectToAction("All", "User");
+                }
+            }
+            return RedirectToAction("All", "User");
+        }
+
+        public ActionResult UnFollow(int? followedUserId)
+        {
+            User follower = new User
+            {
+                Id = (int?)Session["UserID"]
+            };
+
+            if (ModelState.IsValid)
+            {
+                userBl.UnFollow(follower.Id ?? 0, followedUserId ?? 0);
+                if (follower.Id == 0 || followedUserId == 0)
+                {
+                    return RedirectToAction("All", "User");
+                }
+            }
+            return RedirectToAction("All", "User");
+>>>>>>> origin/master
         }
     }
 }

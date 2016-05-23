@@ -232,7 +232,6 @@
     <Content Include="Views\User\All.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Tweet\ShowAll.cshtml" />
     <Content Include="Views\Tweet\All.cshtml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
@@ -246,7 +245,12 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Content\js\tweetValidation.js" />
+<<<<<<< HEAD
     <Content Include="Views\Home\Error.cshtml" />
+=======
+    <Content Include="Views\Tweet\FollowedUsersFeed.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+>>>>>>> origin/master
     <None Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>

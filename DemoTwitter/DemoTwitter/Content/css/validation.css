@@ -6,3 +6,7 @@
 .validation-summary-errors > ul > li {
         color: red;
     }
+.alert {
+    padding: 5px;
+    margin: 5px;
+}

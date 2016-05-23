@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using DemoTwitter.DataAccessLayer;
 using DemoTwitter.Mapper;
-using User = DemoTwitter.Models;
+using User = DemoTwitter.Models.User;
 
 namespace DemoTwitter.BusinessLayer
 {
@@ -16,7 +16,7 @@ namespace DemoTwitter.BusinessLayer
             this.userMapper = userMapper;
         }
 
-        public bool Register(User.User user)
+        public bool Register(User user)
         {
             if (user == null)
                 return false;
@@ -25,7 +25,7 @@ namespace DemoTwitter.BusinessLayer
             return true;
         }
 
-        public bool Remove(User.User user)
+        public bool Remove(User user)
         {
             if (user == null)
                 return false;
@@ -34,7 +34,7 @@ namespace DemoTwitter.BusinessLayer
             return true;
         }
 
-        public bool Update(User.User updatedUser)
+        public bool Update(User updatedUser)
         {
             if (updatedUser == null)
                 return false;
@@ -43,26 +43,43 @@ namespace DemoTwitter.BusinessLayer
             return true;
         }
 
-        public User.User GetByUsername(string userName)
+        public User GetByUsername(string userName)
         {
             return userMapper.MapToUserModel(usersRepository.GetByUsername(userName));
         }
 
-        public User.User GetByEmail(string emailAddress)
+        public User GetByEmail(string emailAddress)
         {
             return userMapper.MapToUserModel(usersRepository.GetByEmail(emailAddress));
         }
 
-        public IEnumerable<User.User> GetAllUsers()
+        public IEnumerable<User> GetAllUsers()
         {
             IEnumerable<DataAccessLayer.User> usersFromDatabase = usersRepository.GetAll();
-            List<User.User> allUsers = new List<User.User>();
+            List<User> allUsers = new List<User>();
 
             foreach (var user in usersFromDatabase)
             {
                 allUsers.Add(userMapper.MapToUserModel(user));
             }
             return allUsers;
+        }
+
+        public bool Follow(int followerId, int followedUserId)
+        {
+            usersRepository.Follow(followerId, followedUserId);
+            return true;
+        }
+
+        public bool UnFollow(int followerId, int followedUserId)
+        {
+            usersRepository.UnFollow(followerId, followedUserId);
+            return true;
+        }
+
+        public bool IsFollowed(int followerId, int followedUserId)
+        {
+            return usersRepository.IsFollowed(followerId, followedUserId);
         }
     }
 }
