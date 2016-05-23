@@ -6,6 +6,7 @@ th {
     font-weight: 400;
     padding: 7px;
     text-align: left;
+    text-shadow: 0 1px 1px #000000;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     vertical-align: middle;
 }
@@ -19,12 +20,12 @@ tr {
     color: #666B85;
     font-size: 12px;
     font-weight: normal;
-    -ms-text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
-    text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+    -ms-text-shadow: 0 1px 1px rgba(255, 255, 255, 0.1);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.1);
 }
 
     tr:hover td {
-        background: rgb(212, 226, 230);
+        background: #f3f4f4;
         opacity: 0.85;
         color: black;
     }
@@ -34,7 +35,7 @@ tr {
     }
 
     tr:nth-child(odd):hover td {
-        background: #d4e2e6;
+        background: #f3f4f4;
         opacity: 0.85;
         color: black;
     }

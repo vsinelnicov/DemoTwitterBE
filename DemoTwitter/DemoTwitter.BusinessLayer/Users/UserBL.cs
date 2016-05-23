@@ -73,8 +73,6 @@ namespace DemoTwitter.BusinessLayer
 
         public bool UnFollow(int followerId, int followedUserId)
         {
-
-
             usersRepository.UnFollow(followerId, followedUserId);
             return true;
         }
