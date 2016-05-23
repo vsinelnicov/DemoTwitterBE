@@ -69,11 +69,6 @@ namespace DemoTwitter.WEB.Controllers
             return View(user);
         }
 
-<<<<<<< HEAD
-        public ActionResult ErrorPage()
-        {
-            return View();
-=======
         public ActionResult Follow(int? followedUserId)
         {
             User follower = new User
@@ -108,7 +103,6 @@ namespace DemoTwitter.WEB.Controllers
                 }
             }
             return RedirectToAction("All", "User");
->>>>>>> origin/master
         }
     }
 }

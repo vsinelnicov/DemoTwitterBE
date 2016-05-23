@@ -65,15 +65,6 @@ namespace DemoTwitter.WEB.Controllers
         {
             if (ModelState.IsValid)
             {
-<<<<<<< HEAD
-                user.Password = hashHelper.CalculateMd5(user.Password);
-                if (userRepository.Register(user))
-                {
-                    return RedirectToAction("Login", "Home");
-                }
-                return RedirectToAction("Error", "Home");
-
-=======
                 string email = userRepository.GetByEmail(user.Email).Email;
                 if (email != null && email == user.Email)
                 {
@@ -85,7 +76,6 @@ namespace DemoTwitter.WEB.Controllers
                     userRepository.Register(user);
                     return RedirectToAction("Login", "Home");
                 }
->>>>>>> origin/master
             }
             return View(user);
         }
