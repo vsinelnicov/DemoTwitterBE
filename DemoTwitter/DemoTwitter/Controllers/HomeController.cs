@@ -3,6 +3,7 @@ using DemoTwitter.BusinessLayer;
 using DemoTwitter.Models;
 using DemoTwitter.WEB.Helpers;
 using System.Web.Security;
+using log4net;
 
 namespace DemoTwitter.WEB.Controllers
 {
@@ -12,6 +13,7 @@ namespace DemoTwitter.WEB.Controllers
     {
         private IUserBL userRepository;
         private HashHelper hashHelper = new HashHelper();
+        private static ILog log = LogManager.GetLogger(typeof(HomeController));
 
         public HomeController(IUserBL userBl)
         {
@@ -45,10 +47,13 @@ namespace DemoTwitter.WEB.Controllers
                         FormsAuthentication.SetAuthCookie(userFromDatabase.Email, false);
                         SetSesionUserId(userFromDatabase);
                         this.Session["UserFullName"] = userFromDatabase.FirstName + " " + userFromDatabase.LastName;
+                        log.Info("User logged in Succesfully");
                         return RedirectToAction("Index", "User");
                     }
                 }
+                log.Info("User didn't logged in");
                 ModelState.AddModelError("", "Wrong email and/or password");
+
             }
 
             return View();
@@ -68,12 +73,14 @@ namespace DemoTwitter.WEB.Controllers
                 string email = userRepository.GetByEmail(user.Email).Email;
                 if (email != null && email == user.Email)
                 {
+                    log.Info("User didn't register");
                     ModelState.AddModelError("", "A user with this email is already registered");
                 }
                 else
                 {
                     user.Password = hashHelper.CalculateMd5(user.Password);
                     userRepository.Register(user);
+                    log.Info("A new user registered");
                     return RedirectToAction("Login", "Home");
                 }
             }

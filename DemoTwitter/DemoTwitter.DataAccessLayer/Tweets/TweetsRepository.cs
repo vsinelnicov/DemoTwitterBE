@@ -23,10 +23,25 @@ namespace DemoTwitter.DataAccessLayer
             return true;
         }
 
-        public bool Update(Tweet tweet)
+        public bool Update(Tweet updatedTweet)
         {
-            _dbContext.SaveChanges();
-            return true;
+            if (updatedTweet != null)
+            {
+                var update = _dbContext.Tweets.FirstOrDefault(u => u.id == updatedTweet.id);
+
+                if (update != null &&
+                    updatedTweet.text == update.text &&
+                    updatedTweet.post_date == update.post_date)
+                    return true;
+                if (update != null)
+                {
+                    update.text = updatedTweet.text;
+                    update.post_date = updatedTweet.post_date;
+                }
+                _dbContext.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         public bool Remove(Tweet tweet)

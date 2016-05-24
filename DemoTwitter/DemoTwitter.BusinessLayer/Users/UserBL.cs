@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DemoTwitter.DataAccessLayer;
 using DemoTwitter.Mapper;
+using log4net;
 using User = DemoTwitter.Models.User;
 
 namespace DemoTwitter.BusinessLayer
@@ -9,6 +11,7 @@ namespace DemoTwitter.BusinessLayer
     {
         private readonly IUserRepository usersRepository;
         private readonly IUserMapper userMapper;
+        private static readonly ILog log = LogManager.GetLogger(typeof(UserBL));
 
         public UserBL(IUserRepository usersRepository, IUserMapper userMapper)
         {
@@ -18,28 +21,58 @@ namespace DemoTwitter.BusinessLayer
 
         public bool Register(User user)
         {
-            if (user == null)
-                return false;
-            DataAccessLayer.User userForDatabase = userMapper.MapToDatabaseType(user);
-            usersRepository.Register(userForDatabase);
+            try
+            {
+                if (user == null)
+                {
+                    throw new NullReferenceException();
+                }
+                DataAccessLayer.User userForDatabase = userMapper.MapToDatabaseType(user);
+                usersRepository.Register(userForDatabase);
+                log.Info("User successfully registered");
+            }
+            catch (Exception e)
+            {
+                log.Error(e.Message);
+            }
             return true;
         }
 
         public bool Remove(User user)
         {
-            if (user == null)
-                return false;
-            DataAccessLayer.User userForDatabase = userMapper.MapToDatabaseType(user);
-            usersRepository.Remove(userForDatabase);
+            try
+            {
+                if (user == null)
+                {
+                    throw new NullReferenceException();
+                }
+                DataAccessLayer.User userForDatabase = userMapper.MapToDatabaseType(user);
+                usersRepository.Remove(userForDatabase);
+                log.Info("Use deleted his/her accounts");
+            }
+            catch (Exception e)
+            {
+                log.Error(e.Message);
+            }
             return true;
         }
 
         public bool Update(User updatedUser)
         {
-            if (updatedUser == null)
-                return false;
-            DataAccessLayer.User userForDatabase = userMapper.MapToDatabaseType(updatedUser);
-            usersRepository.Update(userForDatabase);
+            try
+            {
+                if (updatedUser == null)
+                {
+                    throw new NullReferenceException();
+                }
+                DataAccessLayer.User userForDatabase = userMapper.MapToDatabaseType(updatedUser);
+                usersRepository.Update(userForDatabase);
+                log.Info("User updated his information");
+            }
+            catch (Exception e)
+            {
+                log.Error(e.Message);
+            }
             return true;
         }
 

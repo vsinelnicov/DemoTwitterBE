@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.Mvc;
 using DemoTwitter.BusinessLayer;
 using DemoTwitter.Models;
+using log4net;
 using PagedList;
 
 namespace DemoTwitter.WEB.Controllers
@@ -14,6 +15,7 @@ namespace DemoTwitter.WEB.Controllers
     {
         private ITweetBL tweetBl;
         private IUserBL userBl;
+        private static ILog log = LogManager.GetLogger(typeof(TweetController));
 
         public TweetController(ITweetBL tweetBl, IUserBL userBl)
         {
@@ -36,11 +38,13 @@ namespace DemoTwitter.WEB.Controllers
             tweet.UserId = userID;
             if (tweetBl.Add(tweet))
             {
+                log.Info("A new Tweet has been added");
                 return RedirectToAction("Index", "User");
             }
             else
             {
-                return RedirectToAction("ErrorPage", "User");
+                log.Error("Tweet could't bee added");
+                return RedirectToAction("Error", "Home");
             }
 
         }
@@ -48,11 +52,13 @@ namespace DemoTwitter.WEB.Controllers
         {
             if (tweetBl.Remove(tweet))
             {
+                log.Info("A tweet has been removed");
                 return RedirectToAction("Index", "User");
             }
             else
             {
-                return RedirectToAction("ErrorPage", "User");
+                log.Error("Could't remove the tweet");
+                return RedirectToAction("Error", "Home");
             }
         }
 
@@ -94,11 +100,13 @@ namespace DemoTwitter.WEB.Controllers
             tweet.UserId = userID;
             if (tweetBl.Update(tweet))
             {
+                log.Info("A tweet has been updated");
                 return RedirectToAction("Index", "User");
             }
             else
             {
-                return RedirectToAction("ErrorPage", "User");
+                log.Error("Tweet could't be updated");
+                return RedirectToAction("Error", "Home");
             }
         }
     }

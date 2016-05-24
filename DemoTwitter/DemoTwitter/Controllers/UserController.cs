@@ -8,6 +8,7 @@
  ﻿using PagedList;
 using System.Collections.Generic;
 using System.Linq;
+using log4net;
 
 namespace DemoTwitter.WEB.Controllers
 {
@@ -15,6 +16,7 @@ namespace DemoTwitter.WEB.Controllers
     public class UserController : Controller
     {
         private IUserBL userBl;
+        private static ILog log = LogManager.GetLogger(typeof(UserController));
 
         public UserController(IUserBL userBl)
         {
@@ -25,11 +27,11 @@ namespace DemoTwitter.WEB.Controllers
         {
             int pageNumber = page ?? 1;
             int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["pageSize"]);
-            List<User> allUser = userBl.GetAllUsers().ToList();
+            List<User> allUsers = userBl.GetAllUsers().ToList();
             List<User> final = new List<User>();
 
             int Id = (int)Session["UserID"];
-            foreach (var currentUser in allUser)
+            foreach (var currentUser in allUsers)
             {
                 if (userBl.IsFollowed(Id, currentUser.Id ?? 0))
                 {
@@ -55,7 +57,7 @@ namespace DemoTwitter.WEB.Controllers
             FormsAuthentication.SignOut();
             var urlToRemove = Url.Action("Index", "User");
             if (urlToRemove != null) HttpResponse.RemoveOutputCacheItem(urlToRemove);
-
+            log.Info("User logged out");
             return RedirectToAction("Login", "Home");
         }
 
@@ -63,6 +65,7 @@ namespace DemoTwitter.WEB.Controllers
         {
             if (ModelState.IsValid)
             {
+                log.Info("User updated his information");
                 userBl.Update(user);
                 return RedirectToAction("Index", "User");
             }
@@ -81,6 +84,7 @@ namespace DemoTwitter.WEB.Controllers
                 userBl.Follow(follower.Id ?? 0, followedUserId ?? 0);
                 if (follower.Id == 0 || followedUserId == 0)
                 {
+                    log.Info("User followed another user");
                     return RedirectToAction("All", "User");
                 }
             }
@@ -96,6 +100,7 @@ namespace DemoTwitter.WEB.Controllers
 
             if (ModelState.IsValid)
             {
+                log.Info("User unfollowed somebody");
                 userBl.UnFollow(follower.Id ?? 0, followedUserId ?? 0);
                 if (follower.Id == 0 || followedUserId == 0)
                 {

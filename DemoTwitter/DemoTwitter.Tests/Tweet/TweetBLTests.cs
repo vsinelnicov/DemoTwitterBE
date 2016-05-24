@@ -59,7 +59,7 @@ namespace DemoTwitter.BusinessLayer
         }
 
         [TestMethod]
-        public void Add_Add_a_tweet_to_database_()
+        public void Add_Add_a_valid_tweet_to_database_Returns_true()
         {
             bool expected = true;
             bool actual = service.Add(newTweet);
@@ -67,7 +67,7 @@ namespace DemoTwitter.BusinessLayer
         }
 
         [TestMethod]
-        public void Remove_remove_a_tweet_from_database()
+        public void Remove_Remove_a_valid_tweet_from_database_Returns_true()
         {
             bool expected = true;
             bool actual = service.Remove(tweetsList.FirstOrDefault(x => x.Id == 50));
@@ -75,7 +75,7 @@ namespace DemoTwitter.BusinessLayer
         }
 
         [TestMethod]
-        public void Update_update_a_tweet_from_database()
+        public void Update_Update_a_valid_tweet_from_database_Returns_true()
         {
             bool expected = true;
             bool actual = service.Update(tweetsList.FirstOrDefault(x => x.Id == 50));
@@ -83,24 +83,24 @@ namespace DemoTwitter.BusinessLayer
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException), "Null tweet can't be updated")]
-        public void Update_update_a_null_tweet_from_database_throw_null_reference_exception()
+        public void Update_Update_a_null_tweet_from_database_throw_Returns_false()
         {
-            service.Update(null);
+            bool expected = service.Update(null);
+            Assert.AreNotEqual(true, expected);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException), "Null tweet cant be added")]
-        public void Add_Add_a_null_tweet_from_database_throw_null_reference_exception()
+        public void Add_Add_a_null_tweet_from_database_Returns_false()
         {
-            service.Add(null);
+            bool expected = service.Add(null);
+            Assert.AreNotEqual(true, expected);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException), "Null tweet cant be removed")]
-        public void Remove_remove_a_null_tweet_from_database_throw_null_reference_exception()
+        public void Remove_Remove_a_null_tweet_from_database_Return_False()
         {
-            service.Remove(null);
+            bool expected = service.Remove(null);
+            Assert.AreNotEqual(true, expected);
         }
     }
 }

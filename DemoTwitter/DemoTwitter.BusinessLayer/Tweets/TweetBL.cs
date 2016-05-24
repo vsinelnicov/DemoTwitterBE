@@ -32,10 +32,11 @@ namespace DemoTwitter.BusinessLayer
                 }
                 DataAccessLayer.Tweet tweetForDatabase = tweetMapper.MapToDatabaseType(tweet);
                 tweetsRepository.Add(tweetForDatabase);
+                log.Info("Tweet succesfully added");
             }
             catch (Exception e)
             {
-                log.Error(e);
+                log.Error(e.Message);
                 return false;
             }
             return true;
@@ -52,10 +53,11 @@ namespace DemoTwitter.BusinessLayer
                 }
                 DataAccessLayer.Tweet tweetForDatabase = tweetMapper.MapToDatabaseType(tweet);
                 tweetsRepository.Remove(tweetForDatabase);
+                log.Info("Tweet succesfully removed");
             }
             catch (Exception e)
             {
-                log.Error(e);
+                log.Error(e.Message);
                 return false;
             }
             return true;
@@ -71,10 +73,11 @@ namespace DemoTwitter.BusinessLayer
                 }
                 DataAccessLayer.Tweet tweetForDatabase = tweetMapper.MapToDatabaseType(tweet);
                 tweetsRepository.Update(tweetForDatabase);
+                log.Info("Tweet succesfully updated");
             }
             catch (Exception e)
             {
-                log.Error(e);
+                log.Error(e.Message);
                 return false;
             }
             return true;
@@ -88,7 +91,7 @@ namespace DemoTwitter.BusinessLayer
             }
             catch (Exception e)
             {
-                log.Error(e);
+                log.Error(e.Message);
                 return null;
             }
         }
@@ -102,7 +105,7 @@ namespace DemoTwitter.BusinessLayer
             }
             catch (Exception e)
             {
-                log.Error(e);
+                log.Error(e.Message);
                 return null;
             }
         }
