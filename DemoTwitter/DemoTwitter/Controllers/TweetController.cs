@@ -48,18 +48,23 @@ namespace DemoTwitter.WEB.Controllers
             }
 
         }
-        public ActionResult Remove(Tweet tweet)
+        public ActionResult Remove(int tweetId)
         {
-            if (tweetBl.Remove(tweet))
+            //if (tweetBl.Remove(tweet))
+            //{
+            Tweet tweet = new Tweet
             {
-                log.Info("A tweet has been removed");
-                return RedirectToAction("Index", "User");
-            }
-            else
-            {
-                log.Error("Could't remove the tweet");
-                return RedirectToAction("Error", "Home");
-            }
+                Id = tweetId
+            };
+            tweetBl.Remove(tweet);
+            log.Info("A tweet has been removed");
+            return RedirectToAction("Index", "User");
+            //}
+            //else
+            //{
+            //    log.Error("Could't remove the tweet");
+            //    return RedirectToAction("Error", "Home");
+            //}
         }
 
         public ActionResult All(int? page, User user)

@@ -46,7 +46,9 @@ namespace DemoTwitter.DataAccessLayer
 
         public bool Remove(Tweet tweet)
         {
-            _dbContext.Tweets.Remove(tweet);
+            Tweet tweetToRemove = GetById(tweet.id);
+
+            _dbContext.Tweets.Remove(tweetToRemove);
             _dbContext.SaveChanges();
             return true;
         }
@@ -54,6 +56,11 @@ namespace DemoTwitter.DataAccessLayer
         public IList<Tweet> GetAll()
         {
             return _dbContext.Tweets.ToList();
+        }
+
+        public Tweet GetById(int id)
+        {
+            return _dbContext.Tweets.FirstOrDefault(m => m.id == id);
         }
     }
 }

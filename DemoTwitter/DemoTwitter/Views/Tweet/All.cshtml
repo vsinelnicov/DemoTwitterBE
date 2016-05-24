@@ -27,7 +27,7 @@
                                         <a href="@Url.Action("Edit", "Tweet")">Edit</a>
                                     </li>
                                     <li>
-                                        <a href="@Url.Action("Remove", "Tweet")">Delete</a>
+                                        <a href="@Url.Action("Remove", "Tweet", new { tweetId = tweet.Id })">Delete</a>
                                     </li>
                                 </ul>
                             </li>

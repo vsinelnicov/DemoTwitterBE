@@ -44,11 +44,11 @@
                                     </div>
                                     <div class="form-group">
                                         @Html.TextBoxFor(m => m.FirstName, new { @name = "lastname", @tabindex = "4", @id = "lastname", @class = "form-control", @placeholder = "First Name" })
-                                        <div class="alert" style="color: red;">@Html.ValidationMessageFor(m => m.FirstName)</div>
+                                        <div class="alert" style="color: red;">@Html.ValidationMessageFor(m => m.LastName)</div>
                                     </div>
                                     <div class="form-group">
                                         @Html.TextBoxFor(m => m.LastName, new { @name = "firstname", @tabindex = "5", @id = "firstname", @class = "form-control", @placeholder = "Last Name" })
-                                        <div class="alert" style="color: red;">@Html.ValidationMessageFor(m => m.LastName)</div>
+                                        <div class="alert" style="color: red;">@Html.ValidationMessageFor(m => m.FirstName)</div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">

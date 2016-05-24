@@ -72,6 +72,11 @@ namespace DemoTwitter.WEB.Controllers
             return View(user);
         }
 
+        public ActionResult Remove()
+        {
+            throw new NotImplementedException();
+        }
+
         public ActionResult Follow(int? followedUserId)
         {
             User follower = new User

@@ -5,7 +5,7 @@ using DemoTwitter.DataAccessLayer;
 using DemoTwitter.Mapper;
 using log4net;
 using log4net.Config;
-using Tweet = DemoTwitter.Models;
+using Tweet = DemoTwitter.Models.Tweet;
 
 namespace DemoTwitter.BusinessLayer
 {
@@ -22,7 +22,7 @@ namespace DemoTwitter.BusinessLayer
             this.tweetMapper = tweetMapper;
         }
 
-        public bool Add(Tweet.Tweet tweet)
+        public bool Add(Tweet tweet)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace DemoTwitter.BusinessLayer
 
         }
 
-        public bool Remove(Tweet.Tweet tweet)
+        public bool Remove(Tweet tweet)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace DemoTwitter.BusinessLayer
             return true;
         }
 
-        public bool Update(Tweet.Tweet tweet)
+        public bool Update(Tweet tweet)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace DemoTwitter.BusinessLayer
             return true;
         }
 
-        public IList<Tweet.Tweet> GetAll()
+        public IList<Tweet> GetAll()
         {
             try
             {
@@ -96,7 +96,7 @@ namespace DemoTwitter.BusinessLayer
             }
         }
 
-        public IEnumerable<Tweet.Tweet> GetByPostDate(DateTime postDate)
+        public IEnumerable<Tweet> GetByPostDate(DateTime postDate)
         {
             try
             {

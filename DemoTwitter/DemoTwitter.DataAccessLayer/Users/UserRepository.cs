@@ -30,7 +30,8 @@ namespace DemoTwitter.DataAccessLayer
                 if (update != null &&
                     updatedUser.firstname == update.firstname &&
                     updatedUser.lastname == update.lastname &&
-                    updatedUser.password == update.password)
+                    updatedUser.password == update.password &&
+                    updatedUser.email == update.email)
                     return true;
 
                 if (update != null)
