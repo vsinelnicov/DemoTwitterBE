@@ -4,6 +4,7 @@ using DemoTwitter.Models;
 using DemoTwitter.WEB.Helpers;
 using System.Web.Security;
 using log4net;
+using Microsoft.Ajax.Utilities;
 
 namespace DemoTwitter.WEB.Controllers
 {
@@ -68,22 +69,19 @@ namespace DemoTwitter.WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(User user)
         {
-            if (ModelState.IsValid)
+            var userFromDb = userRepository.GetByEmail(user.Email);
+
+            if (!ModelState.IsValid) return View(user);
+
+            if (userFromDb == null || userFromDb.Email != user.Email)
             {
-                string email = userRepository.GetByEmail(user.Email).Email;
-                if (email != null && email == user.Email)
-                {
-                    log.Info("User didn't register");
-                    ModelState.AddModelError("", "A user with this email is already registered");
-                }
-                else
-                {
-                    user.Password = hashHelper.CalculateMd5(user.Password);
-                    userRepository.Register(user);
-                    log.Info("A new user registered");
-                    return RedirectToAction("Login", "Home");
-                }
+                user.Password = hashHelper.CalculateMd5(user.Password);
+                userRepository.Register(user);
+                log.Info("A new user registered");
+                return RedirectToAction("Login", "Home");
             }
+            log.Info("User didn't register");
+            ModelState.AddModelError("", "A user with this email is already registered");
             return View(user);
         }
 

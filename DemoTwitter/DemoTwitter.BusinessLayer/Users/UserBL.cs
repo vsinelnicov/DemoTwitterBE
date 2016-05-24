@@ -86,7 +86,7 @@ namespace DemoTwitter.BusinessLayer
 
         public User GetByEmail(string emailAddress)
         {
-            return userMapper.MapToUserModel(usersRepository.GetByEmail(emailAddress));
+            return usersRepository.GetByEmail(emailAddress) == null ? null : userMapper.MapToUserModel(usersRepository.GetByEmail(emailAddress));
         }
 
         public IEnumerable<User> GetAllUsers()
