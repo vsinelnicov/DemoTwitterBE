@@ -1,8 +1,15 @@
-﻿@using PagedList.Mvc
+﻿@using System.Web.Optimization
+@using PagedList.Mvc
 @model PagedList.IPagedList<DemoTwitter.Models.Tweet>
 @{
     Layout = null;
 }
+
+@Styles.Render("~/Content/css/bootstrap.min.css")
+@Styles.Render("~/Content/css/index.css")
+@Scripts.Render("~/Content/js/jquery.js")
+@Scripts.Render("~/Content/js/bootstrap.min.js")
+@Scripts.Render("~/Content/js/tweetValidation.js")
 
 <div class="tweetsbox col-md-5">
     <ol style="list-style: none">
@@ -21,8 +28,7 @@
                                     </li>
                                     <li>
                                         <a href="@Url.Action("Remove", "Tweet")">Delete</a>
-                                    </li
-                                        >
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -32,7 +38,14 @@
             </li>
         }
     </ol>
-    <div>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>
-    <div>@Html.PagedListPager(Model, page => Url.Action("Index", "User", new { page }))
-    </div>
+
+    @if (Model.Count == 0)
+    {
+        <p>Nothing to show here. Post something and you can see you.</p>
+    }
+    else
+    {
+        <div>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>
+        <div>@Html.PagedListPager(Model, page => Url.Action("Index", "User", new { page }))</div>
+    }
 </div>
