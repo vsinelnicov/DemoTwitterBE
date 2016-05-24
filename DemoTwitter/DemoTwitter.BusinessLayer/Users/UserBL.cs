@@ -34,6 +34,7 @@ namespace DemoTwitter.BusinessLayer
             catch (Exception e)
             {
                 log.Error(e.Message);
+                return false;
             }
             return true;
         }
@@ -53,6 +54,7 @@ namespace DemoTwitter.BusinessLayer
             catch (Exception e)
             {
                 log.Error(e.Message);
+                return false;
             }
             return true;
         }
@@ -72,6 +74,7 @@ namespace DemoTwitter.BusinessLayer
             catch (Exception e)
             {
                 log.Error(e.Message);
+                return false;
             }
             return true;
         }

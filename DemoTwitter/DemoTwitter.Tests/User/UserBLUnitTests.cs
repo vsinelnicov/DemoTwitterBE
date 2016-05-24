@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using DemoTwitter.DataAccessLayer;
 using DemoTwitter.Mapper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -46,7 +47,7 @@ namespace DemoTwitter.BusinessLayer
         public void Register_InvalidUserData_Returns_False()
         {
             bool expected = false;
-            bool actual = userBl.Register(null);
+            bool actual=userBl.Register(null);
             Assert.AreEqual(expected, actual, "Invalid user data entered");
         }
 

@@ -69,11 +69,11 @@ namespace DemoTwitter.DataAccessLayer
         }
 
         [TestMethod]
-        public void Update_update_an_existing_tweet_from_database()
+        public void Update_Update_a_null_tweet_from_database_Returns_false()
         {
-            bool actual = service.Update(tweet.FirstOrDefault(x => x.id == 50));
+            bool actual = service.Update(null);
             bool expected = false;
-            Assert.AreNotEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -82,14 +82,6 @@ namespace DemoTwitter.DataAccessLayer
             service.Remove(tweet.FirstOrDefault(h => h.id == 49));
             mockSet.Verify(m => m.Remove(It.IsAny<Tweet>()), Times.Once);
             mockContext.Verify(m => m.SaveChanges(), Times.Once());
-        }
-
-        [TestMethod]
-        public void Remove_cant_remove_an_unexisting_tweet_from_database()
-        {
-            bool actual = service.Remove(tweet.FirstOrDefault(h => h.id == 1));
-            bool expected = false;
-            Assert.AreNotEqual(expected, actual);
         }
 
         [TestMethod]

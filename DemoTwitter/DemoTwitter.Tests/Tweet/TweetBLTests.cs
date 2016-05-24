@@ -86,21 +86,21 @@ namespace DemoTwitter.BusinessLayer
         public void Update_Update_a_null_tweet_from_database_throw_Returns_false()
         {
             bool expected = service.Update(null);
-            Assert.AreNotEqual(true, expected);
+            Assert.AreEqual(false, expected);
         }
 
         [TestMethod]
         public void Add_Add_a_null_tweet_from_database_Returns_false()
         {
             bool expected = service.Add(null);
-            Assert.AreNotEqual(true, expected);
+            Assert.AreEqual(false, expected);
         }
 
         [TestMethod]
         public void Remove_Remove_a_null_tweet_from_database_Return_False()
         {
             bool expected = service.Remove(null);
-            Assert.AreNotEqual(true, expected);
+            Assert.AreEqual(false, expected);
         }
     }
 }
