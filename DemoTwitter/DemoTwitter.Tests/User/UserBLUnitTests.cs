@@ -16,12 +16,10 @@ namespace DemoTwitter.BusinessLayer
         private IUserBL userBl;
         private User validUser;
         private IQueryable<User> usersList;
-        private Mock<TweetsRepository> tweetsRepositoryMock;
 
         [TestInitialize]
         public void Initialize()
         {
-            tweetsRepositoryMock = new Mock<TweetsRepository>();
             userDalRepositoryMock = new Mock<IUserRepository>();
             userMapper = new Mock<IUserMapper>();
             userBl = new UserBL(userDalRepositoryMock.Object, userMapper.Object);
@@ -51,7 +49,7 @@ namespace DemoTwitter.BusinessLayer
         {
             bool expected = false;
             bool actual = userBl.Register(null);
-            Assert.AreEqual(actual,expected);
+            Assert.AreEqual(actual, expected);
         }
 
         [TestMethod]
@@ -62,12 +60,12 @@ namespace DemoTwitter.BusinessLayer
             Assert.AreEqual(expected, actual, "User successfully removed");
         }
         [TestMethod]
-        
+
         public void Remove_InvalidUser_Returns_False()
         {
             bool expected = false;
             bool actual = userBl.Remove(null);
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
     }
 }
