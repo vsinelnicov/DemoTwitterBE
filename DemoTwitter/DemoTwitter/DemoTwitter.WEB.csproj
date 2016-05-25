@@ -189,7 +189,7 @@
     <Content Include="Content\css\validation.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\css\tableStyle.css" />
-    <Content Include="Content\img\bg.jpg" />
+    <Content Include="Content\img\error.jpg" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\jquery.js" />
@@ -258,6 +258,7 @@
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Tweet\FollowedUsersFeed.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Properties\PublishProfiles\Twitter.pubxml" />
     <None Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
