@@ -90,6 +90,7 @@ namespace DemoTwitter.Tests.TweetAutomationTests
             if (driver != null)
             {
                 driver.Close();
+                driver.Dispose();
             }
         }
 

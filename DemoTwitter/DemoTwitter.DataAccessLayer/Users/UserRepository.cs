@@ -48,7 +48,6 @@ namespace DemoTwitter.DataAccessLayer
         public bool Remove(User user)
         {
             User userToRemove = GetById(user.id);
-
             _dbContext.Users.Remove(userToRemove);
             _dbContext.SaveChanges();
             return true;

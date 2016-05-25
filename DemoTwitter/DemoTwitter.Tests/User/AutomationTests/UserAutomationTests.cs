@@ -81,11 +81,12 @@ namespace DemoTwitter.Tests.UserAutomationTests
         }
 
         [TestMethod]
-        public void Register_Into_Twitter_and_log_in_with_registered_account()
+        public void Register_Into_Twitter_and_log_in_with_registered_account_Delete_created_account()
         {
             //Arrange
             string actual;
-            string expected = "http://localhost:52316/User/Index";
+            string expected1 = "http://localhost:52316/User/Index";
+            string expected2 = "http://localhost:52316/";
 
             driver.Navigate().GoToUrl("http://localhost:52316/Home/Register");
             element = driver.FindElement(By.Id("username"));
@@ -102,15 +103,20 @@ namespace DemoTwitter.Tests.UserAutomationTests
             element.Click();
 
             element = driver.FindElement(By.Id("email"));
-            element.SendKeys("didina@mail.com");
+            element.SendKeys("eugen@mail.com");
             element = driver.FindElement(By.Id("password"));
-            element.SendKeys("didina");
+            element.SendKeys("eugen");
             element = driver.FindElement(By.Id("login-submit"));
             element.Click();
-
+            actual = driver.Url;
+            Assert.AreEqual(expected1, actual);
+            element = driver.FindElement(By.XPath("id('myNavbar')/ul[2]/li[1]/a"));
+            element.Click();
+            element = driver.FindElement(By.XPath("id('myNavbar')/ul[2]/li[1]/ul/li[2]/a"));
+            element.Click();
             actual = driver.Url;
             //Assect
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected2, actual);
         }
         [TestMethod]
         public void Going_to_feed_page()
@@ -239,15 +245,13 @@ namespace DemoTwitter.Tests.UserAutomationTests
 
             Assert.AreEqual(expected, actual);
         }
-
-
-
         [TestCleanup]
         public void CleanUp()
         {
             if (driver != null)
             {
                 driver.Close();
+                driver.Dispose();
             }
         }
 

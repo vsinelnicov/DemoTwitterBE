@@ -12,14 +12,13 @@ namespace DemoTwitter.BusinessLayer
     {
         private readonly IUserRepository usersRepository;
         private readonly IUserMapper userMapper;
-        private readonly ITweetsRepository tweetsRepository;
         private static readonly ILog log = LogManager.GetLogger(typeof(UserBL));
 
-        public UserBL(IUserRepository usersRepository, IUserMapper userMapper, TweetsRepository tweetsRepository)
+        public UserBL(IUserRepository usersRepository, IUserMapper userMapper)
         {
             this.usersRepository = usersRepository;
             this.userMapper = userMapper;
-            this.tweetsRepository = tweetsRepository;
+
         }
 
         public bool Register(User user)
@@ -51,11 +50,6 @@ namespace DemoTwitter.BusinessLayer
                     throw new NullReferenceException();
                 }
                 DataAccessLayer.User userForDatabase = userMapper.MapToDatabaseType(user);
-                
-                foreach (var tweet in tweetsRepository.GetAll().Where(tweet => tweet.user_id == user.Id))
-                {
-                    tweetsRepository.Remove(tweet);
-                }
                 usersRepository.Remove(userForDatabase);
                 log.Info("Use deleted his/her accounts");
             }

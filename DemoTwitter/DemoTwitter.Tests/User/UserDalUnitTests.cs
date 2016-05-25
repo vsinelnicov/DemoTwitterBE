@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -73,14 +74,6 @@ namespace DemoTwitter.DataAccessLayer
         }
 
         [TestMethod]
-        public void Register_NullUserAdded_Returns_False()
-        {
-            bool expected = false;
-            bool actual = repository.Register(nullUser);
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
         public void GetByEmail_GetsTheUserWithTheSpecifiedEmail()
         {
             string expectedEmail = "ion@ion.com";
@@ -116,11 +109,10 @@ namespace DemoTwitter.DataAccessLayer
         }
 
         [TestMethod]
-        public void Remove_RemoveInvalidUserFromDatabase_Returns_False()
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Remove_RemoveInvalidUserFromDatabase_Throws_null_refference_expection()
         {
-            bool actual = repository.Remove(nullUser);
-
-            Assert.AreEqual(false, actual);
+            repository.Remove(nullUser);
         }
     }
 }
