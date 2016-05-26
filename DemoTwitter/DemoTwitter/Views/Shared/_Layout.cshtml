@@ -28,8 +28,6 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-edit"></span> Options</a>
                         <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("Edit", "User")">Edit profile</a></li>
-                            <li><a href="@Url.Action("Remove", "User")">Delete profile</a></li>
                             <li><a href="@Url.Action("Edit","User")">Edit profile</a></li>
                             <li><a href="@Url.Action("Remove","User", new {userId = Session["UserID"]})">Delete profile</a></li>
                         </ul>
