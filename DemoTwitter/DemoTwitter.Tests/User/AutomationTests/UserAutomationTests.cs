@@ -195,31 +195,31 @@ namespace DemoTwitter.Tests.UserAutomationTests
             //Assert
             Assert.AreNotEqual(expected, actual);
         }
-        [TestMethod]
-        public void Edit_user_profile_check()
-        {
-            //Arrange
+        //[TestMethod]
+        //public void Edit_user_profile_check()
+        //{
+        //    //Arrange
 
-            string actual;
-            string expected = "http://localhost:52316/User/Edit";
+        //    string actual;
+        //    string expected = "http://localhost:52316/User/Edit";
 
-            //Act
+        //    //Act
 
-            driver.Navigate().GoToUrl("http://localhost:52316/Home/Login");
-            element = driver.FindElement(By.Id("email"));
-            element.SendKeys("apapuc30@yahoo.com");
-            element = driver.FindElement(By.Id("password"));
-            element.SendKeys("alex");
-            element = driver.FindElement(By.Id("login-submit"));
-            element.Click();
-            element = driver.FindElement(By.XPath("id('myNavbar')/ul[2]/li[1]/a"));
-            element.Click();
-            element = driver.FindElement(By.XPath("id('myNavbar')/ul[2]/li[1]/ul/li[1]/a"));
-            element.Click();
-            actual = driver.Url;
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
+        //    driver.Navigate().GoToUrl("http://localhost:52316/Home/Login");
+        //    element = driver.FindElement(By.Id("email"));
+        //    element.SendKeys("apapuc30@yahoo.com");
+        //    element = driver.FindElement(By.Id("password"));
+        //    element.SendKeys("alex");
+        //    element = driver.FindElement(By.Id("login-submit"));
+        //    element.Click();
+        //    element = driver.FindElement(By.XPath("id('myNavbar')/ul[2]/li[1]/a"));
+        //    element.Click();
+        //    element = driver.FindElement(By.XPath("id('myNavbar')/ul[2]/li[1]/ul/li[1]/a"));
+        //    element.Click();
+        //    actual = driver.Url;
+        //    //Assert
+        //    Assert.AreEqual(expected, actual);
+        //}
         [TestMethod]
         public void Logout_from_twitter()
         {
