@@ -57,13 +57,13 @@ namespace DemoTwitter.Tests.TweetAutomationTests
            string actual;
 
            //Act
-           element = driver.FindElement(By.XPath("/html/body/div[2]/ol/li/div[2]"));
+           element = driver.FindElement(By.XPath("/html/body/div[2]/ol/li[1]/div[1]/div[1]"));
            expected = element.Text;
            element = driver.FindElement(By.XPath("/html/body/div[2]/ol/li[1]/div[1]/div[2]/ul/li/a/span"));
            element.Click();
            element = driver.FindElement(By.XPath("/html/body/div[2]/ol/li[1]/div[1]/div[2]/ul/li/ul/li[2]/a"));
            element.Click();
-           element = driver.FindElement(By.XPath("/html/body/div[2]/ol/li/div[2]"));
+           element = driver.FindElement(By.XPath("/html/body/div[2]/ol/li[1]/div[1]/div[1]"));
            actual = element.Text;
 
            //Assert
