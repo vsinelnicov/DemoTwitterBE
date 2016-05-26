@@ -18,6 +18,7 @@ namespace DemoTwitter.DataAccessLayer
         public Twitter_dbEntities()
             : base("name=Twitter_dbEntities")
         {
+            var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
