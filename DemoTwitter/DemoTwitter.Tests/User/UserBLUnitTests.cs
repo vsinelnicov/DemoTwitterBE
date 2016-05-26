@@ -44,11 +44,12 @@ namespace DemoTwitter.BusinessLayer
         }
 
         [TestMethod]
-        public void Register_InvalidUserData_Returns_False()
+
+        public void Register_InvalidUserData_Return_false()
         {
             bool expected = false;
-            bool actual=userBl.Register(null);
-            Assert.AreEqual(expected, actual, "Invalid user data entered");
+            bool actual = userBl.Register(null);
+            Assert.AreEqual(actual, expected);
         }
 
         [TestMethod]
@@ -59,11 +60,12 @@ namespace DemoTwitter.BusinessLayer
             Assert.AreEqual(expected, actual, "User successfully removed");
         }
         [TestMethod]
+
         public void Remove_InvalidUser_Returns_False()
         {
             bool expected = false;
             bool actual = userBl.Remove(null);
-            Assert.AreEqual(expected, actual, "Invalid user data to be deleted");
+            Assert.AreEqual(expected, actual);
         }
     }
 }

@@ -30,6 +30,8 @@
                         <ul class="dropdown-menu">
                             <li><a href="@Url.Action("Edit", "User")">Edit profile</a></li>
                             <li><a href="@Url.Action("Remove", "User")">Delete profile</a></li>
+                            <li><a href="@Url.Action("Edit","User")">Edit profile</a></li>
+                            <li><a href="@Url.Action("Remove","User", new {userId = Session["UserID"]})">Delete profile</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

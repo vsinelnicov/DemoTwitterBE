@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DemoTwitter.DataAccessLayer;
 using DemoTwitter.Mapper;
 using log4net;
@@ -17,6 +18,7 @@ namespace DemoTwitter.BusinessLayer
         {
             this.usersRepository = usersRepository;
             this.userMapper = userMapper;
+
         }
 
         public bool Register(User user)

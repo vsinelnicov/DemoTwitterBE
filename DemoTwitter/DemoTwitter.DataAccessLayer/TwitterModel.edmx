@@ -10,15 +10,15 @@
           <EntitySet Name="sysdiagrams" EntityType="Twitter_dbModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tweet" EntityType="Twitter_dbModel.Store.Tweet" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="Twitter_dbModel.Store.User" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_follower_ID" Association="Twitter_dbModel.Store.FK_follower_ID">
+          <AssociationSet Name="FK_Followers_User" Association="Twitter_dbModel.Store.FK_Followers_User">
             <End Role="User" EntitySet="User" />
             <End Role="Followers" EntitySet="Followers" />
           </AssociationSet>
-          <AssociationSet Name="FK_Follower_user_ID" Association="Twitter_dbModel.Store.FK_Follower_user_ID">
+          <AssociationSet Name="FK_Followers_User1" Association="Twitter_dbModel.Store.FK_Followers_User1">
             <End Role="User" EntitySet="User" />
             <End Role="Followers" EntitySet="Followers" />
           </AssociationSet>
-          <AssociationSet Name="FK_user_ID" Association="Twitter_dbModel.Store.FK_user_ID">
+          <AssociationSet Name="FK_Tweet_User" Association="Twitter_dbModel.Store.FK_Tweet_User">
             <End Role="User" EntitySet="User" />
             <End Role="Tweet" EntitySet="Tweet" />
           </AssociationSet>
@@ -62,19 +62,7 @@
           <Property Name="lastname" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="avatar" Type="varchar" Nullable="false" MaxLength="200" />
         </EntityType>
-        <Association Name="FK_follower_ID">
-          <End Role="User" Type="Twitter_dbModel.Store.User" Multiplicity="1" />
-          <End Role="Followers" Type="Twitter_dbModel.Store.Followers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Followers">
-              <PropertyRef Name="follower_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Follower_user_ID">
+        <Association Name="FK_Followers_User">
           <End Role="User" Type="Twitter_dbModel.Store.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -88,7 +76,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Follower_user_ID">
+          <End Role="User" Type="Twitter_dbModel.Store.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+        <Association Name="FK_Followers_User1">
+          <End Role="User" Type="Twitter_dbModel.Store.User" Multiplicity="1" />
+          <End Role="Followers" Type="Twitter_dbModel.Store.Followers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Followers">
+              <PropertyRef Name="follower_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_user_ID">
+        <Association Name="FK_Tweet_User">
           <End Role="User" Type="Twitter_dbModel.Store.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>

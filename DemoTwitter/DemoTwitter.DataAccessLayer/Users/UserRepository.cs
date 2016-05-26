@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DemoTwitter.DataAccessLayer
@@ -14,8 +15,6 @@ namespace DemoTwitter.DataAccessLayer
 
         public bool Register(User user)
         {
-            if (user == null)
-                return false;
             _dbContext.Users.Add(user);
             _dbContext.SaveChanges();
             return true;
@@ -48,9 +47,8 @@ namespace DemoTwitter.DataAccessLayer
 
         public bool Remove(User user)
         {
-            if (user == null)
-                return false;
-            _dbContext.Users.Remove(user);
+            User userToRemove = GetById(user.id);
+            _dbContext.Users.Remove(userToRemove);
             _dbContext.SaveChanges();
             return true;
         }
@@ -101,6 +99,10 @@ namespace DemoTwitter.DataAccessLayer
         public User GetByEmail(string emailAddress)
         {
             return _dbContext.Users.FirstOrDefault(user => user.email == emailAddress);
+        }
+        public User GetById(int Id)
+        {
+            return _dbContext.Users.FirstOrDefault(user => user.id == Id);
         }
 
         public IList<User> GetAll()

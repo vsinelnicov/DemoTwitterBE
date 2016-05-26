@@ -72,9 +72,16 @@ namespace DemoTwitter.WEB.Controllers
             return View(user);
         }
 
-        public ActionResult Remove()
+        public ActionResult Remove(int userId)
         {
-            throw new NotImplementedException();
+            User user = new User
+            {
+                Id = userId
+            };
+
+            userBl.Remove(user);
+            log.Info("User has removed his/her account");
+            return RedirectToAction("Login", "Home");
         }
 
         public ActionResult Follow(int? followedUserId)

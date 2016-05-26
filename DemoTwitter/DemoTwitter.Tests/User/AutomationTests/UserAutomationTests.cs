@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
@@ -20,7 +13,6 @@ namespace DemoTwitter.Tests.UserAutomationTests
         public void SetUp()
         {
             driver = new ChromeDriver();
-
         }
 
         [TestMethod]
@@ -54,8 +46,8 @@ namespace DemoTwitter.Tests.UserAutomationTests
             element.SendKeys("alex");
             element = driver.FindElement(By.Id("login-submit"));
             element.Click();
-
             actual = driver.Url;
+
             //Assert
             Assert.AreEqual(expected, actual);
         }
@@ -74,19 +66,21 @@ namespace DemoTwitter.Tests.UserAutomationTests
             element.SendKeys("nopasword");
             element = driver.FindElement(By.Id("login-submit"));
             element.Click();
-
             actual = driver.Url;
+
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void Register_Into_Twitter_and_log_in_with_registered_account()
+        public void Register_Into_Twitter_and_log_in_with_registered_account_Delete_created_account()
         {
             //Arrange
             string actual;
-            string expected = "http://localhost:52316/User/Index";
+            string expected1 = "http://localhost:52316/User/Index";
+            string expected2 = "http://localhost:52316/";
 
+            //Act
             driver.Navigate().GoToUrl("http://localhost:52316/Home/Register");
             element = driver.FindElement(By.Id("username"));
             element.SendKeys("eugen");
@@ -100,17 +94,22 @@ namespace DemoTwitter.Tests.UserAutomationTests
             element.SendKeys("Papuc");
             element = driver.FindElement(By.Id("login-submit"));
             element.Click();
-
             element = driver.FindElement(By.Id("email"));
-            element.SendKeys("didina@mail.com");
+            element.SendKeys("eugen@mail.com");
             element = driver.FindElement(By.Id("password"));
-            element.SendKeys("didina");
+            element.SendKeys("eugen");
             element = driver.FindElement(By.Id("login-submit"));
             element.Click();
-
             actual = driver.Url;
-            //Assect
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected1, actual);
+            element = driver.FindElement(By.XPath("id('myNavbar')/ul[2]/li[1]/a"));
+            element.Click();
+            element = driver.FindElement(By.XPath("id('myNavbar')/ul[2]/li[1]/ul/li[2]/a"));
+            element.Click();
+            actual = driver.Url;
+
+            //Assert
+            Assert.AreEqual(expected2, actual);
         }
         [TestMethod]
         public void Going_to_feed_page()
@@ -120,7 +119,6 @@ namespace DemoTwitter.Tests.UserAutomationTests
             string expected = "http://localhost:52316/Tweet/FollowedUsersFeed";
 
             //Act
-
             driver.Navigate().GoToUrl("http://localhost:52316/Home/Login");
             element = driver.FindElement(By.Id("email"));
             element.SendKeys("apapuc30@yahoo.com");
@@ -155,7 +153,7 @@ namespace DemoTwitter.Tests.UserAutomationTests
             element.Click();
             actual = driver.Url;
 
-            //Assect
+            //Assert
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
@@ -239,15 +237,13 @@ namespace DemoTwitter.Tests.UserAutomationTests
 
             Assert.AreEqual(expected, actual);
         }
-
-
-
         [TestCleanup]
         public void CleanUp()
         {
             if (driver != null)
             {
                 driver.Close();
+                driver.Dispose();
             }
         }
 
