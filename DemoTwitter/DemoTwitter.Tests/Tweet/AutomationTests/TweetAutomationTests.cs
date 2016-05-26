@@ -16,11 +16,13 @@ namespace DemoTwitter.Tests.TweetAutomationTests
     {
        private IWebDriver driver;
        private IWebElement element;
+       private string AppUrl = "http://localhost:91/DemoTwitter";
+
        [TestInitialize]
        public void SetUp()
        {
            driver = new ChromeDriver();
-           driver.Navigate().GoToUrl("http://localhost:52316/Home/Login");
+           driver.Navigate().GoToUrl(AppUrl + "/Home/Login");
            element = driver.FindElement(By.Id("email"));
            element.SendKeys("apapuc30@yahoo.com");
            element = driver.FindElement(By.Id("password"));
@@ -73,7 +75,7 @@ namespace DemoTwitter.Tests.TweetAutomationTests
        public void Pagination_going_to_second_page_Returns_true()
        {
            //Arrange
-           string expected = "http://localhost:52316/User/Index?page=2";
+           string expected = AppUrl + "/User/Index?page=2";
            string actual;
 
            //Act

@@ -9,6 +9,7 @@ namespace DemoTwitter.Tests.UserAutomationTests
     {
         private IWebDriver driver;
         private IWebElement element;
+        private string AppUrl = "http://localhost:91/DemoTwitter";
         [TestInitialize]
         public void SetUp()
         {
@@ -21,10 +22,10 @@ namespace DemoTwitter.Tests.UserAutomationTests
             //Arrange
 
             string actual;
-            string expected = "http://localhost:52316/Home/Login";
+            string expected = AppUrl + "/Home/Login";
 
             //Act
-            driver.Navigate().GoToUrl("http://localhost:52316/Home/Login");
+            driver.Navigate().GoToUrl(AppUrl + "/Home/Login");
             actual = driver.Url;
 
             //Assert
@@ -36,10 +37,10 @@ namespace DemoTwitter.Tests.UserAutomationTests
         {
             //Arrange 
             string actual;
-            string expected = "http://localhost:52316/User/Index";
+            string expected = AppUrl + "/User/Index";
 
             //Act
-            driver.Navigate().GoToUrl("http://localhost:52316/Home/Login");
+            driver.Navigate().GoToUrl(AppUrl + "/Home/Login");
             element = driver.FindElement(By.Id("email"));
             element.SendKeys("apapuc30@yahoo.com");
             element = driver.FindElement(By.Id("password"));
@@ -56,10 +57,10 @@ namespace DemoTwitter.Tests.UserAutomationTests
         {
             //Arrange 
             string actual;
-            string expected = "http://localhost:52316/";
+            string expected = AppUrl;
 
             //Act
-            driver.Navigate().GoToUrl("http://localhost:52316/");
+            driver.Navigate().GoToUrl(AppUrl);
             element = driver.FindElement(By.Id("email"));
             element.SendKeys("apappucusc@gmail.com");
             element = driver.FindElement(By.Id("password"));
@@ -77,11 +78,11 @@ namespace DemoTwitter.Tests.UserAutomationTests
         {
             //Arrange
             string actual;
-            string expected1 = "http://localhost:52316/User/Index";
-            string expected2 = "http://localhost:52316/";
+            string expected1 = AppUrl + "/User/Index";
+            string expected2 = AppUrl;
 
             //Act
-            driver.Navigate().GoToUrl("http://localhost:52316/Home/Register");
+            driver.Navigate().GoToUrl(AppUrl + "/Home/Register");
             element = driver.FindElement(By.Id("username"));
             element.SendKeys("eugen");
             element = driver.FindElement(By.Id("email"));
@@ -116,10 +117,10 @@ namespace DemoTwitter.Tests.UserAutomationTests
         {
             //Arrange
             string actual;
-            string expected = "http://localhost:52316/Tweet/FollowedUsersFeed";
+            string expected = AppUrl + "Tweet/FollowedUsersFeed";
 
             //Act
-            driver.Navigate().GoToUrl("http://localhost:52316/Home/Login");
+            driver.Navigate().GoToUrl(AppUrl + "/Home/Login");
             element = driver.FindElement(By.Id("email"));
             element.SendKeys("apapuc30@yahoo.com");
             element = driver.FindElement(By.Id("password"));
@@ -138,11 +139,11 @@ namespace DemoTwitter.Tests.UserAutomationTests
         {
             //Arrange
             string actual;
-            string expected = "http://localhost:52316/User/All";
+            string expected = AppUrl + "/User/All";
 
             //Act
 
-            driver.Navigate().GoToUrl("http://localhost:52316/Home/Login");
+            driver.Navigate().GoToUrl(AppUrl + "/Home/Login");
             element = driver.FindElement(By.Id("email"));
             element.SendKeys("apapuc30@yahoo.com");
             element = driver.FindElement(By.Id("password"));
@@ -164,7 +165,7 @@ namespace DemoTwitter.Tests.UserAutomationTests
             string expected;
 
             //Act
-            driver.Navigate().GoToUrl("http://localhost:52316/Home/Login");
+            driver.Navigate().GoToUrl(AppUrl + "/Home/Login");
             element = driver.FindElement(By.Id("email"));
             element.SendKeys("apapuc30@yahoo.com");
             element = driver.FindElement(By.Id("password"));
@@ -193,11 +194,11 @@ namespace DemoTwitter.Tests.UserAutomationTests
             //Arrange
 
             string actual;
-            string expected = "http://localhost:52316/User/Edit";
+            string expected = AppUrl + "/User/Edit";
 
             //Act
 
-            driver.Navigate().GoToUrl("http://localhost:52316/Home/Login");
+            driver.Navigate().GoToUrl(AppUrl + "/Home/Login");
             element = driver.FindElement(By.Id("email"));
             element.SendKeys("apapuc30@yahoo.com");
             element = driver.FindElement(By.Id("password"));
@@ -218,11 +219,11 @@ namespace DemoTwitter.Tests.UserAutomationTests
             //Arrange
 
             string actual;
-            string expected = "http://localhost:52316/";
+            string expected = AppUrl;
 
             //Act
 
-            driver.Navigate().GoToUrl("http://localhost:52316/Home/Login");
+            driver.Navigate().GoToUrl(AppUrl + "/Home/Login");
             element = driver.FindElement(By.Id("email"));
             element.SendKeys("apapuc30@yahoo.com");
             element = driver.FindElement(By.Id("password"));
