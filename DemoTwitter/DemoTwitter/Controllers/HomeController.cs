@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System.IO;
+using System.Web;
+using System.Web.Mvc;
 using DemoTwitter.BusinessLayer;
 using DemoTwitter.Models;
 using DemoTwitter.WEB.Helpers;
@@ -33,7 +35,7 @@ namespace DemoTwitter.WEB.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Login(LoginUser user)
         {
             if (ModelState.IsValid)
@@ -66,22 +68,33 @@ namespace DemoTwitter.WEB.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Register(User user)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Register(User user, HttpPostedFileBase avatar)
         {
-            var userFromDb = userRepository.GetByEmail(user.Email);
-
-            if (!ModelState.IsValid) return View(user);
-
-            if (userFromDb == null || userFromDb.Email != user.Email)
+            if (ModelState.IsValid)
             {
-                user.Password = hashHelper.CalculateMd5(user.Password);
-                userRepository.Register(user);
-                log.Info("A new user registered");
-                return RedirectToAction("Login", "Home");
+                var userFromDb = userRepository.GetByEmail(user.Email);
+                if (avatar != null && avatar.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(avatar.FileName);
+                    var fileExtension = Path.GetExtension(fileName);
+                    if ((fileExtension == ".jpeg") || (fileExtension == ".png") || (fileExtension == ".jpg"))
+                    {
+                        var path = Path.Combine(Server.MapPath("~/Content/img/Avatars"), fileName);
+                        avatar.SaveAs(path);
+                        user.Avatar = fileName;
+                        if (userFromDb == null || userFromDb.Email != user.Email)
+                        {
+                            user.Password = hashHelper.CalculateMd5(user.Password);
+                            userRepository.Register(user);
+                            log.Info("A new user registered");
+                            return RedirectToAction("Login", "Home");
+                        }
+                    }
+                    log.Info("User didn't register");
+                    ModelState.AddModelError("", "A user with this email is already registered");
+                }
             }
-            log.Info("User didn't register");
-            ModelState.AddModelError("", "A user with this email is already registered");
             return View(user);
         }
 

@@ -26,6 +26,7 @@ namespace DemoTwitter.DataAccessLayer
         public string password { get; set; }
         public string firstname { get; set; }
         public string lastname { get; set; }
+        public string avatar { get; set; }
     
         public virtual ICollection<Follower> Followers { get; set; }
         public virtual ICollection<Tweet> Tweets { get; set; }

@@ -11,6 +11,7 @@
         <AssociationConnector Association="Twitter_dbModel.FK_follower_ID" ManuallyRouted="false" />
         <AssociationConnector Association="Twitter_dbModel.FK_Follower_user_ID" ManuallyRouted="false" />
         <AssociationConnector Association="Twitter_dbModel.FK_user_ID" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Twitter_dbModel.sysdiagram" Width="1.5" PointX="1.4779489121762799" PointY="17.825221263722153" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

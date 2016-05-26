@@ -114,5 +114,10 @@ namespace DemoTwitter.WEB.Controllers
             }
             return RedirectToAction("All", "User");
         }
+
+        public ActionResult Info(int userId)
+        {
+            return PartialView(userBl.GetAllUsers().FirstOrDefault(u=>u.Id == userId));
+        }
     }
 }

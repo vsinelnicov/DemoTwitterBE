@@ -1,5 +1,6 @@
 ﻿html, body {
     height: 100%;
+    background: #f4f7f9;
 }
 
 .tweet {
@@ -26,6 +27,10 @@
     word-wrap: break-word;
 }
 
+.tweet-author:hover {
+    color: #3f71ff;
+}
+
 .tweet-header > div {
     display: inline-block;
 }
@@ -41,7 +46,7 @@
     }
 
 .tweetsbox {
-    margin-left: 27%;
+    /*margin-left: 27%;*/
     padding: 0;
 }
 
@@ -55,7 +60,7 @@ ol {
     border: 1px solid #aeaeae;
     border-radius: 4px 4px 0 0;
     padding: 10px 10px 0 10px;
-    margin-left: 27%;
+    /*margin-left: 27%;*/
     min-height: 132px;
     -webkit-box-shadow: 2px 2px 2px #b8b5b5;
     -ms-box-shadow: 2px 2px 2px #b8b5b5;
@@ -105,11 +110,19 @@ ol {
         color: rgb(38, 36, 34);
     }
 
-.navbar-inverse{
+.navbar-inverse {
     border-radius: 0;
 }
 
-@media screen and (max-width: 990px) {
+.user-panel-info {
+    margin-right: 7px;
+}
+
+.user-panel-info > ul {
+    margin-left: 7px;
+    padding-left: 0;
+}
+/*@media screen and (max-width: 990px) {
     .tweetsbox {
         margin-left: 5%;
     }
@@ -117,4 +130,4 @@ ol {
     .tweetform-outer-container {
         margin-left: 5%;
     }
-}
+}*/

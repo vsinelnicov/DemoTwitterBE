@@ -20,18 +20,28 @@
     <title>Twitter</title>
 </head>
 <body style="background: #f4f7f9">
-    <div class="tweetform-outer-container col-md-5">
-        @using (Html.BeginForm("Index", "Tweet", FormMethod.Post, new { @id = "post-tweet-form" }))
-        {
-            <ul class="tweetform-inner-container">
-                @Html.ValidationSummary(true)
-                <li>@Html.TextAreaFor(model => model.Text, new { @id = "post-tweet-input", @placeholder = "What's on your mind...", @class = "form-control tweet-textarea", @style = "max-width: 1090px", @maxlength = 140, @required = true })</li>
-                <li style="color: red" id="tweet-post-validation">@Html.ValidationMessageFor(model => model.Text)</li>
-                <li>
-                    <input type="submit" name="login-submit" id="login-submit" class="btn post-btn" value="Post" /></li>
-            </ul>
-        }
+    <div class="container">
+        <div class="col-md-3" style="display: inline-block">
+            @{
+                Html.RenderAction("Info", "User", new { userID = Session["UserID"] });
+            }
+        </div>
+        <div>
+            <div class="tweetform-outer-container col-md-6">
+                @using (Html.BeginForm("Index", "Tweet", FormMethod.Post, new { @id = "post-tweet-form" }))
+                {
+                    <ul class="tweetform-inner-container">
+                        @Html.ValidationSummary(true)
+                        <li>@Html.TextAreaFor(model => model.Text, new { @id = "post-tweet-input", @placeholder = "What's on your mind...", @class = "form-control tweet-textarea", @style = "max-width: 1090px", @maxlength = 140, @required = true })</li>
+                        <li style="color: red" id="tweet-post-validation">@Html.ValidationMessageFor(model => model.Text)</li>
+                        <li>
+                            <input type="submit" name="login-submit" id="login-submit" class="btn post-btn" value="Post" /></li>
+                    </ul>
+                }
+            </div>
+            @{Html.RenderAction("All", "Tweet");}
+        </div>
+
     </div>
-    @{Html.RenderAction("All", "Tweet");}
 </body>
 </html>

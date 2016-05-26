@@ -67,7 +67,7 @@ namespace DemoTwitter.WEB.Controllers
             //}
         }
 
-        public ActionResult All(int? page, User user)
+        public ActionResult All(int? page)
         {
             int userID;
             int.TryParse(Session["UserID"].ToString(), out userID);

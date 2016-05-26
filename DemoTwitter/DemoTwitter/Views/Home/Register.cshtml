@@ -26,7 +26,7 @@
                             </div>
                             <hr>
                             <div class="row">
-                                @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { @id = "register-form", @role = "form", @style = "display: block;" }))
+                                @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @id = "register-form", @role = "form", @style = "display: block;" }))
                                 {
                                     @Html.AntiForgeryToken()
                                     @Html.ValidationSummary(true)
@@ -50,6 +50,8 @@
                                         @Html.TextBoxFor(m => m.LastName, new { @name = "firstname", @tabindex = "5", @id = "firstname", @class = "form-control", @placeholder = "Last Name" })
                                         <div class="alert" style="color: red;">@Html.ValidationMessageFor(m => m.FirstName)</div>
                                     </div>
+                                    @Html.TextBoxFor(m => m.Avatar, new { @name = "avatar", @tabindex = "6", @id = "avatar", @type = "file" })
+                                    
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-3">

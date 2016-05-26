@@ -1,0 +1,22 @@
+﻿@model DemoTwitter.Models.User
+<div class="panel panel-default user-panel-info">
+    <div class="panel-heading">
+        @if (Session["UserFullName"] != null)
+        {
+            @Session["UserFullName"].ToString()
+        }
+    </div>
+    <div class="panel-body">
+        @if (@Model.Avatar == "no_avatar")
+        {
+            <img src="@Url.Content("~/Content/img/Avatars/avatar.jpg")" alt="avatar" class="img-rounded img-responsive center-block" height="200px" width="200px"/>
+        }
+        else
+        {
+            <img src="@Url.Content("~/Content/img/Avatars/" + @Model.Avatar)" onerror="~/Content/img / Avatars / avatar.jpg" alt="avatar" class="img-rounded img-responsive center-block" height="200px" width="200px"/>
+        }
+    </div>
+    <div class="panel-footer">
+        @Model.Username
+    </div>
+</div>

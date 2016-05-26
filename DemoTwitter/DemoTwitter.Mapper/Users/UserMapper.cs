@@ -18,7 +18,8 @@ namespace DemoTwitter.Mapper
                 Email = userFromDatabase.email,
                 Password = userFromDatabase.password,
                 FirstName = userFromDatabase.firstname,
-                LastName = userFromDatabase.lastname
+                LastName = userFromDatabase.lastname,
+                Avatar = userFromDatabase.avatar
             };
             return user;
         }
@@ -36,7 +37,9 @@ namespace DemoTwitter.Mapper
                 email = userModel.Email,
                 password = userModel.Password,
                 firstname = userModel.FirstName,
-                lastname = userModel.LastName
+                lastname = userModel.LastName,
+                avatar = userModel.Avatar
+                
             };
             return user;
         }

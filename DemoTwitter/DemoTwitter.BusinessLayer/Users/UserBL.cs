@@ -27,6 +27,10 @@ namespace DemoTwitter.BusinessLayer
                 {
                     throw new NullReferenceException();
                 }
+                if (user.Avatar == "/Content/img/Avatars/no_avatar")
+                {
+                    user.Avatar = "~/Content/img/Avatars/avatar.jpg";
+                }
                 DataAccessLayer.User userForDatabase = userMapper.MapToDatabaseType(user);
                 usersRepository.Register(userForDatabase);
                 log.Info("User successfully registered");
@@ -66,6 +70,10 @@ namespace DemoTwitter.BusinessLayer
                 if (updatedUser == null)
                 {
                     throw new NullReferenceException();
+                }
+                if (updatedUser.Avatar == "/Content/img/Avatars/no_avatar")
+                {
+                    updatedUser.Avatar = "~/Content/img/Avatars/avatar.jpg";
                 }
                 DataAccessLayer.User userForDatabase = userMapper.MapToDatabaseType(updatedUser);
                 usersRepository.Update(userForDatabase);

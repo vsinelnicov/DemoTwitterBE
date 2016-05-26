@@ -179,7 +179,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\css\bootstrap-theme.css" />
-    <Content Include="Content\css\bootstrap-theme.min.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\business-casual.css" />
@@ -189,7 +188,8 @@
     <Content Include="Content\css\validation.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\css\tableStyle.css" />
-    <Content Include="Content\img\bg.jpg" />
+    <Content Include="Content\img\Avatars\avatar.jpg" />
+    <Content Include="Content\img\error.jpg" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\jquery.js" />
@@ -247,8 +247,6 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\css\bootstrap-theme.css.map" />
-    <Content Include="Content\css\bootstrap-theme.min.css.map" />
     <Content Include="Content\css\bootstrap.css.map" />
     <Content Include="Content\css\bootstrap.min.css.map" />
     <Content Include="Views\User\Edit.cshtml">
@@ -259,6 +257,7 @@
     <Content Include="Views\Tweet\FollowedUsersFeed.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <None Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Info.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
