@@ -55,6 +55,7 @@
                                         <div class="alert" style="color: red;">@Html.ValidationMessageFor(m => m.LastName)</div>
                                     </div>
                                     <div class="form-group">
+                                        <p>Re-Enter your current password</p>
                                         @Html.TextBoxFor(m => m.Password, new {@name = "password", @tabindex = "6", @type = "password", @id = "password", @class = "form-control", @placeholder = "Current password"})
                                         <div class="alert" style="color: red;">@Html.ValidationMessageFor(m => m.Password)</div>
                                     </div>
