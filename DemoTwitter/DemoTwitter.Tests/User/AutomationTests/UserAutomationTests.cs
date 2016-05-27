@@ -57,7 +57,7 @@ namespace DemoTwitter.Tests.UserAutomationTests
         {
             //Arrange 
             string actual;
-            string expected = AppUrl;
+            string expected = "http://localhost:91/DemoTwitter/";
 
             //Act
             driver.Navigate().GoToUrl(AppUrl);
@@ -79,7 +79,7 @@ namespace DemoTwitter.Tests.UserAutomationTests
             //Arrange
             string actual;
             string expected1 = AppUrl + "/User/Index";
-            string expected2 = AppUrl;
+            string expected2 = AppUrl + "/";
 
             //Act
             driver.Navigate().GoToUrl(AppUrl + "/Home/Register");
@@ -95,6 +95,8 @@ namespace DemoTwitter.Tests.UserAutomationTests
             element.SendKeys("Papuc");
             element = driver.FindElement(By.Id("login-submit"));
             element.Click();
+            element = driver.FindElement(By.Id("login-form-link"));
+            element.Click();
             element = driver.FindElement(By.Id("email"));
             element.SendKeys("eugen@mail.com");
             element = driver.FindElement(By.Id("password"));
@@ -103,9 +105,9 @@ namespace DemoTwitter.Tests.UserAutomationTests
             element.Click();
             actual = driver.Url;
             Assert.AreEqual(expected1, actual);
-            element = driver.FindElement(By.XPath("id('myNavbar')/ul[2]/li[1]/a"));
+            element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[2]/li[1]/a"));
             element.Click();
-            element = driver.FindElement(By.XPath("id('myNavbar')/ul[2]/li[1]/ul/li[2]/a"));
+            element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[2]/li[1]/ul/li[2]/a"));
             element.Click();
             actual = driver.Url;
 
@@ -117,7 +119,7 @@ namespace DemoTwitter.Tests.UserAutomationTests
         {
             //Arrange
             string actual;
-            string expected = AppUrl + "Tweet/FollowedUsersFeed";
+            string expected = AppUrl + "/Tweet/FollowedUsersFeed";
 
             //Act
             driver.Navigate().GoToUrl(AppUrl + "/Home/Login");
@@ -127,7 +129,7 @@ namespace DemoTwitter.Tests.UserAutomationTests
             element.SendKeys("alex");
             element = driver.FindElement(By.Id("login-submit"));
             element.Click();
-            element = driver.FindElement(By.XPath("id('myNavbar')/ul[1]/li[3]/a"));
+            element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[1]/li[3]/a"));
             element.Click();
             actual = driver.Url;
 
@@ -150,7 +152,7 @@ namespace DemoTwitter.Tests.UserAutomationTests
             element.SendKeys("alex");
             element = driver.FindElement(By.Id("login-submit"));
             element.Click();
-            element = driver.FindElement(By.XPath("id('myNavbar')/ul[1]/li[2]/a"));
+            element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[1]/li[2]/a"));
             element.Click();
             actual = driver.Url;
 
@@ -172,17 +174,17 @@ namespace DemoTwitter.Tests.UserAutomationTests
             element.SendKeys("alex");
             element = driver.FindElement(By.Id("login-submit"));
             element.Click();
-            element = driver.FindElement(By.XPath("id('myNavbar')/ul[1]/li[3]/a"));
+            element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[1]/li[3]/a"));
             element.Click();
-            element = driver.FindElement(By.XPath("/html/body/div/ol/li/div[2]"));
+            element = driver.FindElement(By.XPath("/html/body/div/div[3]/ol/li/div[2]"));
             actual = element.Text;
-            element = driver.FindElement(By.XPath("id('myNavbar')/ul[1]/li[2]/a"));
+            element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[1]/li[2]/a"));
             element.Click();
             element = driver.FindElement(By.XPath("/html/body/div/table/tbody/tr[3]/td[4]/a"));
             element.Click();
-            element = driver.FindElement(By.XPath("id('myNavbar')/ul[1]/li[3]/a"));
+            element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[1]/li[3]/a"));
             element.Click();
-            element = driver.FindElement(By.XPath("/html/body/div/ol/li/div[2]"));
+            element = driver.FindElement(By.XPath("/html/body/div/div[3]/ol/li[1]/div[2]"));
             expected = element.Text;
 
             //Assert
@@ -205,9 +207,9 @@ namespace DemoTwitter.Tests.UserAutomationTests
             element.SendKeys("alex");
             element = driver.FindElement(By.Id("login-submit"));
             element.Click();
-            element = driver.FindElement(By.XPath("id('myNavbar')/ul[2]/li[1]/a"));
+            element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[2]/li[1]/a"));
             element.Click();
-            element = driver.FindElement(By.XPath("id('myNavbar')/ul[2]/li[1]/ul/li[1]/a"));
+            element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[2]/li[1]/ul/li[1]/a"));
             element.Click();
             actual = driver.Url;
             //Assert
@@ -219,7 +221,7 @@ namespace DemoTwitter.Tests.UserAutomationTests
             //Arrange
 
             string actual;
-            string expected = AppUrl;
+            string expected = "http://localhost:91/DemoTwitter/";
 
             //Act
 
@@ -230,7 +232,7 @@ namespace DemoTwitter.Tests.UserAutomationTests
             element.SendKeys("alex");
             element = driver.FindElement(By.Id("login-submit"));
             element.Click();
-            element = driver.FindElement(By.XPath("id('myNavbar')/ul[2]/li[2]/a"));
+            element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[2]/li[2]/a"));
             element.Click();
             actual = driver.Url;
 
@@ -247,6 +249,5 @@ namespace DemoTwitter.Tests.UserAutomationTests
                 driver.Dispose();
             }
         }
-
     }
 }

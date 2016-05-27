@@ -39,11 +39,11 @@ namespace DemoTwitter.Tests.TweetAutomationTests
            string actual;
 
            //Act
-           element = driver.FindElement(By.Id("post-tweet-input"));
+           element = driver.FindElement(By.XPath("id('post-tweet-input')"));
            element.SendKeys("Automation Test!");
            element = driver.FindElement(By.Id("login-submit"));
            element.Click();
-           element = driver.FindElement(By.XPath("/html/body/div[2]/ol/li/div[2]"));
+           element = driver.FindElement(By.XPath("/html/body/div/div[2]/div[2]/ol/li[1]/div[2]"));
            actual = element.Text;
 
            //Assert
@@ -59,13 +59,13 @@ namespace DemoTwitter.Tests.TweetAutomationTests
            string actual;
 
            //Act
-           element = driver.FindElement(By.XPath("/html/body/div[2]/ol/li[1]/div[1]/div[1]"));
+           element = driver.FindElement(By.XPath("/html/body/div/div[2]/div[2]/ol/li[1]/div[2]"));
            expected = element.Text;
-           element = driver.FindElement(By.XPath("/html/body/div[2]/ol/li[1]/div[1]/div[2]/ul/li/a/span"));
+           element = driver.FindElement(By.XPath("/html/body/div/div[2]/div[2]/ol/li[1]/div[1]/div[2]/ul/li/a/span"));
            element.Click();
-           element = driver.FindElement(By.XPath("/html/body/div[2]/ol/li[1]/div[1]/div[2]/ul/li/ul/li[2]/a"));
+           element = driver.FindElement(By.XPath("/html/body/div/div[2]/div[2]/ol/li[1]/div[1]/div[2]/ul/li/ul/li[2]/a"));
            element.Click();
-           element = driver.FindElement(By.XPath("/html/body/div[2]/ol/li[1]/div[1]/div[1]"));
+           element = driver.FindElement(By.XPath("/html/body/div/div[2]/div[2]/ol/li[1]/div[2]"));
            actual = element.Text;
 
            //Assert
@@ -79,7 +79,7 @@ namespace DemoTwitter.Tests.TweetAutomationTests
            string actual;
 
            //Act
-           element = driver.FindElement(By.XPath("/html/body/div[2]/div[2]/div/ul/li[2]/a"));
+           element = driver.FindElement(By.XPath("/html/body/div/div[2]/div[2]/div[2]/div/ul/li[2]/a"));
            element.Click();
            actual = driver.Url;
            //Assert
