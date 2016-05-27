@@ -179,25 +179,8 @@ namespace DemoTwitter.Tests.UserAutomationTests
             //Assert
             Assert.AreNotEqual(expected, actual);
         }
-        [TestMethod]
-        public void Edit_user_profile_check()
-        {
-            //Arrange
 
-            string actual;
-            string expected = AppUrl + "/User/Edit";
 
-            //Act
-
-            LogIn();
-            element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[2]/li[1]/a"));
-            element.Click();
-            element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[2]/li[1]/ul/li[1]/a"));
-            element.Click();
-            actual = driver.Url;
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
         [TestMethod]
         public void Logout_from_twitter()
         {
