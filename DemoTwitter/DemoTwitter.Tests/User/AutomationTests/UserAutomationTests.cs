@@ -16,6 +16,17 @@ namespace DemoTwitter.Tests.UserAutomationTests
             driver = new ChromeDriver();
         }
 
+        public void LogIn()
+        {
+            driver.Navigate().GoToUrl(AppUrl + "/Home/Login");
+            element = driver.FindElement(By.Id("email"));
+            element.SendKeys("apapuc30@yahoo.com");
+            element = driver.FindElement(By.Id("password"));
+            element.SendKeys("alex");
+            element = driver.FindElement(By.Id("login-submit"));
+            element.Click();
+        }
+
         [TestMethod]
         public void Accessing_twitter_first_page()
         {
@@ -40,13 +51,7 @@ namespace DemoTwitter.Tests.UserAutomationTests
             string expected = AppUrl + "/User/Index";
 
             //Act
-            driver.Navigate().GoToUrl(AppUrl + "/Home/Login");
-            element = driver.FindElement(By.Id("email"));
-            element.SendKeys("apapuc30@yahoo.com");
-            element = driver.FindElement(By.Id("password"));
-            element.SendKeys("alex");
-            element = driver.FindElement(By.Id("login-submit"));
-            element.Click();
+            LogIn();
             actual = driver.Url;
 
             //Assert
@@ -73,47 +78,49 @@ namespace DemoTwitter.Tests.UserAutomationTests
             Assert.AreEqual(expected, actual);
         }
 
-        //[TestMethod]
-        //public void Register_Into_Twitter_and_log_in_with_registered_account_Delete_created_account()
-        //{
-        //    //Arrange
-        //    string actual;
-        //    string expected1 = AppUrl + "/User/Index";
-        //    string expected2 = AppUrl + "/";
+        [TestMethod]
+        public void Register_Into_Twitter_and_log_in_with_registered_account_Delete_created_account()
+        {
+            //Arrange
+            string actual;
+            string expected1 = AppUrl + "/User/Index";
+            string expected2 = AppUrl + "/";
 
-        //    //Act
-        //    driver.Navigate().GoToUrl(AppUrl + "/Home/Register");
-        //    element = driver.FindElement(By.Id("username"));
-        //    element.SendKeys("eugen");
-        //    element = driver.FindElement(By.Id("email"));
-        //    element.SendKeys("eugen@mail.com");
-        //    element = driver.FindElement(By.Id("password"));
-        //    element.SendKeys("eugen");
-        //    element = driver.FindElement(By.Id("lastname"));
-        //    element.SendKeys("Eugen");
-        //    element = driver.FindElement(By.Id("firstname"));
-        //    element.SendKeys("Papuc");
-        //    element = driver.FindElement(By.Id("login-submit"));
-        //    element.Click();
-        //    element = driver.FindElement(By.Id("login-form-link"));
-        //    element.Click();
-        //    element = driver.FindElement(By.Id("email"));
-        //    element.SendKeys("eugen@mail.com");
-        //    element = driver.FindElement(By.Id("password"));
-        //    element.SendKeys("eugen");
-        //    element = driver.FindElement(By.Id("login-submit"));
-        //    element.Click();
-        //    actual = driver.Url;
-        //    Assert.AreEqual(expected1, actual);
-        //    element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[2]/li[1]/a"));
-        //    element.Click();
-        //    element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[2]/li[1]/ul/li[2]/a"));
-        //    element.Click();
-        //    actual = driver.Url;
+            //Act
+            driver.Navigate().GoToUrl(AppUrl + "/Home/Register");
+            element = driver.FindElement(By.Id("username"));
+            element.SendKeys("eugen");
+            element = driver.FindElement(By.Id("email"));
+            element.SendKeys("eugen@mail.com");
+            element = driver.FindElement(By.Id("password"));
+            element.SendKeys("eugen");
+            element = driver.FindElement(By.Id("lastname"));
+            element.SendKeys("Eugen");
+            element = driver.FindElement(By.Id("firstname"));
+            element.SendKeys("Papuc");
+            element = driver.FindElement(By.Id("avatar"));
+            element.SendKeys("C:/Users/apapuc/Desktop/pic.jpg");
+            element = driver.FindElement(By.Id("login-submit"));
+            element.Click();
+            element = driver.FindElement(By.Id("login-form-link"));
+            element.Click();
+            element = driver.FindElement(By.Id("email"));
+            element.SendKeys("eugen@mail.com");
+            element = driver.FindElement(By.Id("password"));
+            element.SendKeys("eugen");
+            element = driver.FindElement(By.Id("login-submit"));
+            element.Click();
+            actual = driver.Url;
+            Assert.AreEqual(expected1, actual);
+            element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[2]/li[1]/a"));
+            element.Click();
+            element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[2]/li[1]/ul/li[2]/a"));
+            element.Click();
+            actual = driver.Url;
 
-        //    //Assert
-        //    Assert.AreEqual(expected2, actual);
-        //}
+            //Assert
+            Assert.AreEqual(expected2, actual);
+        }
         [TestMethod]
         public void Going_to_feed_page()
         {
@@ -122,13 +129,7 @@ namespace DemoTwitter.Tests.UserAutomationTests
             string expected = AppUrl + "/Tweet/FollowedUsersFeed";
 
             //Act
-            driver.Navigate().GoToUrl(AppUrl + "/Home/Login");
-            element = driver.FindElement(By.Id("email"));
-            element.SendKeys("apapuc30@yahoo.com");
-            element = driver.FindElement(By.Id("password"));
-            element.SendKeys("alex");
-            element = driver.FindElement(By.Id("login-submit"));
-            element.Click();
+            LogIn();
             element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[1]/li[3]/a"));
             element.Click();
             actual = driver.Url;
@@ -145,13 +146,7 @@ namespace DemoTwitter.Tests.UserAutomationTests
 
             //Act
 
-            driver.Navigate().GoToUrl(AppUrl + "/Home/Login");
-            element = driver.FindElement(By.Id("email"));
-            element.SendKeys("apapuc30@yahoo.com");
-            element = driver.FindElement(By.Id("password"));
-            element.SendKeys("alex");
-            element = driver.FindElement(By.Id("login-submit"));
-            element.Click();
+            LogIn();
             element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[1]/li[2]/a"));
             element.Click();
             actual = driver.Url;
@@ -167,13 +162,7 @@ namespace DemoTwitter.Tests.UserAutomationTests
             string expected;
 
             //Act
-            driver.Navigate().GoToUrl(AppUrl + "/Home/Login");
-            element = driver.FindElement(By.Id("email"));
-            element.SendKeys("apapuc30@yahoo.com");
-            element = driver.FindElement(By.Id("password"));
-            element.SendKeys("alex");
-            element = driver.FindElement(By.Id("login-submit"));
-            element.Click();
+            LogIn();
             element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[1]/li[3]/a"));
             element.Click();
             element = driver.FindElement(By.XPath("/html/body/div/div[3]/ol/li/div[2]"));
@@ -200,13 +189,7 @@ namespace DemoTwitter.Tests.UserAutomationTests
 
             //Act
 
-            driver.Navigate().GoToUrl(AppUrl + "/Home/Login");
-            element = driver.FindElement(By.Id("email"));
-            element.SendKeys("apapuc30@yahoo.com");
-            element = driver.FindElement(By.Id("password"));
-            element.SendKeys("alex");
-            element = driver.FindElement(By.Id("login-submit"));
-            element.Click();
+            LogIn();
             element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[2]/li[1]/a"));
             element.Click();
             element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[2]/li[1]/ul/li[1]/a"));
@@ -225,13 +208,7 @@ namespace DemoTwitter.Tests.UserAutomationTests
 
             //Act
 
-            driver.Navigate().GoToUrl(AppUrl + "/Home/Login");
-            element = driver.FindElement(By.Id("email"));
-            element.SendKeys("apapuc30@yahoo.com");
-            element = driver.FindElement(By.Id("password"));
-            element.SendKeys("alex");
-            element = driver.FindElement(By.Id("login-submit"));
-            element.Click();
+            LogIn();
             element = driver.FindElement(By.XPath("/html/body/nav/div/div[2]/ul[2]/li[2]/a"));
             element.Click();
             actual = driver.Url;
