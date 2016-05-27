@@ -10,6 +10,7 @@ namespace DemoTwitter.BusinessLayer
         bool Update(User updatedUser);
         User GetByUsername(string userName);
         User GetByEmail(string emailAddress);
+        User GetById(int id);
         IEnumerable<User> GetAllUsers();
         bool Follow(int followerId, int userToBeFollowed);
         bool UnFollow(int followerId, int followedUserId);

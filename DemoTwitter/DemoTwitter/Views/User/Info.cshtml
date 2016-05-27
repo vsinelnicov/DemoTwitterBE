@@ -1,10 +1,7 @@
 ﻿@model DemoTwitter.Models.User
 <div class="panel panel-default user-panel-info">
     <div class="panel-heading">
-        @if (Session["UserFullName"] != null)
-        {
-            @Session["UserFullName"].ToString()
-        }
+        @Model.FirstName @Model.LastName
     </div>
     <div class="panel-body">
         @if (@Model.Avatar == "no_avatar")

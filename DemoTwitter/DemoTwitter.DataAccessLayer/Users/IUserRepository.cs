@@ -12,6 +12,7 @@ namespace DemoTwitter.DataAccessLayer
         bool IsFollowed(int followerId, int followedUserId);
         User GetByUsername(string userName);
         User GetByEmail(string emailAddress);
+        User GetById(int Id);
         IList<User> GetAll();
     }
 }

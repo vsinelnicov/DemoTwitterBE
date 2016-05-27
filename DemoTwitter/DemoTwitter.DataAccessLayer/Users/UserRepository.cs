@@ -27,20 +27,17 @@ namespace DemoTwitter.DataAccessLayer
                 var update = _dbContext.Users.FirstOrDefault(u => u.id == updatedUser.id);
 
                 if (update != null &&
-                    updatedUser.firstname == update.firstname &&
-                    updatedUser.lastname == update.lastname &&
-                    updatedUser.password == update.password &&
-                    updatedUser.email == update.email)
-                    return true;
-
-                if (update != null)
+                    updatedUser.firstname != update.firstname ||
+                    updatedUser.lastname != update.lastname ||
+                    updatedUser.password != update.password)
                 {
                     update.firstname = updatedUser.firstname;
                     update.lastname = updatedUser.lastname;
                     update.password = updatedUser.password;
+                    _dbContext.SaveChanges();
+                    return true;
                 }
-                _dbContext.SaveChanges();
-                return true;
+                return false;
             }
             return false;
         }

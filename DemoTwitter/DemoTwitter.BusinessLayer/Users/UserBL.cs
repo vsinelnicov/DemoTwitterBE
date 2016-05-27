@@ -73,10 +73,6 @@ namespace DemoTwitter.BusinessLayer
                 {
                     throw new NullReferenceException();
                 }
-                if (updatedUser.Avatar == "/Content/img/Avatars/no_avatar")
-                {
-                    updatedUser.Avatar = "~/Content/img/Avatars/avatar.jpg";
-                }
                 DataAccessLayer.User userForDatabase = userMapper.MapToDatabaseType(updatedUser);
                 usersRepository.Update(userForDatabase);
                 log.Info("User updated his information");
@@ -97,6 +93,11 @@ namespace DemoTwitter.BusinessLayer
         public User GetByEmail(string emailAddress)
         {
             return usersRepository.GetByEmail(emailAddress) == null ? null : userMapper.MapToUserModel(usersRepository.GetByEmail(emailAddress));
+        }
+
+        public User GetById(int id)
+        {
+            return userMapper.MapToUserModel(usersRepository.GetById(id));
         }
 
         public IEnumerable<User> GetAllUsers()

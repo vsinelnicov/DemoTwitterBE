@@ -32,7 +32,7 @@
                         <div class="tweetform-header">@tweet.PostDate</div>
                         by
                         <div class="tweet-author">
-                            <span class="glyphicon glyphicon-user"></span>@tweet.Author
+                            <span class="glyphicon glyphicon-user"></span> @tweet.Author
                         </div>
                     </div>
                     <div class="tweet-text">@tweet.Text</div>
@@ -42,7 +42,7 @@
         @if (Model.Count == 0)
         {
             <div class="text-center">
-                <img src="https://s-media-cache-ak0.pinimg.com/236x/c3/40/97/c34097b924a3a063eaedfcc47a7e336f.jpg" alt="no data" />
+                <img src="~/Content/img/cookie_monster.png" alt="no data" width="250px" height="250px" />
                 <h2>Nothing to show here. You can <a href="@Url.Action("All", "User")">follow</a> someone to see his activity.
                 </h2>
             </div>

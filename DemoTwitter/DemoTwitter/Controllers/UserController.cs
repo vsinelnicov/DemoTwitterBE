@@ -8,6 +8,7 @@
  ﻿using PagedList;
 using System.Collections.Generic;
 using System.Linq;
+using DemoTwitter.WEB.Helpers;
 using log4net;
 
 namespace DemoTwitter.WEB.Controllers
@@ -17,6 +18,7 @@ namespace DemoTwitter.WEB.Controllers
     {
         private IUserBL userBl;
         private static ILog log = LogManager.GetLogger(typeof(UserController));
+        private HashHelper hashHelper = new HashHelper();
 
         public UserController(IUserBL userBl)
         {
@@ -61,11 +63,21 @@ namespace DemoTwitter.WEB.Controllers
             return RedirectToAction("Login", "Home");
         }
 
+        [HttpGet]
+        public ActionResult Edit(int userId)
+        {
+            User user = userBl.GetById(userId);
+            return View(user);
+        }
+
+        [HttpPost]
+        [Authorize]
         public ActionResult Edit(User user)
         {
             if (ModelState.IsValid)
             {
                 log.Info("User updated his information");
+                user.Password = hashHelper.CalculateMd5(user.Password);
                 userBl.Update(user);
                 return RedirectToAction("Index", "User");
             }
@@ -124,7 +136,7 @@ namespace DemoTwitter.WEB.Controllers
 
         public ActionResult Info(int userId)
         {
-            return PartialView(userBl.GetAllUsers().FirstOrDefault(u=>u.Id == userId));
+            return PartialView(userBl.GetAllUsers().FirstOrDefault(u => u.Id == userId));
         }
     }
 }

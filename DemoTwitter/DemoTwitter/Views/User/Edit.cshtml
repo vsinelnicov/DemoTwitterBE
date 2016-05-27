@@ -29,30 +29,42 @@
                                 <div class="text-center">
                                     <h4>Edit profile details</h4>
                                 </div>
-                                @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { @id = "register-form", @role = "form", @style = "display: block;" }))
+                                @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { enctype = "multipart/form-data", @id = "register-form", @role = "form", @style = "display: block;" }))
                                 {
                                     @Html.AntiForgeryToken()
                                     @Html.ValidationSummary(true)
                                     <div class="form-group">
-                                        @Html.TextBoxFor(m => m.Email, new { @name = "email", @tabindex = "2", @id = "email", @class = "form-control", @placeholder = "Email" })
-                                        <div class="alert" style="color: red;">@Html.ValidationMessageFor(m => m.Email)</div>
+                                        @Html.HiddenFor(m => m.Id)
                                     </div>
                                     <div class="form-group">
-                                        @Html.PasswordFor(m => m.Password, new { @name = "password", @tabindex = "3", @id = "password", @class = "form-control", @placeholder = "Password" })
-                                        <div class="alert" style="color: red;">@Html.ValidationMessageFor(m => m.Password)</div>
+                                        @Html.HiddenFor(m => m.Email)
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        @Html.HiddenFor(m => m.Username)
                                     </div>
                                     <div class="form-group">
-                                        @Html.TextBoxFor(m => m.FirstName, new { @name = "lastname", @tabindex = "4", @id = "lastname", @class = "form-control", @placeholder = "First Name" })
+                                        @Html.HiddenFor(m => m.Avatar)
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.FirstName, new { @name = "lastname", @tabindex = "4", @id = "lastname", @class = "form-control", @placeholder = @Model.LastName })
                                         <div class="alert" style="color: red;">@Html.ValidationMessageFor(m => m.FirstName)</div>
                                     </div>
                                     <div class="form-group">
-                                        @Html.TextBoxFor(m => m.LastName, new { @name = "firstname", @tabindex = "5", @id = "firstname", @class = "form-control", @placeholder = "Last Name" })
+                                        @Html.TextBoxFor(m => m.LastName, new {@name = "firstname", @tabindex = "5", @id = "firstname", @class = "form-control", @placeholder = @Model.FirstName})
                                         <div class="alert" style="color: red;">@Html.ValidationMessageFor(m => m.LastName)</div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.Password, new {@name = "password", @tabindex = "6", @type = "password", @id = "password", @class = "form-control", @placeholder = "Current password"})
+                                        <div class="alert" style="color: red;">@Html.ValidationMessageFor(m => m.Password)</div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Model.Email
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="submit" name="login-submit" id="login-submit" tabindex="6" class="form-control btn-login btn-register" value="Update">
+                                                <input type="submit" name="login-submit" id="login-submit" tabindex="7" class="form-control btn-login btn-register" value="Update">
                                             </div>
                                         </div>
                                     </div>
