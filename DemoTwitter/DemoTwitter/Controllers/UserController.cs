@@ -25,7 +25,7 @@ namespace DemoTwitter.WEB.Controllers
             this.userBl = userBl;
         }
 
-        public ActionResult All(int? page)
+        public ActionResult All(int? page, string searchString)
         {
             int pageNumber = page ?? 1;
             int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["pageSize"]);
@@ -45,6 +45,14 @@ namespace DemoTwitter.WEB.Controllers
                     final.Add(currentUser);
                 }
             }
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                final = final.Where(u => u.FirstName.Contains(searchString)
+                                                || u.LastName.Contains(searchString)
+                                                || u.Username.Contains(searchString)).ToList();
+            }
+
             return View(final.ToPagedList(pageNumber, pageSize));
         }
 
