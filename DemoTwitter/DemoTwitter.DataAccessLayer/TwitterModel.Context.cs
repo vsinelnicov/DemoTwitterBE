@@ -18,7 +18,6 @@ namespace DemoTwitter.DataAccessLayer
         public Twitter_dbEntities()
             : base("name=Twitter_dbEntities")
         {
-            var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -29,5 +28,6 @@ namespace DemoTwitter.DataAccessLayer
         public virtual DbSet<Follower> Followers { get; set; }
         public virtual DbSet<Tweet> Tweets { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }
