@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography;
 using System.Text;
@@ -22,6 +23,16 @@ namespace DemoTwitter.WEB.Helpers
                 }
                 return stringBuilder.ToString();
             }
+        }
+
+        public string CalculateSha256(string input)
+        {
+            byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+
+            SHA256 shaObj = SHA256.Create();
+            var hashedBytes = shaObj.ComputeHash(inputBytes);
+
+            return Convert.ToBase64String(hashedBytes);
         }
     }
 }

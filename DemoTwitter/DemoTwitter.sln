@@ -24,6 +24,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D2C188
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoTwitter.WebApi", "DemoTwitter.WebApi\DemoTwitter.WebApi.csproj", "{B725C7EB-0F1C-4E14-9BA3-15372B23872F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoTwitter.Repositories", "DemoTwitter.Repositories\DemoTwitter.Repositories.csproj", "{52243A42-F2BF-472F-B3F9-10352ABDA4DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoTwitter.Repositories.Implementation", "DemoTwitter.Repositories.Implementation\DemoTwitter.Repositories.Implementation.csproj", "{6623749C-1000-465C-8233-B6F4F5FAE506}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoTwitter.DomainModel", "DemoTwitter.DomainModel\DemoTwitter.DomainModel.csproj", "{BB1927BD-EA11-4539-81FA-1BA26050EFC0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +64,18 @@ Global
 		{B725C7EB-0F1C-4E14-9BA3-15372B23872F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B725C7EB-0F1C-4E14-9BA3-15372B23872F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B725C7EB-0F1C-4E14-9BA3-15372B23872F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52243A42-F2BF-472F-B3F9-10352ABDA4DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52243A42-F2BF-472F-B3F9-10352ABDA4DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52243A42-F2BF-472F-B3F9-10352ABDA4DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52243A42-F2BF-472F-B3F9-10352ABDA4DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6623749C-1000-465C-8233-B6F4F5FAE506}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6623749C-1000-465C-8233-B6F4F5FAE506}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6623749C-1000-465C-8233-B6F4F5FAE506}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6623749C-1000-465C-8233-B6F4F5FAE506}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB1927BD-EA11-4539-81FA-1BA26050EFC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB1927BD-EA11-4539-81FA-1BA26050EFC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB1927BD-EA11-4539-81FA-1BA26050EFC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB1927BD-EA11-4539-81FA-1BA26050EFC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

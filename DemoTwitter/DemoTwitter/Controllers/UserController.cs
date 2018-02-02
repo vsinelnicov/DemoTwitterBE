@@ -85,7 +85,7 @@ namespace DemoTwitter.WEB.Controllers
             if (ModelState.IsValid)
             {
                 log.Info("User updated his information");
-                user.Password = hashHelper.CalculateMd5(user.Password);
+                user.Password = hashHelper.CalculateSha256(user.Password);
                 userBl.Update(user);
                 return RedirectToAction("Index", "User");
             }

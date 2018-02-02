@@ -43,7 +43,7 @@ namespace DemoTwitter.WEB.Controllers
                 User userFromDatabase = userRepository.GetByEmail(user.Email);
                 if (userFromDatabase != null)
                 {
-                    var hashedInputPassword = hashHelper.CalculateMd5(user.Password);
+                    var hashedInputPassword = hashHelper.CalculateSha256(user.Password);
                     if (userFromDatabase.Password == hashedInputPassword &&
                         userFromDatabase.Email == user.Email)
                     {
@@ -85,7 +85,7 @@ namespace DemoTwitter.WEB.Controllers
                         user.Avatar = fileName;
                         if (userFromDb == null || userFromDb.Email != user.Email)
                         {
-                            user.Password = hashHelper.CalculateMd5(user.Password);
+                            user.Password = hashHelper.CalculateSha256(user.Password);
                             userRepository.Register(user);
                             log.Info("A new user registered");
                             return RedirectToAction("Login", "Home");
