@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using DemoTwitter.Infrastructure.Helpers;
 
 namespace DemoTwitter.WebApi
 {
@@ -7,6 +8,7 @@ namespace DemoTwitter.WebApi
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            config.Formatters.Add(new BrowserJsonFormatter());
 
             // Web API routes
             config.MapHttpAttributeRoutes();

@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using DemoTwitter.DomainModel;
 using DemoTwitter.Repositories;
 
 namespace DemoTwitter.WebApi.Controllers
 {
+    [RoutePrefix("api/user")]
     public class UserController : ApiController
     {
         public UserController(IUserProvider userProvider)
@@ -18,11 +18,12 @@ namespace DemoTwitter.WebApi.Controllers
         private readonly IUserProvider userProvider;
 
         [HttpGet]
-        [Route("test")]
-        public HttpResponseMessage Test()
+        [Route("all")]
+        public IEnumerable<User> Test()
         {
-            //userProvider.GetUsers();
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            IEnumerable<User> list = userProvider.GetUsers();
+            return list;
+            //return new HttpResponseMessage(HttpStatusCode.OK);
         }
     }
 }

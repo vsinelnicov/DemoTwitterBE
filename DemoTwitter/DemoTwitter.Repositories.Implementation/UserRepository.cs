@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
 using Dapper;
 using DemoTwitter.DomainModel;
 
@@ -23,7 +22,7 @@ namespace DemoTwitter.Repositories.Implementation
         {
             var dbConnection = connectionProvider.CreateMainDatabaseConnection();
             dbConnection.Open();
-            string SqlString = "SELECT * FROM [Users] WHERE";
+            string SqlString = "SELECT [USERNAME], [EMAIL], [FIRSTNAME], [LASTNAME], [AVATAR] FROM [Users] WHERE";
             throw new NotImplementedException();
         }
 
@@ -31,7 +30,7 @@ namespace DemoTwitter.Repositories.Implementation
         {
             using (var dbConnexion = connectionProvider.CreateMainDatabaseConnection())
             {
-                return dbConnexion.Query<User>("SELECT * FROM [Users]");
+                return dbConnexion.Query<User>("SELECT [USERNAME], [EMAIL], [FIRSTNAME], [LASTNAME], [AVATAR] FROM [Users]");
             }
         }
     }
