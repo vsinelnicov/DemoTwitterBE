@@ -5,7 +5,8 @@ namespace DemoTwitter.Repositories
 {
     public interface IUserProvider
     {
-        string GetUserByEmail(string email);
+        User GetUserByEmail(string email);
+        User GetUserById(int id);
         IEnumerable<User> GetUsers();
     }
 }

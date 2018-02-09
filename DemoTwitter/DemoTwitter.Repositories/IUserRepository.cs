@@ -8,9 +8,10 @@ namespace DemoTwitter.Repositories
         /// <summary>
         /// Gets the user by the specified email.
         /// </summary>
-        /// <param name="email">User email</param>
+        /// <param name="emailAddress">User email</param>
         /// <returns>User data.</returns>
-        User GetUserByEmail(string email);
+        User GetUserByEmail(string emailAddress);
+        User GetUserById(int id);
 
         /// <summary>
         /// Gets all users.

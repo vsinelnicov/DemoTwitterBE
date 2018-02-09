@@ -25,5 +25,14 @@ namespace DemoTwitter.WebApi.Controllers
             return list;
             //return new HttpResponseMessage(HttpStatusCode.OK);
         }
+
+        [HttpGet]
+        [Route("{id}")]
+        public User Test1(int id)
+        {
+            User user = userProvider.GetUserById(id);
+            return user;
+            //return new HttpResponseMessage(HttpStatusCode.OK);
+        }
     }
 }

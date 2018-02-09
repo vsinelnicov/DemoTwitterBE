@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Data;
+using System.Linq;
 using Dapper;
 using DemoTwitter.DomainModel;
 
@@ -18,19 +20,27 @@ namespace DemoTwitter.Repositories.Implementation
             this.connectionProvider = connectionProvider;
         }
 
-        public User GetUserByEmail(string email)
+        public User GetUserByEmail(string emailAddress)
         {
-            var dbConnection = connectionProvider.CreateMainDatabaseConnection();
-            dbConnection.Open();
-            string SqlString = "SELECT [USERNAME], [EMAIL], [FIRSTNAME], [LASTNAME], [AVATAR] FROM [Users] WHERE";
-            throw new NotImplementedException();
+            using (var dbConnection = connectionProvider.CreateMainDatabaseConnection())
+            {
+                return dbConnection.Query<User>("USP_GET_USER_BY_EMAIL", new { email = emailAddress }, commandType: CommandType.StoredProcedure).SingleOrDefault();
+            }
+        }
+
+        public User GetUserById(int id)
+        {
+            using (var dbConnection = connectionProvider.CreateMainDatabaseConnection())
+            {
+                return dbConnection.Query<User>("USP_GET_USER_BY_ID", new { userId = id }, commandType: CommandType.StoredProcedure).SingleOrDefault();
+            }
         }
 
         public IEnumerable<User> GetUsers()
         {
-            using (var dbConnexion = connectionProvider.CreateMainDatabaseConnection())
+            using (var dbConnection = connectionProvider.CreateMainDatabaseConnection())
             {
-                return dbConnexion.Query<User>("SELECT [USERNAME], [EMAIL], [FIRSTNAME], [LASTNAME], [AVATAR] FROM [Users]");
+                return dbConnection.Query<User>("USP_GET_ALL_USERS", CommandType.StoredProcedure);
             }
         }
     }

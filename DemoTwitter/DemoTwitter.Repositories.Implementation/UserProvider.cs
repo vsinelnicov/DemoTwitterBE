@@ -16,11 +16,14 @@ namespace DemoTwitter.Repositories.Implementation
 
         private readonly IUserRepository userRepository;
 
-        public string GetUserByEmail(string email)
+        public User GetUserByEmail(string email)
         {
-            var user = new User();
-            user = userRepository.GetUserByEmail(email);
-            throw new NotImplementedException();
+            return userRepository.GetUserByEmail(email);
+        }
+
+        public User GetUserById(int id)
+        {
+            return userRepository.GetUserById(id);
         }
 
         public IEnumerable<User> GetUsers()
